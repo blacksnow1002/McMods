@@ -1,0 +1,25 @@
+{
+  "item.examplemod.spirit_stone": "SPIRIT STONE",
+  "item.examplemod.magic_drug": "Magic Drug",
+  "item.examplemod.alexandrite": "Alexandrite STONE",
+  "item.examplemod.raw_alexandrite": "Raw Alexandrite",
+
+  "item.examplemod.chisel": "Chisel",
+
+  "item.examplemod.kohlrabi": "Kohlrabi",
+
+  "item.examplemod.aurora_ashes": "Aurora Ashes",
+
+
+  "block.examplemod.spirit_stone_block": "Spirit Stone Block",
+  "block.examplemod.alexandrite_block": "Block of Alexandrite",
+  "block.examplemod.raw_alexandrite_block": "Block of Raw Alexandrite",
+  "block.examplemod.alexandrite_ore": "Alexandrite Ore",
+  "block.examplemod.alexandrite_deepslate_ore": "Alexandrite Deepslate Ore",
+
+  "block.examplemod.magic_block": "Magic Block",
+
+
+  "creativetab.examplemod.example_items": "Example Items",
+  "creativetab.examplemod.example_blocks": "Example Blocks"
+}

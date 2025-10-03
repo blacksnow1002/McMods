@@ -1,0 +1,12 @@
+{
+  "item.examplemod.spirit_stone": "靈石",
+  "item.examplemod.magic_drug": "魔藥",
+  "block.examplemod.spirit_stone_block": "Spirit Stone Block",
+  "block.examplemod.alexandrite_block": "Block of Alexandrite",
+  "block.examplemod.raw_alexandrite_block": "Block of Raw Alexandrite",
+  "block.examplemod.alexandrite_ore": "Alexandrite Ore",
+  "block.examplemod.alexandrite_deepslate_ore": "Alexandrite Deepslate Ore",
+  "creativetab.examplemod.example_items": "Example Items",
+  "creativetab.examplemod.example_blocks": "Example Blocks",
+  "block.examplemod.example_block": "亞歷山卓寶石",
+}
