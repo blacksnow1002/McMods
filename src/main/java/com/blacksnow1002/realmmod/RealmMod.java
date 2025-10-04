@@ -4,6 +4,7 @@ import com.blacksnow1002.realmmod.block.ModBlocks;
 import com.blacksnow1002.realmmod.command.BreakthroughCommand;
 import com.blacksnow1002.realmmod.item.ModCreativeModeTabs;
 import com.blacksnow1002.realmmod.item.ModItems;
+import com.blacksnow1002.realmmod.network.ModMessages;
 import com.mojang.logging.LogUtils;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
@@ -51,8 +52,9 @@ public class RealmMod
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
-
-
+        event.enqueueWork(() -> {
+            ModMessages.register();
+        });
     }
 
     // Add the example block item to the building blocks tab

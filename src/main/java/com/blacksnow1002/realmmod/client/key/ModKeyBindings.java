@@ -11,7 +11,7 @@ import org.lwjgl.glfw.GLFW;
 @Mod.EventBusSubscriber(modid = RealmMod.MOD_ID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ModKeyBindings {
     public static final KeyMapping MEDITATION_KEY =
-            new KeyMapping("key.realmmod.meditate", GLFW.GLFW_KEY_F, "key.categories.realmmod");
+            new KeyMapping("key.realmmod.meditate", GLFW.GLFW_KEY_G, "key.categories.realmmod");
 
     @SubscribeEvent
     public static void register(RegisterKeyMappingsEvent event) {

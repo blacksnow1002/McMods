@@ -1,5 +1,7 @@
 package com.blacksnow1002.realmmod.client.key;
 
+import com.blacksnow1002.realmmod.network.StartMeditationPacket;
+import com.blacksnow1002.realmmod.network.ModMessages;
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.Component;
 import net.minecraftforge.api.distmarker.Dist;
@@ -12,9 +14,8 @@ import com.blacksnow1002.realmmod.RealmMod;
 @Mod.EventBusSubscriber(modid = RealmMod.MOD_ID, value = Dist.CLIENT)
 public class MeditationInputHandler {
     private static int meditateHoldTicks = 0;
-    private static boolean isMeditating = false;
 
-    private static final int HOLD_TIME = 60; // 約3秒（20tick * 3）
+    private static final int HOLD_TIME = 20; // 約3秒（20tick * 3）
 
     @SubscribeEvent
     public static void onClientTick(TickEvent.ClientTickEvent event) {
@@ -22,14 +23,15 @@ public class MeditationInputHandler {
         Minecraft mc = Minecraft.getInstance();
         if (mc.player == null) return;
 
-        boolean holdingKey = ModKeyBindings.MEDITATION_KEY.isDown() && mc.player.isShiftKeyDown();
+        boolean holdingKey = ModKeyBindings.MEDITATION_KEY.isDown();
 
-        if (holdingKey && !isMeditating) {
+        if (holdingKey) {
             meditateHoldTicks++;
-            if (meditateHoldTicks >= HOLD_TIME) {
-                isMeditating = true;
-                meditateHoldTicks = 0;
+            if (meditateHoldTicks == HOLD_TIME) {
+                ModMessages.sendToServer(new StartMeditationPacket(1)); // keyId = 1
             }
+        } else {
+            meditateHoldTicks = 0;
         }
     }
 }
