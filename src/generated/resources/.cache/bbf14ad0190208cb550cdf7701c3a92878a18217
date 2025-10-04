@@ -1,0 +1,4 @@
+// 1.21.1	2025-10-04T00:24:51.1109031	Tags for minecraft:block mod id realmmod
+a01da7525f88cefd56268757642a9d181db27244 data/minecraft/tags/block/mineable/pickaxe.json
+98c6ae717a0b5d14f251ee29809c80068612419c data/minecraft/tags/block/needs_diamond_tool.json
+d1c932012bb4fef05268589e9e8a5f852157562d data/minecraft/tags/block/needs_iron_tool.json
