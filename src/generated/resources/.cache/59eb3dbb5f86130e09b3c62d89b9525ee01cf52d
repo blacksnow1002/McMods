@@ -1,7 +1,0 @@
-// 1.21.1	2025-10-03T23:42:12.8819469	Loot Tables
-b7f4aab08412ff18266a68a5c70393ec26b3b5f8 data/examplemod/loot_table/blocks/alexandrite_block.json
-e1c47b40bf6887ec04d57cf46142b0ea8a749b8d data/examplemod/loot_table/blocks/alexandrite_deepslate_ore.json
-738fabbaf9a4f9e717c4a34143e3a3eb7d80dfc4 data/examplemod/loot_table/blocks/alexandrite_ore.json
-e630a46f74ebbdfdca7afa1b922ad31b65d8a399 data/examplemod/loot_table/blocks/magic_block.json
-838621f56b5ee688c1fda5ab5357c9931f824624 data/examplemod/loot_table/blocks/raw_alexandrite_block.json
-acb18495bf89586f6e42aa14f328059272f5de73 data/examplemod/loot_table/blocks/spirit_stone_block.json

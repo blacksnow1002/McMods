@@ -1,0 +1,48 @@
+{
+
+
+  "item.realmmod.magic_drug": "Magic Drug",
+  "item.realmmod.alexandrite": "Alexandrite STONE",
+  "item.realmmod.raw_alexandrite": "Raw Alexandrite",
+
+  "item.realmmod.chisel": "Chisel",
+
+  "item.realmmod.kohlrabi": "Kohlrabi",
+
+  "item.realmmod.aurora_ashes": "Aurora Ashes",
+
+
+  "block.realmmod.spirit_stone_block": "Spirit Stone Block",
+  "block.realmmod.alexandrite_block": "Block of Alexandrite",
+  "block.realmmod.raw_alexandrite_block": "Block of Raw Alexandrite",
+  "block.realmmod.alexandrite_ore": "Alexandrite Ore",
+  "block.realmmod.alexandrite_deepslate_ore": "Alexandrite Deepslate Ore",
+
+  "block.realmmod.magic_block": "Magic Block",
+
+
+  "creativetab.realmmod.example_items": "Example Items",
+  "creativetab.realmmod.example_blocks": "Example Blocks",
+
+  "item.realmmod.spirit_stone_low": "低品靈石",
+  "item.realmmod.spirit_stone_middle": "中品靈石",
+  "item.realmmod.spirit_stone_high": "高品靈石",
+  "item.realmmod.spirit_fruit": "靈果",
+
+  "key.realmmod.meditate": "打坐",
+
+  "message.realmmod.eat.spirit_fruit": "你感覺靈氣湧動！修為 + %s (目前:%s/%s)",
+
+  "message.realmmod.meditation.start": "你靜坐不動，開始吸納天地靈氣……",
+  "message.realmmod.meditation.gain.default": "打坐靈氣入體，修為增加 %s (目前: %s/%s)",
+  "message.realmmod.meditation.gain.spirit_stone": "你吸納了手中的%s，修為增加 %s (目前: %s/%s)",
+  "message.realmmod.meditation.end": "你活動身體，靈氣流散，結束了打坐",
+
+  "message.realmmod.breakthrough.can_breakthrough": "修為足夠，可以突破",
+  "message.realmmod.breakthrough.success.big": "突破大境界！你已達到%s一層",
+  "message.realmmod.breakthrough.success.small": "突破小境界！你已達到%s%s層",
+  "message.realmmod.breakthrough.fail": "突破境界失敗",
+  "message.realmmod.breakthrough.fail.cultivation": "損失一成修為(剩餘修為%s/%s)",
+  "message.realmmod.breakthrough.fail.possibility": "下次突破成功機率%s%%",
+  "message.realmmod.breakthrough.de_cultivation": "修為不足，無法突破！(目前:%s/%s)"
+}
