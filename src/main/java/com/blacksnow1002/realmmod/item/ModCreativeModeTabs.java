@@ -18,7 +18,6 @@ public class ModCreativeModeTabs {
             () -> CreativeModeTab.builder().icon(() -> new ItemStack(ModItems.SPIRIT_STONE_LOW.get()))
                     .title(Component.translatable("creativetab.realmmod.example_items"))
                     .displayItems((itemDisplayParameters, output) -> {
-
                         output.accept(ModItems.SPIRIT_STONE_LOW.get());
                         output.accept(ModItems.SPIRIT_STONE_MIDDLE.get());
                         output.accept(ModItems.SPIRIT_STONE_HIGH.get());
@@ -38,6 +37,7 @@ public class ModCreativeModeTabs {
                     .title(Component.translatable("creativetab.realmmod.example_blocks"))
                     .displayItems((itemDisplayParameters, output) -> {
 
+                        output.accept(ModBlocks.SPIRIT_ORE.get());
                         output.accept(ModBlocks.SPIRIT_STONE_BLOCK.get());
                         output.accept(ModBlocks.ALEXANDRITE_BLOCK.get());
                         output.accept(ModBlocks.ALEXANDRITE_ORE.get());

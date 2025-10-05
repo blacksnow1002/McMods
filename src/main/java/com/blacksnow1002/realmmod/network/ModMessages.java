@@ -1,8 +1,6 @@
 package com.blacksnow1002.realmmod.network;
 
-import com.blacksnow1002.realmmod.network.packets.SpellPacket;
-import com.blacksnow1002.realmmod.network.packets.StartCultivationStatusPacket;
-import com.blacksnow1002.realmmod.network.packets.StartMeditationPacket;
+import com.blacksnow1002.realmmod.network.packets.*;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraftforge.network.ChannelBuilder;
 import net.minecraftforge.network.NetworkDirection;
@@ -43,6 +41,18 @@ public class ModMessages {
                 .encoder(SpellPacket::encode)  // packet -> FriendlyByteBuf
                 .consumerMainThread(SpellPacket::handle) // 處理 (主執行緒)
                 .add();
+
+        INSTANCE.messageBuilder(LingMuSpellPacket.class, nextId(), NetworkDirection.PLAY_TO_SERVER)
+                .decoder(LingMuSpellPacket::new)      // FriendlyByteBuf -> packet
+                .encoder(LingMuSpellPacket::encode)  // packet -> FriendlyByteBuf
+                .consumerMainThread(LingMuSpellPacket::handle) // 處理 (主執行緒)
+                .add();
+
+        INSTANCE.messageBuilder(LingMuSyncPacket.class, nextId(), NetworkDirection.PLAY_TO_CLIENT)
+                .decoder(LingMuSyncPacket::new)
+                .encoder(LingMuSyncPacket::encode)
+                .consumerMainThread(LingMuSyncPacket::handle)
+                .add();
     }
 
     // 從客戶端發送到伺服器
@@ -58,8 +68,12 @@ public class ModMessages {
         INSTANCE.send(packet, PacketDistributor.SERVER.noArg());
     }
 
+    public static void sendToServer(LingMuSpellPacket packet) {
+        INSTANCE.send(packet, PacketDistributor.SERVER.noArg());
+    }
+
     // 從伺服器發送到特定玩家
-    public static void sendToPlayer(StartMeditationPacket packet, ServerPlayer player) {
+    public static void sendToPlayer(LingMuSyncPacket packet, ServerPlayer player) {
         INSTANCE.send(packet, PacketDistributor.PLAYER.with(player));
     }
 }

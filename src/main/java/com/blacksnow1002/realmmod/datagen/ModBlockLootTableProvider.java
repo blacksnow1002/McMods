@@ -26,6 +26,7 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
 
     @Override
     protected void generate() {
+        dropSelf(ModBlocks.SPIRIT_ORE.get());
         dropSelf(ModBlocks.ALEXANDRITE_BLOCK.get());
         dropSelf(ModBlocks.RAW_ALEXANDRITE_BLOCK.get());
         dropSelf(ModBlocks.MAGIC_BLOCK.get());

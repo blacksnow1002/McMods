@@ -2,6 +2,7 @@ package com.blacksnow1002.realmmod.datagen;
 
 import com.blacksnow1002.realmmod.RealmMod;
 import com.blacksnow1002.realmmod.block.ModBlocks;
+import com.blacksnow1002.realmmod.util.ModTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.tags.BlockTags;
@@ -30,5 +31,8 @@ public class ModBlockTagProvider extends BlockTagsProvider {
 
         tag(BlockTags.NEEDS_DIAMOND_TOOL)
                 .add(ModBlocks.RAW_ALEXANDRITE_BLOCK.get());
+
+        tag(ModTags.Blocks.SPIRITUAL_VISIBLE)
+                .add(ModBlocks.SPIRIT_ORE.get());
     }
 }

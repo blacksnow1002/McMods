@@ -1,6 +1,7 @@
 
 package com.blacksnow1002.realmmod.spell;
 
+import com.blacksnow1002.realmmod.spell.spells.LingMuSpell;
 import com.blacksnow1002.realmmod.spell.spells.LuminousSpell;
 import java.util.HashMap;
 import java.util.Map;
@@ -18,6 +19,7 @@ public class SpellRegistry {
 
     public static void registerAll() {
         register(new LuminousSpell());
+        register(new LingMuSpell());
         // 🔮未來還能加：register(new FireballSpell()); register(new FreezeSpell()); ...
     }
 

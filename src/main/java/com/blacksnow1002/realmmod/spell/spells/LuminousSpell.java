@@ -25,7 +25,7 @@ public class LuminousSpell extends BaseSpell {
 
     @Override
     public int getCooldownTicks() {
-        return 20 * 10;
+        return 20 * 60;
     }
 
     @Override

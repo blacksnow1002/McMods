@@ -2,6 +2,7 @@ package com.blacksnow1002.realmmod.block;
 
 import com.blacksnow1002.realmmod.RealmMod;
 import com.blacksnow1002.realmmod.block.custom.MagicBlock;
+import com.blacksnow1002.realmmod.block.custom.SpiritVisualBlock;
 import com.blacksnow1002.realmmod.item.ModItems;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.item.BlockItem;
@@ -24,6 +25,11 @@ public class ModBlocks {
     public static final RegistryObject<Block> SPIRIT_STONE_BLOCK = registerBlock("spirit_stone_block",
             () -> new Block(BlockBehaviour.Properties.of()
                     .strength(1.0F).requiresCorrectToolForDrops().sound(SoundType.AMETHYST)));
+
+    public static final RegistryObject<Block> SPIRIT_ORE = registerBlock("spirit_ore",
+            () -> new SpiritVisualBlock(BlockBehaviour.Properties.of()
+            .strength(1.0F).requiresCorrectToolForDrops().sound(SoundType.AMETHYST)));
+
 
     public static final RegistryObject<Block> ALEXANDRITE_BLOCK = registerBlock("alexandrite_block",
             () -> new Block(BlockBehaviour.Properties.of()
