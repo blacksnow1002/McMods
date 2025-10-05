@@ -2,7 +2,7 @@ package com.blacksnow1002.realmmod.spell.spells;
 
 import com.blacksnow1002.realmmod.capability.CultivationRealm;
 import com.blacksnow1002.realmmod.capability.ModCapabilities;
-import com.blacksnow1002.realmmod.event.DelayedTaskHandler;
+import com.blacksnow1002.realmmod.event.handlers.DelayedTaskHandler;
 import com.blacksnow1002.realmmod.network.ModMessages;
 import com.blacksnow1002.realmmod.network.packets.LingMuSyncPacket;
 import com.blacksnow1002.realmmod.spell.BaseSpell;
