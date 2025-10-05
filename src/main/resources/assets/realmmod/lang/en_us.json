@@ -23,7 +23,7 @@
 
   "creativetab.realmmod.example_items": "Example Items",
   "creativetab.realmmod.example_blocks": "Example Blocks",
-
+  "key.realmmod.fly_spell": "御劍飛行",
   "item.realmmod.spirit_stone_low": "§a低品靈石§r",
   "item.realmmod.spirit_stone_middle": "§b中品靈石§r",
   "item.realmmod.spirit_stone_high": "§e高品靈石§r",
@@ -38,7 +38,7 @@
   "message.realmmod.spell.ling_mu.start": "你啟動了靈目術，天地靈機顯現於眼前。",
   "message.realmmod.spell.ling_mu.end": "靈目術的靈光漸漸消散。",
   "message.realmmod.eat.spirit_fruit": "§a你吞下靈果，只覺一股清靈之氣湧入丹田！修為 +§b%s §7(目前: §e%s§7/§e%s§7)",
-
+  "massage.realmmod.two_jump_success": "§6§l二段跳發動！",
   "message.realmmod.meditation.start": "§b你盤膝而坐，靜心守意，開始吸納天地靈氣……§r",
   "message.realmmod.meditation.start_again": "§7你已入定，心神寧靜無波。若要結束冥想，請動一動身體。§r",
   "message.realmmod.meditation.gain.default": "§a靈氣自四方而來，緩緩流入經脈，修為增加 §b%s §7(目前: §e%s§7/§e%s§7)§r",

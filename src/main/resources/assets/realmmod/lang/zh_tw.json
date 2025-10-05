@@ -9,6 +9,7 @@
   "key.realmmod.cultivation_status": "內視",
   "key.realmmod.luminous_spell": "法術-明光術",
   "key.realmmod.ling_mu_spell": "法術-靈目術",
+  "key.realmmod.fly_spell": "御劍飛行",
 
   "message.realmmod.spell.common.low_ordinal": "§c境界不足，無法施展「§d%s§c」！§r",
   "message.realmmod.spell.common.cold_time": "§7「§b%s§7」尚未冷卻完畢（剩餘§e%s§7秒）§r",
@@ -18,6 +19,8 @@
   "message.realmmod.spell.ling_mu.start": "§b你啟動§d靈目術§b，氣機交融，天地靈機顯現於眼前。§r",
   "message.realmmod.spell.ling_mu.end": "§7你收斂心神，§d靈目術§7的光華漸漸散去。§r",
 
+
+  "massage.realmmod.two_jump_success": "§6§l二段跳發動！",
 
   "message.realmmod.eat.spirit_fruit": "§a你吞下靈果，只覺一股清靈之氣湧入丹田！修為 +§b%s §7(目前: §e%s§7/§e%s§7)",
 

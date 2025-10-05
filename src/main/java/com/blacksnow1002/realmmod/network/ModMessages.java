@@ -48,6 +48,14 @@ public class ModMessages {
                 .consumerMainThread(LingMuSpellPacket::handle) // 處理 (主執行緒)
                 .add();
 
+        INSTANCE.messageBuilder(FlySpellPacket.class, nextId(), NetworkDirection.PLAY_TO_SERVER)
+                .decoder(FlySpellPacket::new)      // FriendlyByteBuf -> packet
+                .encoder(FlySpellPacket::encode)  // packet -> FriendlyByteBuf
+                .consumerMainThread(FlySpellPacket::handle) // 處理 (主執行緒)
+                .add();
+
+
+
         INSTANCE.messageBuilder(LingMuSyncPacket.class, nextId(), NetworkDirection.PLAY_TO_CLIENT)
                 .decoder(LingMuSyncPacket::new)
                 .encoder(LingMuSyncPacket::encode)
@@ -75,6 +83,10 @@ public class ModMessages {
     }
 
     public static void sendToServer(LingMuSpellPacket packet) {
+        INSTANCE.send(packet, PacketDistributor.SERVER.noArg());
+    }
+
+    public static void sendToServer(FlySpellPacket packet) {
         INSTANCE.send(packet, PacketDistributor.SERVER.noArg());
     }
 

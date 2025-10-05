@@ -18,6 +18,8 @@ public class ModKeyBindings {
             new KeyMapping("key.realmmod.luminous_spell", GLFW.GLFW_KEY_Y, "key.categories.realmmod");
     public static final KeyMapping LING_MU_SPELL_KEY =
             new KeyMapping("key.realmmod.ling_mu_spell", GLFW.GLFW_KEY_H, "key.categories.realmmod");
+    public static final KeyMapping FLY_SPELL_KEY =
+            new KeyMapping("key.realmmod.fly_spell", GLFW.GLFW_KEY_J, "key.categories.realmmod");
 
     @SubscribeEvent
     public static void register(RegisterKeyMappingsEvent event) {
@@ -25,6 +27,7 @@ public class ModKeyBindings {
         event.register(CULTIVATION_STATUS_KEY);
         event.register(LUMINOUS_SPELL_KEY);
         event.register(LING_MU_SPELL_KEY);
+        event.register(FLY_SPELL_KEY);
     }
 }
 

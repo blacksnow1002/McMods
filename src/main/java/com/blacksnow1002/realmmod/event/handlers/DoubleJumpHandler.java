@@ -30,15 +30,6 @@ public class DoubleJumpHandler {
             boolean isJumping = player.input.jumping;
             boolean isOnGround = player.onGround();
 
-            // 調試信息
-            if (isJumping && !wasJumping) {
-                player.displayClientMessage(
-                        Component.literal("§e跳躍按下 | 在地面: " + isOnGround +
-                                " | 已二段跳: " + hasDoubleJumped +
-                                " | Y速度: " + String.format("%.2f", player.getDeltaMovement().y)),
-                        true
-                );
-            }
 
             // 離開地面時重置二段跳標記
             if (wasOnGround && !isOnGround) {
@@ -68,11 +59,9 @@ public class DoubleJumpHandler {
                     hasDoubleJumped = true;
 
                     player.displayClientMessage(
-                            Component.literal("§6§l二段跳發動！"),
+                            Component.translatable("massage.realmmod.two_jump_success"),
                             true
                     );
-
-                    System.out.println(">>> 二段跳執行成功！");
                 }
             }
 
