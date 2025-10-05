@@ -53,6 +53,12 @@ public class ModMessages {
                 .encoder(LingMuSyncPacket::encode)
                 .consumerMainThread(LingMuSyncPacket::handle)
                 .add();
+
+        INSTANCE.messageBuilder(RealmSyncPacket.class, nextId(), NetworkDirection.PLAY_TO_CLIENT)
+                .decoder(RealmSyncPacket::new)
+                .encoder(RealmSyncPacket::encode)
+                .consumerMainThread(RealmSyncPacket::handle)
+                .add();
     }
 
     // 從客戶端發送到伺服器
@@ -74,6 +80,10 @@ public class ModMessages {
 
     // 從伺服器發送到特定玩家
     public static void sendToPlayer(LingMuSyncPacket packet, ServerPlayer player) {
+        INSTANCE.send(packet, PacketDistributor.PLAYER.with(player));
+    }
+
+    public static void sendToPlayer(RealmSyncPacket packet, ServerPlayer player) {
         INSTANCE.send(packet, PacketDistributor.PLAYER.with(player));
     }
 }

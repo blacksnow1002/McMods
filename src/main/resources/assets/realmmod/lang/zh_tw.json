@@ -10,7 +10,7 @@
   "key.realmmod.luminous_spell": "法術-明光術",
   "key.realmmod.ling_mu_spell": "法術-靈目術",
 
-  "message.realmmod.spell.common.low_ordinal": "§c靈氣不足，無法施展「§d%s§c」！§r",
+  "message.realmmod.spell.common.low_ordinal": "§c境界不足，無法施展「§d%s§c」！§r",
   "message.realmmod.spell.common.cold_time": "§7「§b%s§7」尚未冷卻完畢（剩餘§e%s§7秒）§r",
 
   "message.realmmod.spell.luminous": "§e你掐訣誦咒，施展§6明光術§e，周身靈光流轉，獲得§b夜視§e之效。§r",

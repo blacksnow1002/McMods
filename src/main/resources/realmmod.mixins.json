@@ -6,7 +6,8 @@
   "refmap": "realmmod.refmap.json",
   "client": [
     "GuiMixin",
-    "BlockStateBaseMixin"
+    "BlockStateBaseMixin",
+    "FoodDataMixin"
   ],
   "injectors": {
     "defaultRequire": 1

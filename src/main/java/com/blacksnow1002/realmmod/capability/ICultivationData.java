@@ -2,7 +2,9 @@ package com.blacksnow1002.realmmod.capability;
 
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.entity.player.Player;
+import net.minecraftforge.common.capabilities.AutoRegisterCapability;
 
+@AutoRegisterCapability
 public interface ICultivationData {
     CultivationRealm getRealm(); // 境界
     void setRealm(CultivationRealm realm);

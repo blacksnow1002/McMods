@@ -1,7 +1,11 @@
 package com.blacksnow1002.realmmod.capability;
 
+import com.blacksnow1002.realmmod.network.ModMessages;
+import com.blacksnow1002.realmmod.network.packets.LingMuSyncPacket;
+import com.blacksnow1002.realmmod.network.packets.RealmSyncPacket;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Player;
 
 import java.util.Map;
@@ -52,7 +56,7 @@ public class CultivationData implements ICultivationData {
     @Override
     public void addCultivation(Player player, int amount) {
         this.cultivation += amount;
-        if (layer != realm.getMaxLayer() && cultivation > realm.getRequiredPerLayer()) {
+        if (layer != realm.getMaxLayer() && cultivation >= realm.getRequiredPerLayer()) {
             player.sendSystemMessage(Component.translatable("message.realmmod.breakthrough.can_breakthrough"));
         }
     }
@@ -103,6 +107,7 @@ public class CultivationData implements ICultivationData {
                             setDisplayLayer.get(layer)
                     ));
                 }
+                if(player instanceof  ServerPlayer) ModMessages.sendToPlayer(new RealmSyncPacket(realm.ordinal(), layer),(ServerPlayer) player);
             } else {
                 cultivation = (int)(cultivation * 0.9f);
                 breakthroughSuccessPossibility += 0.03f;

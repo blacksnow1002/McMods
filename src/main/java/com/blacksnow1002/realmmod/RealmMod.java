@@ -2,6 +2,7 @@ package com.blacksnow1002.realmmod;
 
 import com.blacksnow1002.realmmod.block.ModBlocks;
 import com.blacksnow1002.realmmod.command.BreakthroughCommand;
+import com.blacksnow1002.realmmod.command.SetRealmCommand;
 import com.blacksnow1002.realmmod.item.ModCreativeModeTabs;
 import com.blacksnow1002.realmmod.item.ModItems;
 import com.blacksnow1002.realmmod.network.ModMessages;
@@ -73,6 +74,8 @@ public class RealmMod
     @SubscribeEvent
     public void onRegisterCommand(RegisterCommandsEvent event) {
         BreakthroughCommand.register(event.getDispatcher());
+        SetRealmCommand.register(event.getDispatcher());
+
     }
 
     // You can use EventBusSubscriber to automatically register all static methods in the class annotated with @SubscribeEvent
