@@ -24,26 +24,32 @@
   "creativetab.realmmod.example_items": "Example Items",
   "creativetab.realmmod.example_blocks": "Example Blocks",
 
-  "item.realmmod.spirit_stone_low": "低品靈石",
-  "item.realmmod.spirit_stone_middle": "中品靈石",
-  "item.realmmod.spirit_stone_high": "高品靈石",
-  "item.realmmod.spirit_fruit": "靈果",
+  "item.realmmod.spirit_stone_low": "§a低品靈石§r",
+  "item.realmmod.spirit_stone_middle": "§b中品靈石§r",
+  "item.realmmod.spirit_stone_high": "§e高品靈石§r",
+  "item.realmmod.spirit_fruit": "§6靈果§r",
 
-  "key.realmmod.meditate": "打坐",
+  "key.realmmod.meditate": "§e打坐§r",
+  "key.realmmod.cultivation_status": "內視",
 
-  "message.realmmod.eat.spirit_fruit": "你感覺靈氣湧動！修為 + %s (目前:%s/%s)",
+  "message.realmmod.eat.spirit_fruit": "§a你吞下靈果，只覺一股清靈之氣湧入丹田！修為 +§b%s §7(目前: §e%s§7/§e%s§7)",
 
-  "message.realmmod.meditation.start": "你靜坐不動，開始吸納天地靈氣……",
-  "message.realmmod.meditation.start_again": "你已經在冥想中了！移動以停止冥想。",
-  "message.realmmod.meditation.gain.default": "打坐靈氣入體，修為增加 %s (目前: %s/%s)",
-  "message.realmmod.meditation.gain.spirit_stone": "你吸納了手中的%s，修為增加 %s (目前: %s/%s)",
-  "message.realmmod.meditation.end": "你活動身體，靈氣流散，結束了打坐",
+  "message.realmmod.meditation.start": "§b你盤膝而坐，靜心守意，開始吸納天地靈氣……§r",
+  "message.realmmod.meditation.start_again": "§7你已入定，心神寧靜無波。若要結束冥想，請動一動身體。§r",
+  "message.realmmod.meditation.gain.default": "§a靈氣自四方而來，緩緩流入經脈，修為增加 §b%s §7(目前: §e%s§7/§e%s§7)§r",
+  "message.realmmod.meditation.gain.spirit_stone": "§d你手中%s§d光華閃爍，靈氣湧入體內，修為提升%s §7(目前: §e%s§7/§e%s§7)§r",
+  "message.realmmod.meditation.end": "§7你睜開雙眼，體內靈氣漸歸平靜，結束了此次打坐。§r",
 
-  "message.realmmod.breakthrough.can_breakthrough": "修為足夠，可以突破",
-  "message.realmmod.breakthrough.success.big": "突破大境界！你已達到%s一層",
-  "message.realmmod.breakthrough.success.small": "突破小境界！你已達到%s%s層",
-  "message.realmmod.breakthrough.fail": "突破境界失敗",
-  "message.realmmod.breakthrough.fail.cultivation": "損失一成修為(剩餘修為%s/%s)",
-  "message.realmmod.breakthrough.fail.possibility": "下次突破成功機率%s%%",
-  "message.realmmod.breakthrough.de_cultivation": "修為不足，無法突破！(目前:%s/%s)"
+  "message.realmmod.breakthrough.can_breakthrough": "§6修為圓滿！靈氣鼓蕩，可嘗試突破境界！§r",
+  "message.realmmod.breakthrough.success.big": "§d天地共鳴！你突破了大境界，踏入§b%s§d一層！§r",
+  "message.realmmod.breakthrough.success.small": "§a你氣息一震，成功突破至§b%s§a第§e%s§a！§r",
+  "message.realmmod.breakthrough.fail": "§c靈氣逆流，突破失敗！§r",
+  "message.realmmod.breakthrough.fail.cultivation": "§7真氣紊亂，修為受損一成 (剩餘修為§e%s§7/§e%s§7)§r",
+  "message.realmmod.breakthrough.fail.possibility": "§6你心中暗算，下次突破成功機率為§e%s%%§6。§r",
+  "message.realmmod.breakthrough.de_cultivation": "§8靈氣未聚，不足以破境！ (目前:§e%s§7/§e%s§7)§r",
+
+  "message.realmmod.send_cultivation_status.low_ordinal": "你尚未踏入修行之門，不足以內視自身。",
+  "message.realmmod.send_cultivation_status.realm": "§d當前境界：§b%s§7%s§r",
+  "message.realmmod.send_cultivation_status.cultivation": "§a當前修為：§7(§e%s§7/§e%s§7)§r",
+  "message.realmmod.send_cultivation_status.possibility": "§6當前突破成功率：§e%s%%§r"
 }

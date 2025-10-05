@@ -14,15 +14,16 @@ public class CultivationData implements ICultivationData {
 
     private Map<Integer, String> setDisplayLayer =
             Map.of(
-                    1, "一",
-                    2, "二",
-                    3, "三",
-                    4, "四",
-                    5, "五",
-                    6, "六",
-                    7, "七",
-                    8, "八",
-                    9, "九"
+                    1, "一層",
+                    2, "二層",
+                    3, "三層",
+                    4, "四層",
+                    5, "五層",
+                    6, "六層",
+                    7, "七層",
+                    8, "八層",
+                    9, "九層",
+                    10, "大圓滿"
             );
 
     @Override
@@ -51,7 +52,7 @@ public class CultivationData implements ICultivationData {
     @Override
     public void addCultivation(Player player, int amount) {
         this.cultivation += amount;
-        if (this.cultivation > realm.getRequiredPerLayer()) {
+        if (layer != realm.getMaxLayer() && cultivation > realm.getRequiredPerLayer()) {
             player.sendSystemMessage(Component.translatable("message.realmmod.breakthrough.can_breakthrough"));
         }
     }

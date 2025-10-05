@@ -15,7 +15,7 @@ import com.blacksnow1002.realmmod.RealmMod;
 public class MeditationInputHandler {
     private static int meditateHoldTicks = 0;
 
-    private static final int HOLD_TIME = 20; // 約3秒（20tick * 3）
+    private static final int HOLD_TIME = 20;
 
     @SubscribeEvent
     public static void onClientTick(TickEvent.ClientTickEvent event) {

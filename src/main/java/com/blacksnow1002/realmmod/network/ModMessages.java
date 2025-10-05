@@ -28,10 +28,20 @@ public class ModMessages {
                 .encoder(StartMeditationPacket::encode)  // packet -> FriendlyByteBuf
                 .consumerMainThread(StartMeditationPacket::handle) // 處理 (主執行緒)
                 .add();
+
+        INSTANCE.messageBuilder(StartCultivationStatusPacket.class, nextId(), NetworkDirection.PLAY_TO_SERVER)
+                .decoder(StartCultivationStatusPacket::new)      // FriendlyByteBuf -> packet
+                .encoder(StartCultivationStatusPacket::encode)  // packet -> FriendlyByteBuf
+                .consumerMainThread(StartCultivationStatusPacket::handle) // 處理 (主執行緒)
+                .add();
     }
 
     // 從客戶端發送到伺服器
     public static void sendToServer(StartMeditationPacket packet) {
+        INSTANCE.send(packet, PacketDistributor.SERVER.noArg());
+    }
+
+    public static void sendToServer(StartCultivationStatusPacket packet) {
         INSTANCE.send(packet, PacketDistributor.SERVER.noArg());
     }
 
