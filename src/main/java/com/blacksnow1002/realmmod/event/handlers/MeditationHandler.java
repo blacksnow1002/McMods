@@ -1,4 +1,4 @@
-package com.blacksnow1002.realmmod.event;
+package com.blacksnow1002.realmmod.event.handlers;
 
 import com.blacksnow1002.realmmod.RealmMod;
 import com.blacksnow1002.realmmod.capability.ModCapabilities;
@@ -6,7 +6,6 @@ import com.blacksnow1002.realmmod.item.custom.SpiritStoneItem;
 import com.blacksnow1002.realmmod.util.ArmorStandUtils;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.Pose;
 import net.minecraft.world.entity.decoration.ArmorStand;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.phys.Vec3;
@@ -156,7 +155,6 @@ public class MeditationHandler {
         seat.setSilent(true);
         seat.setHealth(0.0001f);
         seat.setDeltaMovement(Vec3.ZERO);
-        ArmorStandUtils.setMarker(seat, true);
 
         seat.setYRot(player.getYRot());
         seat.setYHeadRot(player.getYHeadRot());

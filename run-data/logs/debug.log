@@ -249,7 +249,7 @@
 [0410月2025 14:12:36.385] [modloading-worker-0/DEBUG] [io.netty.util.internal.PlatformDependent0/]: java.nio.Buffer.address: available
 [0410月2025 14:12:36.394] [modloading-worker-0/DEBUG] [net.minecraftforge.fml.javafmlmod.AutomaticEventSubscriber/LOADING]: Auto-subscribing com.blacksnow1002.realmmod.Config to MOD
 [0410月2025 14:12:36.402] [modloading-worker-0/DEBUG] [net.minecraftforge.fml.javafmlmod.AutomaticEventSubscriber/LOADING]: Auto-subscribing com.blacksnow1002.realmmod.datagen.DataGenerators to MOD
-[0410月2025 14:12:36.412] [modloading-worker-0/DEBUG] [net.minecraftforge.fml.javafmlmod.AutomaticEventSubscriber/LOADING]: Auto-subscribing com.blacksnow1002.realmmod.event.MeditationHandler to FORGE
+[0410月2025 14:12:36.412] [modloading-worker-0/DEBUG] [net.minecraftforge.fml.javafmlmod.AutomaticEventSubscriber/LOADING]: Auto-subscribing com.blacksnow1002.realmmod.event.handlers.MeditationHandler to FORGE
 [0410月2025 14:12:36.417] [modloading-worker-0/DEBUG] [net.minecraftforge.fml.javafmlmod.AutomaticEventSubscriber/LOADING]: Auto-subscribing com.blacksnow1002.realmmod.event.ModEvents to FORGE
 [0410月2025 14:12:36.422] [modloading-worker-0/DEBUG] [net.minecraftforge.fml.javafmlmod.AutomaticEventSubscriber/LOADING]: Auto-subscribing com.blacksnow1002.realmmod.RealmMod$ClientModEvents to MOD
 [0410月2025 14:12:36.386] [modloading-worker-0/DEBUG] [io.netty.util.internal.PlatformDependent0/]: direct buffer constructor: unavailable

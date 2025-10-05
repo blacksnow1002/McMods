@@ -14,11 +14,14 @@ public class ModKeyBindings {
         new KeyMapping("key.realmmod.meditate", GLFW.GLFW_KEY_G, "key.categories.realmmod");
     public static final KeyMapping CULTIVATION_STATUS_KEY =
         new KeyMapping("key.realmmod.cultivation_status", GLFW.GLFW_KEY_R, "key.categories.realmmod");
+    public static final KeyMapping LUMINOUS_SPELL_KEY =
+            new KeyMapping("key.realmmod.luminous_spell", GLFW.GLFW_KEY_Y, "key.categories.realmmod");
 
     @SubscribeEvent
     public static void register(RegisterKeyMappingsEvent event) {
         event.register(MEDITATION_KEY);
         event.register(CULTIVATION_STATUS_KEY);
+        event.register(LUMINOUS_SPELL_KEY);
     }
 }
 

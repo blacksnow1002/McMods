@@ -1,11 +1,10 @@
-package com.blacksnow1002.realmmod.client.key;
+package com.blacksnow1002.realmmod.client.key.input_handlers;
 
-import com.blacksnow1002.realmmod.network.StartMeditationPacket;
+import com.blacksnow1002.realmmod.client.key.ModKeyBindings;
+import com.blacksnow1002.realmmod.network.packets.StartMeditationPacket;
 import com.blacksnow1002.realmmod.network.ModMessages;
 import net.minecraft.client.Minecraft;
-import net.minecraft.network.chat.Component;
 import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.client.event.InputEvent;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;

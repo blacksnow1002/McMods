@@ -1,9 +1,7 @@
-package com.blacksnow1002.realmmod.network;
+package com.blacksnow1002.realmmod.network.packets;
 
 import com.blacksnow1002.realmmod.capability.CultivationRealm;
 import com.blacksnow1002.realmmod.capability.ModCapabilities;
-import com.blacksnow1002.realmmod.client.key.ModKeyBindings;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
@@ -54,6 +52,7 @@ public record StartCultivationStatusPacket(int keyId) implements CustomPacketPay
                         player.sendSystemMessage(Component.translatable(
                                 "message.realmmod.send_cultivation_status.low_ordinal"
                         ));
+                        return;
                     }
                     player.sendSystemMessage(Component.translatable(
                             "message.realmmod.send_cultivation_status.realm",

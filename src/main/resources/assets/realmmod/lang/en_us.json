@@ -28,9 +28,12 @@
   "item.realmmod.spirit_stone_middle": "§b中品靈石§r",
   "item.realmmod.spirit_stone_high": "§e高品靈石§r",
   "item.realmmod.spirit_fruit": "§6靈果§r",
-
   "key.realmmod.meditate": "§e打坐§r",
   "key.realmmod.cultivation_status": "內視",
+  "key.realmmod.luminous_spell": "法術-明光術",
+  "message.realmmod.spell.common.low_ordinal": "你的修為不足以施展「%s」。",
+  "message.realmmod.spell.common.cold_time": "「%s」尚未冷卻完畢（剩餘%s秒）。",
+  "message.realmmod.spell.luminous": "你發動明光術，獲得夜視效果",
 
   "message.realmmod.eat.spirit_fruit": "§a你吞下靈果，只覺一股清靈之氣湧入丹田！修為 +§b%s §7(目前: §e%s§7/§e%s§7)",
 

@@ -1,5 +1,8 @@
 package com.blacksnow1002.realmmod.network;
 
+import com.blacksnow1002.realmmod.network.packets.SpellPacket;
+import com.blacksnow1002.realmmod.network.packets.StartCultivationStatusPacket;
+import com.blacksnow1002.realmmod.network.packets.StartMeditationPacket;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraftforge.network.ChannelBuilder;
 import net.minecraftforge.network.NetworkDirection;
@@ -34,6 +37,12 @@ public class ModMessages {
                 .encoder(StartCultivationStatusPacket::encode)  // packet -> FriendlyByteBuf
                 .consumerMainThread(StartCultivationStatusPacket::handle) // 處理 (主執行緒)
                 .add();
+
+        INSTANCE.messageBuilder(SpellPacket.class, nextId(), NetworkDirection.PLAY_TO_SERVER)
+                .decoder(SpellPacket::new)      // FriendlyByteBuf -> packet
+                .encoder(SpellPacket::encode)  // packet -> FriendlyByteBuf
+                .consumerMainThread(SpellPacket::handle) // 處理 (主執行緒)
+                .add();
     }
 
     // 從客戶端發送到伺服器
@@ -42,6 +51,10 @@ public class ModMessages {
     }
 
     public static void sendToServer(StartCultivationStatusPacket packet) {
+        INSTANCE.send(packet, PacketDistributor.SERVER.noArg());
+    }
+
+    public static void sendToServer(SpellPacket packet) {
         INSTANCE.send(packet, PacketDistributor.SERVER.noArg());
     }
 

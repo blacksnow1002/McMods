@@ -5,6 +5,7 @@ import com.blacksnow1002.realmmod.command.BreakthroughCommand;
 import com.blacksnow1002.realmmod.item.ModCreativeModeTabs;
 import com.blacksnow1002.realmmod.item.ModItems;
 import com.blacksnow1002.realmmod.network.ModMessages;
+import com.blacksnow1002.realmmod.spell.SpellRegistry;
 import com.mojang.logging.LogUtils;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
@@ -55,6 +56,8 @@ public class RealmMod
         event.enqueueWork(() -> {
             ModMessages.register();
         });
+        SpellRegistry.registerAll();
+        RealmMod.LOGGER.info("[修仙模組] 已載入法術系統，共註冊 " + SpellRegistry.getAllSpells().size() + " 種法術。");
     }
 
     // Add the example block item to the building blocks tab

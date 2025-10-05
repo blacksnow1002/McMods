@@ -1,4 +1,4 @@
-package com.blacksnow1002.realmmod.network;
+package com.blacksnow1002.realmmod.network.packets;
 
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.FriendlyByteBuf;
