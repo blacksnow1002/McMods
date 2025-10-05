@@ -59,7 +59,7 @@ public class DoubleJumpHandler {
                     hasDoubleJumped = true;
 
                     player.displayClientMessage(
-                            Component.translatable("massage.realmmod.two_jump_success"),
+                            Component.translatable("message.realmmod.two_jump_success"),
                             true
                     );
                 }

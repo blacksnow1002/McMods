@@ -36,13 +36,13 @@ public class FlySpell extends BaseSpell {
         abilities.mayfly = true;
         player.onUpdateAbilities();
 
-        player.sendSystemMessage(Component.literal("你開始御劍飛行，獲得3秒飛行能力"));
+        player.sendSystemMessage(Component.translatable("message.realmmod.spell.fly.start"));
 
         DelayedTaskHandler.schedule(() -> {
             abilities.mayfly = false;
             abilities.flying = false;
             player.onUpdateAbilities();
-            player.sendSystemMessage(Component.literal("結束御劍飛行"));
+            player.sendSystemMessage(Component.translatable("message.realmmod.spell.fly.end"));
         }, 60);
 
 

@@ -19,9 +19,13 @@ public abstract class BaseSpell {
     public abstract CultivationRealm getRequiredRealm();
     public abstract int getCooldownTicks();
     public abstract void cast(ServerPlayer player, ServerLevel level);
+    public boolean canCancelEarly(ServerPlayer player) {
+        return false; // 預設不允許
+    }
 
     public void tryCast(ServerPlayer player) {
         player.getCapability(ModCapabilities.CULTIVATION_CAP).ifPresent(cap -> {
+
             // 1️⃣ 境界檢查
             if (cap.getRealm().ordinal() < getRequiredRealm().ordinal()) {
                 player.displayClientMessage(Component.translatable(
@@ -32,6 +36,12 @@ public abstract class BaseSpell {
             }
 
             // 2️⃣ 冷卻檢查
+            if (canCancelEarly(player)) {
+                cast(player, (ServerLevel) player.level());
+
+                return;
+            }
+
             if (isOnCooldown(player)) {
                 int remainingTicks = getRemainingCooldown(player);
                 player.displayClientMessage(Component.translatable(

@@ -54,6 +54,12 @@ public class ModMessages {
                 .consumerMainThread(FlySpellPacket::handle) // 處理 (主執行緒)
                 .add();
 
+        INSTANCE.messageBuilder(SpiritOutPacket.class, nextId(), NetworkDirection.PLAY_TO_SERVER)
+                .decoder(SpiritOutPacket::new)      // FriendlyByteBuf -> packet
+                .encoder(SpiritOutPacket::encode)  // packet -> FriendlyByteBuf
+                .consumerMainThread(SpiritOutPacket::handle) // 處理 (主執行緒)
+                .add();
+
 
 
         INSTANCE.messageBuilder(LingMuSyncPacket.class, nextId(), NetworkDirection.PLAY_TO_CLIENT)
@@ -87,6 +93,10 @@ public class ModMessages {
     }
 
     public static void sendToServer(FlySpellPacket packet) {
+        INSTANCE.send(packet, PacketDistributor.SERVER.noArg());
+    }
+
+    public static void sendToServer(SpiritOutPacket packet) {
         INSTANCE.send(packet, PacketDistributor.SERVER.noArg());
     }
 
