@@ -4,6 +4,7 @@
   "item.realmmod.spirit_stone_high": "§e高品靈石§r",
   "item.realmmod.spirit_fruit": "§6靈果§r",
 
+  "key.categories.realmmod": "修仙模組按鍵",
   "key.realmmod.meditate": "§e打坐§r",
   "key.realmmod.cultivation_status": "§b內視§r",
   "key.realmmod.luminous_spell": "§6法術 - 明光術§r",
@@ -11,7 +12,8 @@
   "key.realmmod.fly_spell": "§d御劍飛行§r",
   "key.realmmod.spirit_out": "§5元嬰出竅§r",
   "key.realmmod.set_mark": "定點標記",
-  "key.realmmod.teleport": "縮地成寸",
+  "key.realmmod.marked_teleport": "縮地成寸",
+  "key.realmmod.short_teleport": "撕裂空間",
 
   "message.realmmod.spell.common.low_ordinal": "§c靈氣不足，無法施展「§d%s§c」！§r",
   "message.realmmod.spell.common.cold_time": "§7「§b%s§7」尚未冷卻完畢（剩餘§e%s§7秒）§r",
@@ -20,6 +22,8 @@
 
   "message.realmmod.spell.ling_mu.start": "§b你啟動§d靈目術§b，氣機交融，天地靈機顯現於眼前。§r",
   "message.realmmod.spell.ling_mu.end": "§7你收斂心神，§d靈目術§7的光華漸漸散去。§r",
+
+  "message.realmmod.two_jump_success": "§6§l輕功施展！你在空中踏出第二步！§r",
 
   "message.realmmod.spell.fly.start": "§a你踏劍而起，御氣化虹，獲得§e3秒§a飛行之能。§r",
   "message.realmmod.spell.fly.end": "§7你身形一緩，御劍飛行結束，靈氣漸歸丹田。§r",
@@ -45,7 +49,9 @@
   "message.realmmod.spell.teleport.distance": "§c距離標記點太遠！§7當前距離: §f%.1f §7/ §f%s §7格",
   "message.realmmod.spell.teleport.success": "§a✦ 已傳送回標記點！",
 
-  "message.realmmod.two_jump_success": "§6§l輕功施展！你在空中踏出第二步！§r",
+  "message.realmmod.spell.short_teleport_spell.success": "你施展撕裂空間",
+
+
 
   "message.realmmod.eat.spirit_fruit": "§a你吞下靈果，只覺一股清靈之氣湧入丹田！修為 +§b%s §7(目前：§e%s§7/§e%s§7)§r",
 

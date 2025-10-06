@@ -71,6 +71,11 @@ public class ModMessages {
                 .encoder(MarkedTeleportSpellPacket::encode)  // packet -> FriendlyByteBuf
                 .consumerMainThread(MarkedTeleportSpellPacket::handle) // 處理 (主執行緒)
                 .add();
+        INSTANCE.messageBuilder(ShortTeleportSpellPacket.class, nextId(), NetworkDirection.PLAY_TO_SERVER)
+                .decoder(ShortTeleportSpellPacket::new)      // FriendlyByteBuf -> packet
+                .encoder(ShortTeleportSpellPacket::encode)  // packet -> FriendlyByteBuf
+                .consumerMainThread(ShortTeleportSpellPacket::handle) // 處理 (主執行緒)
+                .add();
 
 
 
@@ -115,6 +120,9 @@ public class ModMessages {
         INSTANCE.send(packet, PacketDistributor.SERVER.noArg());
     }
     public static void sendToServer(MarkedTeleportSpellPacket packet) {
+        INSTANCE.send(packet, PacketDistributor.SERVER.noArg());
+    }
+    public static void sendToServer(ShortTeleportSpellPacket packet) {
         INSTANCE.send(packet, PacketDistributor.SERVER.noArg());
     }
 

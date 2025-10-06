@@ -24,8 +24,10 @@ public class ModKeyBindings {
             new KeyMapping("key.realmmod.spirit_out", GLFW.GLFW_KEY_K, "key.categories.realmmod");
     public static final KeyMapping SET_MARK_SPELL_KEY =
             new KeyMapping("key.realmmod.set_mark", GLFW.GLFW_KEY_I, "key.categories.realmmod");
-    public static final KeyMapping TELEPORT_SPELL_KEY =
-            new KeyMapping("key.realmmod.teleport", GLFW.GLFW_KEY_O, "key.categories.realmmod");
+    public static final KeyMapping MARKED_TELEPORT_SPELL_KEY =
+            new KeyMapping("key.realmmod.marked_teleport", GLFW.GLFW_KEY_O, "key.categories.realmmod");
+    public static final KeyMapping SHORT_TELEPORT_SPELL_KEY =
+            new KeyMapping("key.realmmod.short_teleport", GLFW.GLFW_KEY_COMMA, "key.categories.realmmod");
 
     @SubscribeEvent
     public static void register(RegisterKeyMappingsEvent event) {
@@ -36,7 +38,8 @@ public class ModKeyBindings {
         event.register(FLY_SPELL_KEY);
         event.register(SPIRIT_OUT_KEY);
         event.register(SET_MARK_SPELL_KEY);
-        event.register(TELEPORT_SPELL_KEY);
+        event.register(MARKED_TELEPORT_SPELL_KEY);
+        event.register(SHORT_TELEPORT_SPELL_KEY);
     }
 }
 

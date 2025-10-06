@@ -7,12 +7,12 @@ import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.event.network.CustomPayloadEvent;
 
-public record MarkedTeleportSpellPacket(int keyId) implements CustomPacketPayload {
+public record ShortTeleportSpellPacket(int keyId) implements CustomPacketPayload {
 
-    public static final Type<MarkedTeleportSpellPacket> TYPE =
-            new Type<>(ResourceLocation.fromNamespaceAndPath("realmmod", "marked_teleport_spell_packet"));
+    public static final Type<ShortTeleportSpellPacket> TYPE =
+            new Type<>(ResourceLocation.fromNamespaceAndPath("realmmod", "short_teleport_spell_packet"));
 
-    public MarkedTeleportSpellPacket(FriendlyByteBuf buf) {
+    public ShortTeleportSpellPacket(FriendlyByteBuf buf) {
         this(buf.readInt());
     }
 
@@ -21,16 +21,16 @@ public record MarkedTeleportSpellPacket(int keyId) implements CustomPacketPayloa
     }
 
     @Override
-    public Type<MarkedTeleportSpellPacket> type() {
+    public Type<ShortTeleportSpellPacket> type() {
         return TYPE;
     }
 
 
-    public static void handle(MarkedTeleportSpellPacket packet, CustomPayloadEvent.Context context) {
+    public static void handle(ShortTeleportSpellPacket packet, CustomPayloadEvent.Context context) {
         context.enqueueWork(() -> {
             var player = context.getSender();
             if (player != null) {
-                BaseSpell spell = SpellRegistry.get("縮地成寸");
+                BaseSpell spell = SpellRegistry.get("撕裂空間");
                 if (spell != null) {
                     spell.tryCast(player);
                 }
