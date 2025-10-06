@@ -1,18 +1,26 @@
 package com.blacksnow1002.realmmod;
 
 import com.blacksnow1002.realmmod.block.ModBlocks;
+import com.blacksnow1002.realmmod.capability.ModCapabilities;
 import com.blacksnow1002.realmmod.command.BreakthroughCommand;
 import com.blacksnow1002.realmmod.command.SetRealmCommand;
+import com.blacksnow1002.realmmod.dimension.dong_tian.DongTianCommand;
+import com.blacksnow1002.realmmod.dimension.dong_tian.DongTianConfig;
+import com.blacksnow1002.realmmod.dimension.dong_tian.DongTianLifecycleManager;
 import com.blacksnow1002.realmmod.item.ModCreativeModeTabs;
 import com.blacksnow1002.realmmod.item.ModItems;
 import com.blacksnow1002.realmmod.network.ModMessages;
+import com.blacksnow1002.realmmod.network.packets.RealmSyncPacket;
 import com.blacksnow1002.realmmod.spell.SpellRegistry;
 import com.mojang.logging.LogUtils;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
 import net.minecraftforge.event.RegisterCommandsEvent;
+import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.server.ServerStartingEvent;
+import net.minecraftforge.event.server.ServerStoppingEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -68,13 +76,20 @@ public class RealmMod
     // You can use SubscribeEvent and let the Event Bus discover methods to call
     @SubscribeEvent
     public void onServerStarting(ServerStartingEvent event) {
+        DongTianConfig.initDimensionKeys();
+        RealmMod.LOGGER.info("[修仙模組] 已載入洞天系統");
+    }
 
+    @SubscribeEvent
+    public static void onServerStopping(ServerStoppingEvent event) {
+        DongTianLifecycleManager.cleanup();
     }
 
     @SubscribeEvent
     public void onRegisterCommand(RegisterCommandsEvent event) {
         BreakthroughCommand.register(event.getDispatcher());
         SetRealmCommand.register(event.getDispatcher());
+        DongTianCommand.register(event.getDispatcher());
 
     }
 

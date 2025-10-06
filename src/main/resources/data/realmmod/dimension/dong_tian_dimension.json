@@ -1,0 +1,15 @@
+{
+  "type": "realmmod:dong_tian_dimension",
+  "generator": {
+    "type": "minecraft:flat",
+    "settings": {
+      "biome": "minecraft:plains",
+      "structure_overrides": [],
+      "layers": [
+        { "block": "minecraft:air", "height": 1 }
+      ],
+      "lakes": false,
+      "features": false
+    }
+  }
+}
