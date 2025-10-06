@@ -30,7 +30,7 @@ public class FlySpell extends BaseSpell {
     }
 
     @Override
-    public void cast(ServerPlayer player, ServerLevel level) {
+    public boolean cast(ServerPlayer player, ServerLevel level) {
 
         Abilities abilities = player.getAbilities();
         abilities.mayfly = true;
@@ -45,6 +45,6 @@ public class FlySpell extends BaseSpell {
             player.sendSystemMessage(Component.translatable("message.realmmod.spell.fly.end"));
         }, 60);
 
-
+        return true;
     }
 }

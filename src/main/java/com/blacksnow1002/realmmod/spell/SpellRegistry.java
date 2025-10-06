@@ -1,10 +1,7 @@
 
 package com.blacksnow1002.realmmod.spell;
 
-import com.blacksnow1002.realmmod.spell.spells.FlySpell;
-import com.blacksnow1002.realmmod.spell.spells.LingMuSpell;
-import com.blacksnow1002.realmmod.spell.spells.LuminousSpell;
-import com.blacksnow1002.realmmod.spell.spells.SpiritOutSpell;
+import com.blacksnow1002.realmmod.spell.spells.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -25,6 +22,8 @@ public class SpellRegistry {
         register(new LingMuSpell());
         register(new FlySpell());
         register(new SpiritOutSpell());
+        register(new SetMarkSpell());
+        register(new MarkedTeleportSpell());
         // 🔮未來還能加：register(new FireballSpell()); register(new FreezeSpell()); ...
     }
 

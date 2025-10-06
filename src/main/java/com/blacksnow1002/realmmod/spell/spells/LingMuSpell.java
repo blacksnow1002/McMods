@@ -35,7 +35,7 @@ public class LingMuSpell extends BaseSpell {
     }
 
     @Override
-    public void cast(ServerPlayer player, ServerLevel level) {
+    public boolean cast(ServerPlayer player, ServerLevel level) {
         var tag = player.getPersistentData();
 
         tag.putBoolean("LingMuActive", true);
@@ -51,7 +51,6 @@ public class LingMuSpell extends BaseSpell {
                     true);
             ModMessages.sendToPlayer(new LingMuSyncPacket(false), player);
         }, 200);
-
-
+        return true;
     }
 }

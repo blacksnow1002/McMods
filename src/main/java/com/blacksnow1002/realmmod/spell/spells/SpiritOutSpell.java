@@ -52,14 +52,14 @@ public class SpiritOutSpell extends BaseSpell {
     }
 
     @Override
-    public void cast(ServerPlayer player, ServerLevel level) {
+    public boolean cast(ServerPlayer player, ServerLevel level) {
         UUID playerId = player.getUUID();
 
         // 如果已經在出竅狀態，則返回肉身（手動結束）
         if (activeSpiritOuts.containsKey(playerId)) {
             returnToBody(player, level);
             player.sendSystemMessage(Component.translatable("message.realmmod.spell.spirit_out.end_fast"));
-            return;
+            return false;
         }
 
         Vec3 bodyPos = player.position();
@@ -87,6 +87,8 @@ public class SpiritOutSpell extends BaseSpell {
                 (int)MAX_SPIRIT_RANGE,
                 DURATION_TICKS/20));
         player.sendSystemMessage(Component.translatable("message.realmmod.spell.spirit_out.back_message"));
+
+        return true;
     }
 
     /**

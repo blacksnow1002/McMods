@@ -60,6 +60,18 @@ public class ModMessages {
                 .consumerMainThread(SpiritOutPacket::handle) // 處理 (主執行緒)
                 .add();
 
+        INSTANCE.messageBuilder(SetMarkPacket.class, nextId(), NetworkDirection.PLAY_TO_SERVER)
+                .decoder(SetMarkPacket::new)      // FriendlyByteBuf -> packet
+                .encoder(SetMarkPacket::encode)  // packet -> FriendlyByteBuf
+                .consumerMainThread(SetMarkPacket::handle) // 處理 (主執行緒)
+                .add();
+
+        INSTANCE.messageBuilder(MarkedTeleportSpellPacket.class, nextId(), NetworkDirection.PLAY_TO_SERVER)
+                .decoder(MarkedTeleportSpellPacket::new)      // FriendlyByteBuf -> packet
+                .encoder(MarkedTeleportSpellPacket::encode)  // packet -> FriendlyByteBuf
+                .consumerMainThread(MarkedTeleportSpellPacket::handle) // 處理 (主執行緒)
+                .add();
+
 
 
         INSTANCE.messageBuilder(LingMuSyncPacket.class, nextId(), NetworkDirection.PLAY_TO_CLIENT)
@@ -97,6 +109,12 @@ public class ModMessages {
     }
 
     public static void sendToServer(SpiritOutPacket packet) {
+        INSTANCE.send(packet, PacketDistributor.SERVER.noArg());
+    }
+    public static void sendToServer(SetMarkPacket packet) {
+        INSTANCE.send(packet, PacketDistributor.SERVER.noArg());
+    }
+    public static void sendToServer(MarkedTeleportSpellPacket packet) {
         INSTANCE.send(packet, PacketDistributor.SERVER.noArg());
     }
 

@@ -29,12 +29,14 @@ public class LuminousSpell extends BaseSpell {
     }
 
     @Override
-    public void cast(ServerPlayer player, ServerLevel level) {
+    public boolean cast(ServerPlayer player, ServerLevel level) {
         player.addEffect(new MobEffectInstance(MobEffects.NIGHT_VISION, 20 * 5, 0, false, false));
         level.playSound(null, player.blockPosition(), SoundEvents.AMETHYST_BLOCK_CHIME, SoundSource.PLAYERS, 1.0F, 1.4F);
         level.sendParticles(ParticleTypes.END_ROD, player.getX(), player.getEyeY(), player.getZ(), 15, 0.2, 0.2, 0.2, 0.01);
         player.displayClientMessage(Component.translatable(
                 "message.realmmod.spell.luminous"),
                 true);
+
+        return true;
     }
 }

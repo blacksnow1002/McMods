@@ -18,7 +18,7 @@ public abstract class BaseSpell {
     public abstract String getName();
     public abstract CultivationRealm getRequiredRealm();
     public abstract int getCooldownTicks();
-    public abstract void cast(ServerPlayer player, ServerLevel level);
+    public abstract boolean cast(ServerPlayer player, ServerLevel level);
     public boolean canCancelEarly(ServerPlayer player) {
         return false; // 預設不允許
     }
@@ -38,7 +38,6 @@ public abstract class BaseSpell {
             // 2️⃣ 冷卻檢查
             if (canCancelEarly(player)) {
                 cast(player, (ServerLevel) player.level());
-
                 return;
             }
 
@@ -55,10 +54,14 @@ public abstract class BaseSpell {
             // 3️⃣ 消耗靈氣（未來可加入 cap.addQi(-getQiCost())）
 
             // 4️⃣ 執行施法
-            cast(player, (ServerLevel) player.level());
+            boolean success = cast(player, (ServerLevel) player.level());
+
 
             // 5️⃣ 加入冷卻
-            setCooldown(player, getCooldownTicks());
+            if(success) {
+                setCooldown(player, getCooldownTicks());
+
+            }
         });
     }
 
