@@ -14,6 +14,7 @@
   "key.realmmod.set_mark": "定點標記",
   "key.realmmod.marked_teleport": "縮地成寸",
   "key.realmmod.short_teleport": "撕裂空間",
+  "key.realmmod.giant": "法天象地",
 
 
   "message.realmmod.dong_tian.build.exceed": "§c超出洞天界域，靈氣壁障阻隔，你無法破壞此處！§r",
@@ -80,6 +81,9 @@
   "message.realmmod.spell.teleport.success": "§a✦ 已傳送回標記點！",
 
   "message.realmmod.spell.short_teleport_spell.success": "你施展撕裂空間",
+
+  "message.realmmod.spell.giant.start": "§6§l法天象地已啟動！",
+  "message.realmmod.spell.giant.end": "§7法天象地已結束",
 
 
 

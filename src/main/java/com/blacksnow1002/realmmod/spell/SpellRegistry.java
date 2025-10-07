@@ -25,6 +25,7 @@ public class SpellRegistry {
         register(new SetMarkSpell());
         register(new MarkedTeleportSpell());
         register(new ShortTeleportSpell());
+        register(new GiantSpell());
         // 🔮未來還能加：register(new FireballSpell()); register(new FreezeSpell()); ...
     }
 

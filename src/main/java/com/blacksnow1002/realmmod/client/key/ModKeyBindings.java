@@ -28,6 +28,8 @@ public class ModKeyBindings {
             new KeyMapping("key.realmmod.marked_teleport", GLFW.GLFW_KEY_O, "key.categories.realmmod");
     public static final KeyMapping SHORT_TELEPORT_SPELL_KEY =
             new KeyMapping("key.realmmod.short_teleport", GLFW.GLFW_KEY_COMMA, "key.categories.realmmod");
+    public static final KeyMapping GIANT_SPELL_KEY =
+            new KeyMapping("key.realmmod.giant", GLFW.GLFW_KEY_PERIOD, "key.categories.realmmod");
 
     @SubscribeEvent
     public static void register(RegisterKeyMappingsEvent event) {
@@ -40,6 +42,7 @@ public class ModKeyBindings {
         event.register(SET_MARK_SPELL_KEY);
         event.register(MARKED_TELEPORT_SPELL_KEY);
         event.register(SHORT_TELEPORT_SPELL_KEY);
+        event.register(GIANT_SPELL_KEY);
     }
 }
 

@@ -23,6 +23,8 @@ public class ModItems {
             () -> new SpiritStoneItem(new Item.Properties(), 1000));
 
 
+
+
     public static final RegistryObject<Item> MAGIC_DRUG = ITEMS.register("magic_drug",
             () -> new Item(new Item.Properties()));
 

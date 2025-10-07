@@ -76,6 +76,11 @@ public class ModMessages {
                 .encoder(ShortTeleportSpellPacket::encode)  // packet -> FriendlyByteBuf
                 .consumerMainThread(ShortTeleportSpellPacket::handle) // 處理 (主執行緒)
                 .add();
+        INSTANCE.messageBuilder(GiantSpellPacket.class, nextId(), NetworkDirection.PLAY_TO_SERVER)
+                .decoder(GiantSpellPacket::new)      // FriendlyByteBuf -> packet
+                .encoder(GiantSpellPacket::encode)  // packet -> FriendlyByteBuf
+                .consumerMainThread(GiantSpellPacket::handle) // 處理 (主執行緒)
+                .add();
 
 
 
@@ -123,6 +128,9 @@ public class ModMessages {
         INSTANCE.send(packet, PacketDistributor.SERVER.noArg());
     }
     public static void sendToServer(ShortTeleportSpellPacket packet) {
+        INSTANCE.send(packet, PacketDistributor.SERVER.noArg());
+    }
+    public static void sendToServer(GiantSpellPacket packet) {
         INSTANCE.send(packet, PacketDistributor.SERVER.noArg());
     }
 

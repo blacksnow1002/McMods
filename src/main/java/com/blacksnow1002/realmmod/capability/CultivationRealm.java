@@ -8,8 +8,9 @@ public enum CultivationRealm {
     fifth("元嬰", 10, 1000, 0.7f),
     sixth("化神", 10, 2000, 0.6f),
     seventh("反虛", 10, 5000, 0.5f),
-    eighth("合體", 10, 10000, 0.25f),
-    ninth("渡劫", 10, 20000, 0.1f);
+    eighth("合體", 10, 10000, 0.35f),
+    ninth("大乘", 10, 20000, 0.2f),
+    tenth("渡劫", 10, 20000, 0.1f);
 
     private final String displayName;
     private final int maxLayer;
