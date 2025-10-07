@@ -1,7 +1,6 @@
 package com.blacksnow1002.realmmod.event.handlers;
 
 import com.blacksnow1002.realmmod.capability.CultivationRealm;
-import com.blacksnow1002.realmmod.capability.ModCapabilities;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
@@ -10,64 +9,77 @@ import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
+
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.FORGE, value = Dist.CLIENT)
 public class DoubleJumpHandler {
-    private static boolean hasDoubleJumped = false;  // 是否已經使用了二段跳
-    private static boolean wasJumping = false;       // 上一個 tick 是否在按跳躍鍵
-    private static boolean wasOnGround = true;       // 上一個 tick 是否在地面
+    private static final Map<UUID, PlayerJumpState> playerStates = new HashMap<>();
+
+    private static class PlayerJumpState {
+        boolean hasDoubleJumped = false;
+        boolean wasJumping = false;
+        boolean wasOnGround = true;
+        int dimensionId = 0;
+    }
 
     @SubscribeEvent
     public static void onPlayerTick(TickEvent.PlayerTickEvent event) {
-        if (event.player == null || !event.player.isAlive()) return;
-        if (event.phase != TickEvent.Phase.END) return;
         if (!(event.player instanceof LocalPlayer player)) return;
+        if (event.phase != TickEvent.Phase.END) return;
         if (!player.level().isClientSide) return;
+        if (!player.isAlive()) return;
+
+        UUID uuid = player.getUUID();
+        PlayerJumpState state = playerStates.computeIfAbsent(uuid, k -> new PlayerJumpState());
+
+        // 🔹 維度切換 → 重置狀態
+        int currentDim = player.level().dimension().location().hashCode();
+        if (state.dimensionId != currentDim) {
+            state.dimensionId = currentDim;
+            state.hasDoubleJumped = false;
+            state.wasOnGround = true;
+            state.wasJumping = false;
+        }
 
         CompoundTag data = player.getPersistentData();
         boolean allow = data.getInt("RealmOrdinal") > CultivationRealm.second.ordinal();
+        if (!allow)  { return; }
 
-        if (allow) {
-            boolean isJumping = player.input.jumping;
-            boolean isOnGround = player.onGround();
+        boolean isJumping = player.input.jumping;
+        boolean isOnGround = player.onGround();
 
-
-            // 離開地面時重置二段跳標記
-            if (wasOnGround && !isOnGround) {
-                hasDoubleJumped = false;
-            }
-
-            // 在地面上時重置二段跳
-            if (isOnGround) {
-                hasDoubleJumped = false;
-            }
-
-            // 二段跳觸發條件：
-            // 1. 當前按下跳躍鍵 && 上一tick沒按（邊緣觸發）
-            // 2. 不在地面上
-            // 3. 還沒有使用過二段跳
-            // 4. 玩家正在下落（或上升速度很慢）
-            if (isJumping && !wasJumping && !isOnGround && !hasDoubleJumped) {
-                // 額外檢查：確保玩家真的在空中（不是剛離開地面）
-                if (!wasOnGround) {
-                    // 執行二段跳
-                    player.setDeltaMovement(
-                            player.getDeltaMovement().x,
-                            0.42D,  // 標準跳躍速度
-                            player.getDeltaMovement().z
-                    );
-
-                    hasDoubleJumped = true;
-
-                    player.displayClientMessage(
-                            Component.translatable("message.realmmod.two_jump_success"),
-                            true
-                    );
-                }
-            }
-
-            // 更新狀態
-            wasJumping = isJumping;
-            wasOnGround = isOnGround;
+        // 🔹 離開地面 → 重置二段跳
+        if (state.wasOnGround && !isOnGround) {
+            state.hasDoubleJumped = false;
         }
+
+        // 🔹 在地面上時重置二段跳
+        if (isOnGround) {
+            state.hasDoubleJumped = false;
+        }
+
+        // 🔹 二段跳條件判斷
+        if (isJumping && !state.wasJumping && !isOnGround && !state.hasDoubleJumped) {
+            if (!state.wasOnGround) {
+                player.setDeltaMovement(
+                        player.getDeltaMovement().x,
+                        0.42D, // 標準跳躍速度
+                        player.getDeltaMovement().z
+                );
+
+                state.hasDoubleJumped = true;
+
+                player.displayClientMessage(
+                        Component.translatable("message.realmmod.two_jump_success"),
+                        true
+                );
+            }
+        }
+
+        // 🔹 更新狀態
+        state.wasJumping = isJumping;
+        state.wasOnGround = isOnGround;
     }
 }

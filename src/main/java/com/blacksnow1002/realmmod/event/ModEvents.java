@@ -35,9 +35,6 @@ public class ModEvents {
     @SubscribeEvent
     public static void onPlayerClone(PlayerEvent.Clone event) {
         // 只在死亡重生時處理 (不處理從末地返回的情況)
-        if (!event.isWasDeath()) {
-            return;
-        }
 
         System.out.println("========================================");
         System.out.println("=== PlayerEvent.Clone 觸發 (死亡重生) ===");
@@ -129,4 +126,22 @@ public class ModEvents {
 
         System.out.println("========================================");
     }
+
+    @SubscribeEvent
+    public static void onPlayerChangeDimension(PlayerEvent.PlayerChangedDimensionEvent event) {
+        if (event.getEntity() instanceof ServerPlayer serverPlayer) {
+            serverPlayer.getCapability(ModCapabilities.CULTIVATION_CAP).ifPresent(data -> {
+                ModMessages.sendToPlayer(
+                        new RealmSyncPacket(
+                                data.getRealm().ordinal(),
+                                data.getLayer()
+                        ),
+                        serverPlayer
+                );
+                System.out.println(">>> 維度切換時同步資料: "
+                        + data.getRealm().getDisplayName() + " " + data.getLayer() + "層");
+            });
+        }
+    }
+
 }
