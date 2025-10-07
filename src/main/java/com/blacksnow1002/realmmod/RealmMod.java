@@ -4,7 +4,7 @@ import com.blacksnow1002.realmmod.block.ModBlocks;
 import com.blacksnow1002.realmmod.capability.ModCapabilities;
 import com.blacksnow1002.realmmod.command.BreakthroughCommand;
 import com.blacksnow1002.realmmod.command.SetRealmCommand;
-import com.blacksnow1002.realmmod.dimension.dong_tian.DongTianCommand;
+import com.blacksnow1002.realmmod.command.DongTianCommand;
 import com.blacksnow1002.realmmod.dimension.dong_tian.DongTianConfig;
 import com.blacksnow1002.realmmod.dimension.dong_tian.DongTianLifecycleManager;
 import com.blacksnow1002.realmmod.item.ModCreativeModeTabs;

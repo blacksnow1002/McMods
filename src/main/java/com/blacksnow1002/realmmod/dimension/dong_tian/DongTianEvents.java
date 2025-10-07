@@ -40,7 +40,7 @@ public class DongTianEvents {
         // 檢查是否是玩家自己的洞天
         if (!DongTianManager.isPlayerOwnDongTian(world, event.getPos(), player)) {
             event.setCanceled(true);
-            player.sendSystemMessage(Component.literal("§c你不能破壞其他人的洞天！"));
+            player.sendSystemMessage(Component.translatable("message.realmmod.dong_tian.build.exceed"));
         }
     }
 
@@ -59,7 +59,7 @@ public class DongTianEvents {
 
         if (!DongTianManager.isPlayerOwnDongTian(world, event.getPos(), player)) {
             event.setCanceled(true);
-            player.sendSystemMessage(Component.literal("§c你不能在其他人的洞天建造！"));
+            player.sendSystemMessage(Component.translatable("message.realmmod.dong_tian.break.exceed"));
         }
     }
 
@@ -99,7 +99,11 @@ public class DongTianEvents {
                 if (count > limit) {
                     event.setCanceled(true);
                     ownerPlayer.sendSystemMessage(
-                            Component.literal("§c洞天實體數量已達上限！當前：" + count + "/" + limit)
+                            Component.translatable(
+                                    "message.realmmod.dong_tian.entity_limit",
+                                    count,
+                                    limit
+                            )
                     );
                 }
             }

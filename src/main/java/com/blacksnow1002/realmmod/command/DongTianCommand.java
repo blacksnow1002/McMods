@@ -48,19 +48,21 @@ public class DongTianCommand {
 
         // 檢查是否為玩家
         if (!(source.getEntity() instanceof ServerPlayer player)) {
-            source.sendFailure(Component.literal("§c此指令只能由玩家執行！"));
+            source.sendFailure(Component.translatable("message.realmmod.dong_tian.command.error.not_player"));
             return 0;
         }
 
         var capOptional = player.getCapability(ModCapabilities.CULTIVATION_CAP).resolve();
         if (capOptional.isEmpty()) {
-            player.sendSystemMessage(Component.literal("§c修為數據讀取失敗"));
+            player.sendSystemMessage(Component.translatable("message.realmmod.dong_tian.command.error.get_realm_fail"));
             return 0;
         }
 
         var cap = capOptional.get();
         if (cap.getRealm().ordinal() < REQUIRED_REALM.ordinal()) {
-            player.sendSystemMessage(Component.literal("§c境界不足，需要達到 " + REQUIRED_REALM.getDisplayName() + " 才能進入洞天"));
+            player.sendSystemMessage(Component.translatable(
+                    "message.realmmod.dong_tian.command.error.low_ordinal",
+                    REQUIRED_REALM.getDisplayName()));
             return 0;
         }
 
@@ -77,7 +79,7 @@ public class DongTianCommand {
 
         // 檢查是否為玩家
         if (!(source.getEntity() instanceof ServerPlayer player)) {
-            source.sendFailure(Component.literal("§c此指令只能由玩家執行！"));
+            source.sendFailure(Component.translatable("message.realmmod.dong_tian.command.error.not_player"));
             return 0;
         }
 
@@ -87,26 +89,28 @@ public class DongTianCommand {
     }
 
     /**
-     * /dongTian unlock - 解鎖洞天（管理員指令）
+     * /dongTian unlock - 解鎖洞天
      */
     private static int executeUnlock(CommandContext<CommandSourceStack> context) {
         CommandSourceStack source = context.getSource();
 
         // 檢查是否為玩家
         if (!(source.getEntity() instanceof ServerPlayer player)) {
-            source.sendFailure(Component.literal("§c此指令只能由玩家執行！"));
+            source.sendFailure(Component.translatable("message.realmmod.dong_tian.command.error.not_player"));
             return 0;
         }
 
         var capOptional = player.getCapability(ModCapabilities.CULTIVATION_CAP).resolve();
         if (capOptional.isEmpty()) {
-            player.sendSystemMessage(Component.literal("§c修為數據讀取失敗"));
+            player.sendSystemMessage(Component.translatable("message.realmmod.dong_tian.command.error.get_realm_fail"));
             return 0;
         }
 
         var cap = capOptional.get();
         if (cap.getRealm().ordinal() < REQUIRED_REALM.ordinal()) {
-            player.sendSystemMessage(Component.literal("§c境界不足，需要達到 " + REQUIRED_REALM.getDisplayName() + " 才能解鎖洞天"));
+            player.sendSystemMessage(Component.translatable(
+                    "message.realmmod.dong_tian.command.error.low_ordinal",
+                    REQUIRED_REALM.getDisplayName()));
             return 0;
         }
 
@@ -121,12 +125,12 @@ public class DongTianCommand {
     private static int executeHelp(CommandContext<CommandSourceStack> context) {
         CommandSourceStack source = context.getSource();
 
-        source.sendSuccess(() -> Component.literal("§6========== 洞天指令幫助 =========="), false);
-        source.sendSuccess(() -> Component.literal("§e/dongTian enter §7- 進入你的洞天福地"), false);
-        source.sendSuccess(() -> Component.literal("§e/dongTian exit §7- 離開洞天，返回主世界"), false);
-        source.sendSuccess(() -> Component.literal("§e/dongTian unlock §7- §c[管理員] §7解鎖洞天功能"), false);
-        source.sendSuccess(() -> Component.literal("§e/dongTian help §7- 顯示此幫助信息"), false);
-        source.sendSuccess(() -> Component.literal("§6================================"), false);
+        source.sendSuccess(() -> Component.translatable("message.realmmod.dong_tian.command.help.first"), false);
+        source.sendSuccess(() -> Component.translatable("message.realmmod.dong_tian.command.help.second"), false);
+        source.sendSuccess(() -> Component.translatable("message.realmmod.dong_tian.command.help.third"), false);
+        source.sendSuccess(() -> Component.translatable("message.realmmod.dong_tian.command.help.fourth"), false);
+        source.sendSuccess(() -> Component.translatable("message.realmmod.dong_tian.command.help.fifth"), false);
+        source.sendSuccess(() -> Component.translatable("message.realmmod.dong_tian.command.help.sixth"), false);
 
         return 1;
     }

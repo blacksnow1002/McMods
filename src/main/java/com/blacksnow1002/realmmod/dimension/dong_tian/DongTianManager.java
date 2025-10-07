@@ -22,13 +22,13 @@ public class DongTianManager {
         // 1. 檢查是否已解鎖洞天
         PlayerDongTianData dongTianData = PlayerDongTianData.get(player);
         if (!dongTianData.isDongTianUnlocked()) {
-            player.sendSystemMessage(Component.literal("§c你尚未開闢洞天！"));
+            player.sendSystemMessage(Component.translatable("message.realmmod.dong_tian.error.no_dong_tian"));
             return false;
         }
 
         // 2. 檢查是否已經在洞天內
         if (player.level().dimension() == DONG_TIAN_DIMENSION) {
-            player.sendSystemMessage(Component.literal("§c你已經在洞天之中！"));
+            player.sendSystemMessage(Component.translatable("message.realmmod.dong_tian.error.in_dong_tian"));
             return false;
         }
 
@@ -42,7 +42,7 @@ public class DongTianManager {
 
         ServerLevel dongTianWorld = server.getLevel(DONG_TIAN_DIMENSION);
         if (dongTianWorld == null) {
-            player.sendSystemMessage(Component.literal("§c洞天維度未正確初始化！"));
+            player.sendSystemMessage(Component.translatable("message.realmmod.dong_tian.error.no_init"));
             return false;
         }
 
@@ -63,11 +63,11 @@ public class DongTianManager {
             player.teleportTo(dongTianWorld, centerX + 0.5, spawnY, centerZ + 0.5, player.getYRot(), player.getXRot());
             DongTianLifecycleManager.onPlayerEnterDongTian(player, player.getUUID(), dongTianWorld);
         } catch (Exception e) {
-            player.sendSystemMessage(Component.literal("§c洞天傳送失敗，已返回主世界"));
+            player.sendSystemMessage(Component.translatable("message.realmmod.dong_tian.error.teleport_fail"));
             player.teleportTo(player.server.overworld(), 0.5, 100, 0.5, 0, 0);
         }
 
-        player.sendSystemMessage(Component.literal("§a你進入了自己的洞天福地"));
+        player.sendSystemMessage(Component.translatable("message.realmmod.dong_tian.teleport_in"));
         return true;
     }
 
@@ -77,7 +77,7 @@ public class DongTianManager {
     public static boolean exitDongTian(ServerPlayer player) {
         // 1. 檢查是否在洞天內
         if (player.level().dimension() != DONG_TIAN_DIMENSION) {
-            player.sendSystemMessage(Component.literal("§c你不在洞天之中！"));
+            player.sendSystemMessage(Component.translatable("message.realmmod.dong_tian.error.out_dong_tian"));
             return false;
         }
 
@@ -116,7 +116,7 @@ public class DongTianManager {
         }
 
         DongTianLifecycleManager.onPlayerLeaveDongTian(player, player.getUUID(), dongTianWorld);
-        player.sendSystemMessage(Component.literal("§a你離開了洞天"));
+        player.sendSystemMessage(Component.translatable("message.realmmod.dong_tian.teleport_out"));
         return true;
     }
 
@@ -127,7 +127,7 @@ public class DongTianManager {
         PlayerDongTianData dongTianData = PlayerDongTianData.get(player);
 
         if (dongTianData.isDongTianUnlocked()) {
-            player.sendSystemMessage(Component.literal("§e你已經開闢過洞天了"));
+            player.sendSystemMessage(Component.translatable("message.realmmod.dong_tian.error.re_unlock"));
             return;
         }
 
@@ -139,7 +139,7 @@ public class DongTianManager {
 
         ServerLevel dongTianWorld = server.getLevel(DONG_TIAN_DIMENSION);
         if (dongTianWorld == null) {
-            player.sendSystemMessage(Component.literal("§c洞天維度未正確初始化！"));
+            player.sendSystemMessage(Component.translatable("message.realmmod.dong_tian.error.no_init"));
             return;
         }
 
@@ -162,8 +162,8 @@ public class DongTianManager {
         generateInitialPlatform(dongTianWorld, new BlockPos(centerX, spawnY - 1, centerZ));
 
 
-        player.sendSystemMessage(Component.literal("§6恭喜！你成功開闢洞天！"));
-        player.sendSystemMessage(Component.literal("§e使用 /dongTian enter 進入你的洞天"));
+        player.sendSystemMessage(Component.translatable("message.realmmod.dong_tian.unlock.success.first"));
+        player.sendSystemMessage(Component.translatable("message.realmmod.dong_tian.unlock.success.second"));
 
     }
 

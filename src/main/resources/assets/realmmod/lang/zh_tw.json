@@ -15,7 +15,37 @@
   "key.realmmod.marked_teleport": "縮地成寸",
   "key.realmmod.short_teleport": "撕裂空間",
 
-  "message.realmmod.spell.common.low_ordinal": "§c靈氣不足，無法施展「§d%s§c」！§r",
+
+  "message.realmmod.dong_tian.build.exceed": "§c超出洞天界域，靈氣壁障阻隔，你無法破壞此處！§r",
+  "message.realmmod.dong_tian.break.exceed": "§c超出洞天界域，靈氣壁障阻隔，你無法建造此處！§r",
+  "message.realmmod.dong_tian.entity_limit": "§6洞天靈氣流轉受限，實體已達上限！§7(當前：§e%s§7/§e%s§7)§r",
+
+  "message.realmmod.dong_tian.error.no_dong_tian": "§c你尚未開闢洞天，天地之氣無法為你所用。§r",
+  "message.realmmod.dong_tian.error.in_dong_tian": "§7你已身處洞天之內，無法再次進入洞天。§r",
+  "message.realmmod.dong_tian.error.out_dong_tian": "§7你當前不在洞天之中，無法再次離開洞天。§r",
+  "message.realmmod.dong_tian.error.no_init": "§c洞天維度尚未凝成，天地規則混亂。§r",
+  "message.realmmod.dong_tian.error.teleport_fail": "§c靈門震蕩，洞天傳送失敗！§7你被迫返回主世界。§r",
+  "message.realmmod.dong_tian.error.re_unlock": "§e你已經成功開闢過洞天，無須重複。§r",
+
+  "message.realmmod.dong_tian.unlock.success.first": "§d天地開闢，靈氣聚匯！§6恭喜你成功開啟了專屬洞天福地！§r",
+  "message.realmmod.dong_tian.unlock.success.second": "§7輸入 §e/dongTian enter §7以進入你的洞天，感受天地靈氣的奧妙。§r",
+
+  "message.realmmod.dong_tian.teleport_in": "§a靈光一閃，你進入了自己的洞天福地。天地祥和，萬物靜謐。§r",
+  "message.realmmod.dong_tian.teleport_out": "§b靈氣波動，你離開了洞天，重返凡塵。§r",
+
+  "message.realmmod.dong_tian.command.error.not_player": "§c此命令僅限修士使用，凡人無法調用靈域之力！§r",
+  "message.realmmod.dong_tian.command.error.get_realm_fail": "§c無法感應你的境界波動，數據讀取失敗。§r",
+  "message.realmmod.dong_tian.command.error.low_ordinal": "§c靈壓不足，境界未至§e%s§c，無法承受開闢洞天之負！§r",
+
+  "message.realmmod.dong_tian.command.help.first": "§6========== §d洞天靈域指令說明§6 ==========",
+  "message.realmmod.dong_tian.command.help.second": "§e/dongTian enter §7- 進入你的洞天福地，靜修其中。",
+  "message.realmmod.dong_tian.command.help.third": "§e/dongTian exit §7- 離開洞天，返回凡間主世界。",
+  "message.realmmod.dong_tian.command.help.fourth": "§e/dongTian unlock §7- §c[煉虛期以上]§7方可開闢個人洞天。",
+  "message.realmmod.dong_tian.command.help.fifth": "§e/dongTian help §7- 顯示本幫助訊息。",
+  "message.realmmod.dong_tian.command.help.sixth": "§6================================§r",
+
+
+  "message.realmmod.spell.common.low_ordinal": "§境界不足，無法施展「§d%s§c」！§r",
   "message.realmmod.spell.common.cold_time": "§7「§b%s§7」尚未冷卻完畢（剩餘§e%s§7秒）§r",
 
   "message.realmmod.spell.luminous": "§e你掐訣誦咒，施展§6明光術§e，周身靈光流轉，獲得§b夜視§e之效。§r",
