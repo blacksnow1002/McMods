@@ -28,6 +28,7 @@ public class SpellRegistry {
         register(new GiantSpell());
         register(new CloneSpell());
         register(new TransformSpell());
+        register(new CreateSpell());
         // 🔮未來還能加：register(new FireballSpell()); register(new FreezeSpell()); ...
     }
 
