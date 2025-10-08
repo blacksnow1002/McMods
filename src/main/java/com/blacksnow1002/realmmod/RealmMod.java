@@ -2,6 +2,7 @@ package com.blacksnow1002.realmmod;
 
 import com.blacksnow1002.realmmod.block.ModBlocks;
 import com.blacksnow1002.realmmod.capability.ModCapabilities;
+import com.blacksnow1002.realmmod.client.ClientSetup;
 import com.blacksnow1002.realmmod.command.BreakthroughCommand;
 import com.blacksnow1002.realmmod.command.SetRealmCommand;
 import com.blacksnow1002.realmmod.command.DongTianCommand;
@@ -23,6 +24,7 @@ import net.minecraftforge.event.server.ServerStartingEvent;
 import net.minecraftforge.event.server.ServerStoppingEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
@@ -49,16 +51,21 @@ public class RealmMod
         ModItems.register(modEventBus);
         ModBlocks.register(modEventBus);
         ModCreativeModeTabs.register(modEventBus);
+        ModEntities.ENTITY_TYPES.register(modEventBus);
 
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
-
 
         // Register the item to a creative tab
         modEventBus.addListener(this::addCreative);
 
         // Register our mod's ForgeConfigSpec so that Forge can create and load the config file for us
         context.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
+
+        DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> {
+            modEventBus.addListener(ClientSetup::registerRenderers);
+            modEventBus.addListener(ClientSetup::registerLayerDefinitions);
+        });
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
@@ -99,6 +106,7 @@ public class RealmMod
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event) {
             // Some client setup code
+            LOGGER.info("[修仙模組] 客戶端設置完成");
         }
     }
 }
