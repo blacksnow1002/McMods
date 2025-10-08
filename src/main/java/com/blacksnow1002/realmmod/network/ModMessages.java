@@ -86,6 +86,11 @@ public class ModMessages {
                 .encoder(CloneSpellPacket::encode)  // packet -> FriendlyByteBuf
                 .consumerMainThread(CloneSpellPacket::handle) // 處理 (主執行緒)
                 .add();
+        INSTANCE.messageBuilder(TransformSpellPacket.class, nextId(), NetworkDirection.PLAY_TO_SERVER)
+                .decoder(TransformSpellPacket::new)      // FriendlyByteBuf -> packet
+                .encoder(TransformSpellPacket::encode)  // packet -> FriendlyByteBuf
+                .consumerMainThread(TransformSpellPacket::handle) // 處理 (主執行緒)
+                .add();
 
 
 
@@ -139,6 +144,9 @@ public class ModMessages {
         INSTANCE.send(packet, PacketDistributor.SERVER.noArg());
     }
     public static void sendToServer(CloneSpellPacket packet) {
+        INSTANCE.send(packet, PacketDistributor.SERVER.noArg());
+    }
+    public static void sendToServer(TransformSpellPacket packet) {
         INSTANCE.send(packet, PacketDistributor.SERVER.noArg());
     }
 

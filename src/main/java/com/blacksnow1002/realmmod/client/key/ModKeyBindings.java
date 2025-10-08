@@ -32,6 +32,8 @@ public class ModKeyBindings {
             new KeyMapping("key.realmmod.giant", GLFW.GLFW_KEY_PERIOD, "key.categories.realmmod");
     public static final KeyMapping CLONE_SPELL_KEY =
             new KeyMapping("key.realmmod.clone", GLFW.GLFW_KEY_SEMICOLON, "key.categories.realmmod");
+    public static final KeyMapping TRANSFORM_SPELL_KEY =
+            new KeyMapping("key.realmmod.transform", GLFW.GLFW_KEY_M, "key.categories.realmmod");
 
     @SubscribeEvent
     public static void register(RegisterKeyMappingsEvent event) {
@@ -46,6 +48,7 @@ public class ModKeyBindings {
         event.register(SHORT_TELEPORT_SPELL_KEY);
         event.register(GIANT_SPELL_KEY);
         event.register(CLONE_SPELL_KEY);
+        event.register(TRANSFORM_SPELL_KEY);
     }
 }
 
