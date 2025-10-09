@@ -1,4 +1,4 @@
-package com.blacksnow1002.realmmod.event.handlers;
+package com.blacksnow1002.realmmod.handlers.player;
 
 import com.blacksnow1002.realmmod.capability.cultivation.CultivationRealm;
 import net.minecraft.client.player.LocalPlayer;

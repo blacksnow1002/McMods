@@ -1,4 +1,4 @@
-package com.blacksnow1002.realmmod.event.handlers;
+package com.blacksnow1002.realmmod.handlers.utility;
 
 import com.blacksnow1002.realmmod.RealmMod;
 import net.minecraftforge.event.TickEvent;

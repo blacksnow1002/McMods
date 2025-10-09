@@ -1,9 +1,8 @@
-package com.blacksnow1002.realmmod.event.handlers;
+package com.blacksnow1002.realmmod.handlers.player;
 
 import com.blacksnow1002.realmmod.RealmMod;
 import com.blacksnow1002.realmmod.capability.ModCapabilities;
 import com.blacksnow1002.realmmod.item.custom.SpiritStoneItem;
-import com.blacksnow1002.realmmod.util.ArmorStandUtils;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.decoration.ArmorStand;

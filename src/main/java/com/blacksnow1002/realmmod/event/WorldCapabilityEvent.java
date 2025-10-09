@@ -11,7 +11,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import static net.minecraftforge.fml.common.Mod.*;
 
 @EventBusSubscriber(modid = RealmMod.MOD_ID)
-public class WorldCapabilityEvents {
+public class WorldCapabilityEvent {
     @SubscribeEvent
     public static void onAttachWorldCapability(AttachCapabilitiesEvent<Level> event) {
         Level level = event.getObject();

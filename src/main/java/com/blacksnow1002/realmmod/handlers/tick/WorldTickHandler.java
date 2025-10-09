@@ -1,4 +1,4 @@
-package com.blacksnow1002.realmmod.event.handlers;
+package com.blacksnow1002.realmmod.handlers.tick;
 
 import com.blacksnow1002.realmmod.RealmMod;
 import com.blacksnow1002.realmmod.capability.ModCapabilities;

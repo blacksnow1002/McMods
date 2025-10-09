@@ -1,7 +1,7 @@
 package com.blacksnow1002.realmmod.spell.spells;
 
 import com.blacksnow1002.realmmod.capability.cultivation.CultivationRealm;
-import com.blacksnow1002.realmmod.event.handlers.TeleportHandler;
+import com.blacksnow1002.realmmod.handlers.player.TeleportHandler;
 import com.blacksnow1002.realmmod.spell.BaseSpell;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
