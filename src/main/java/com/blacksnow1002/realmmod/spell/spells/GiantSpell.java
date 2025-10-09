@@ -1,6 +1,6 @@
 package com.blacksnow1002.realmmod.spell.spells;
 
-import com.blacksnow1002.realmmod.capability.CultivationRealm;
+import com.blacksnow1002.realmmod.capability.cultivation.CultivationRealm;
 import com.blacksnow1002.realmmod.event.handlers.DelayedTaskHandler;
 import com.blacksnow1002.realmmod.spell.BaseSpell;
 import net.minecraft.core.particles.ParticleTypes;
@@ -11,14 +11,10 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
-
-import java.util.List;
 
 public class GiantSpell extends BaseSpell {
 

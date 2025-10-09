@@ -2,7 +2,9 @@ package com.blacksnow1002.realmmod.event;
 
 import com.blacksnow1002.realmmod.RealmMod;
 import com.blacksnow1002.realmmod.capability.ModCapabilities;
-import com.blacksnow1002.realmmod.capability.CultivationProvider;
+import com.blacksnow1002.realmmod.capability.cultivation.CultivationProvider;
+import com.blacksnow1002.realmmod.capability.age.AgeProvider;
+import com.blacksnow1002.realmmod.capability.magic_point.MagicPointProvider;
 import com.blacksnow1002.realmmod.network.ModMessages;
 import com.blacksnow1002.realmmod.network.packets.RealmSyncPacket;
 import net.minecraft.resources.ResourceLocation;
@@ -26,6 +28,22 @@ public class ModEvents {
                 event.addCapability(
                         ResourceLocation.fromNamespaceAndPath(RealmMod.MOD_ID, CultivationProvider.IDENTIFIER),
                         new CultivationProvider()
+                );
+            }
+
+            // 年
+            if (!player.getCapability(ModCapabilities.AGE_CAP).isPresent()) {
+                event.addCapability(
+                        ResourceLocation.fromNamespaceAndPath(RealmMod.MOD_ID, AgeProvider.IDENTIFIER),
+                        new AgeProvider()
+                );
+            }
+
+            //法力
+            if (!player.getCapability(ModCapabilities.MAGIC_POINT_CAP).isPresent()) {
+                event.addCapability(
+                        ResourceLocation.fromNamespaceAndPath(RealmMod.MOD_ID, MagicPointProvider.IDENTIFIER),
+                        new MagicPointProvider()
                 );
             }
         }
@@ -76,6 +94,21 @@ public class ModEvents {
                         );
                         System.out.println(">>> 已發送同步封包");
                     }
+                });
+            });
+
+            originalPlayer.getCapability(ModCapabilities.AGE_CAP).ifPresent(oldData -> {
+                newPlayer.getCapability(ModCapabilities.AGE_CAP).ifPresent(newData -> {
+                    newData.setCurrentAge(oldData.getCurrentAge());
+                    newData.setRealmAge(oldData.getRealmAge());
+                    newData.setUltraAge(oldData.getUltraAge());
+                });
+            });
+
+            originalPlayer.getCapability(ModCapabilities.MAGIC_POINT_CAP).ifPresent(oldData -> {
+                newPlayer.getCapability(ModCapabilities.MAGIC_POINT_CAP).ifPresent(newData -> {
+                    newData.setMagicPointNow(oldData.getMagicPointMax());
+                    newData.setMagicPointMax(oldData.getMagicPointMax());
                 });
             });
         } finally {

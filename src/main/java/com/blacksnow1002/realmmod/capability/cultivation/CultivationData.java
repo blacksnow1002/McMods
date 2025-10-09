@@ -1,7 +1,6 @@
-package com.blacksnow1002.realmmod.capability;
+package com.blacksnow1002.realmmod.capability.cultivation;
 
 import com.blacksnow1002.realmmod.network.ModMessages;
-import com.blacksnow1002.realmmod.network.packets.LingMuSyncPacket;
 import com.blacksnow1002.realmmod.network.packets.RealmSyncPacket;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;

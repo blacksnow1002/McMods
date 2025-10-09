@@ -1,21 +1,13 @@
 package com.blacksnow1002.realmmod.spell.spells;
 
-import com.blacksnow1002.realmmod.capability.CultivationRealm;
-import com.blacksnow1002.realmmod.capability.ModCapabilities;
+import com.blacksnow1002.realmmod.capability.cultivation.CultivationRealm;
 import com.blacksnow1002.realmmod.event.handlers.DelayedTaskHandler;
 import com.blacksnow1002.realmmod.network.ModMessages;
 import com.blacksnow1002.realmmod.network.packets.LingMuSyncPacket;
 import com.blacksnow1002.realmmod.spell.BaseSpell;
-import com.google.common.graph.Network;
-import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.sounds.SoundEvents;
-import net.minecraft.sounds.SoundSource;
-import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.effect.MobEffects;
-import net.minecraftforge.common.capabilities.Capability;
 
 public class LingMuSpell extends BaseSpell {
 

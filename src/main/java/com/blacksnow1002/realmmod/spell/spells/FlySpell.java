@@ -1,16 +1,12 @@
 package com.blacksnow1002.realmmod.spell.spells;
 
-import com.blacksnow1002.realmmod.capability.CultivationRealm;
+import com.blacksnow1002.realmmod.capability.cultivation.CultivationRealm;
 import com.blacksnow1002.realmmod.event.handlers.DelayedTaskHandler;
-import com.blacksnow1002.realmmod.network.ModMessages;
-import com.blacksnow1002.realmmod.network.packets.LingMuSyncPacket;
 import com.blacksnow1002.realmmod.spell.BaseSpell;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Abilities;
-
-import java.util.UUID;
 
 public class FlySpell extends BaseSpell {
 

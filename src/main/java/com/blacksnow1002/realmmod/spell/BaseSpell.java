@@ -1,7 +1,7 @@
 package com.blacksnow1002.realmmod.spell;
 
 import com.blacksnow1002.realmmod.capability.ModCapabilities;
-import com.blacksnow1002.realmmod.capability.CultivationRealm;
+import com.blacksnow1002.realmmod.capability.cultivation.CultivationRealm;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.network.chat.Component;

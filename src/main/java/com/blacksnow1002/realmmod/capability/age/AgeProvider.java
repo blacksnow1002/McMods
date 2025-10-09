@@ -1,5 +1,6 @@
-package com.blacksnow1002.realmmod.capability;
+package com.blacksnow1002.realmmod.capability.age;
 
+import com.blacksnow1002.realmmod.capability.ModCapabilities;
 import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
@@ -9,15 +10,15 @@ import net.minecraftforge.common.util.LazyOptional;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public class CultivationProvider implements ICapabilitySerializable<CompoundTag> {
-    public static final String IDENTIFIER = "cultivation";
+public class AgeProvider implements ICapabilitySerializable<CompoundTag> {
+    public static final String IDENTIFIER = "age";
 
-    private final CultivationData backend = new CultivationData();
-    private final LazyOptional<ICultivationData> optional = LazyOptional.of(() -> backend);
+    private final AgeData backend = new AgeData();
+    private final LazyOptional<IAgeData> optional = LazyOptional.of(() -> backend);
 
     @Override
     public <T> @NotNull LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
-        return cap == ModCapabilities.CULTIVATION_CAP ? optional.cast() : LazyOptional.empty();
+        return cap == ModCapabilities.AGE_CAP ? optional.cast() : LazyOptional.empty();
     }
 
     // ✅ 新版 API：必須帶 HolderLookup.Provider

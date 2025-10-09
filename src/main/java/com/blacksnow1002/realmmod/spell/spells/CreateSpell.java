@@ -1,6 +1,6 @@
 package com.blacksnow1002.realmmod.spell.spells;
 
-import com.blacksnow1002.realmmod.capability.CultivationRealm;
+import com.blacksnow1002.realmmod.capability.cultivation.CultivationRealm;
 import com.blacksnow1002.realmmod.item.ModItems;
 import com.blacksnow1002.realmmod.spell.BaseSpell;
 import net.minecraft.core.particles.ParticleTypes;
@@ -11,9 +11,6 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
-
-import java.util.Map;
 
 public class CreateSpell extends BaseSpell {
 

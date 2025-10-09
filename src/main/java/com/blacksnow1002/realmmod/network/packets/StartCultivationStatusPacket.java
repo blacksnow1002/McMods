@@ -1,6 +1,6 @@
 package com.blacksnow1002.realmmod.network.packets;
 
-import com.blacksnow1002.realmmod.capability.CultivationRealm;
+import com.blacksnow1002.realmmod.capability.cultivation.CultivationRealm;
 import com.blacksnow1002.realmmod.capability.ModCapabilities;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.chat.Component;

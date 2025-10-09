@@ -1,4 +1,4 @@
-package com.blacksnow1002.realmmod.capability;
+package com.blacksnow1002.realmmod.capability.cultivation;
 
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.entity.player.Player;

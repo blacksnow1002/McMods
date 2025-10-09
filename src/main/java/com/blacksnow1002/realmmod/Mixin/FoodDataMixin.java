@@ -1,6 +1,6 @@
 package com.blacksnow1002.realmmod.Mixin;
 
-import com.blacksnow1002.realmmod.capability.CultivationRealm;
+import com.blacksnow1002.realmmod.capability.cultivation.CultivationRealm;
 import com.blacksnow1002.realmmod.capability.ModCapabilities;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.food.FoodData;
