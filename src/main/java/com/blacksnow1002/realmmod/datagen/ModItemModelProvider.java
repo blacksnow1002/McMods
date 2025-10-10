@@ -5,6 +5,7 @@ import com.blacksnow1002.realmmod.item.ModItems;
 import net.minecraft.data.PackOutput;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
+import net.minecraftforge.fml.common.Mod;
 
 public class ModItemModelProvider extends ItemModelProvider {
     public ModItemModelProvider(PackOutput output, ExistingFileHelper existingFileHelper) {
@@ -17,6 +18,8 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(ModItems.SPIRIT_STONE_MIDDLE.get());
         basicItem(ModItems.SPIRIT_STONE_HIGH.get());
 
+        basicItem(ModItems.FOUNDATION_BUILD_ELIXIR.get());
+
         basicItem(ModItems.MAGIC_DRUG.get());
 
         basicItem(ModItems.ALEXANDRITE.get());
@@ -26,5 +29,6 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(ModItems.KOHLRABI.get());
         basicItem(ModItems.SPIRIT_FRUIT.get());
         basicItem(ModItems.AURORA_ASHES.get());
+
     }
 }

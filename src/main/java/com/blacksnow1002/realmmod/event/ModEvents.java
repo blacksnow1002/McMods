@@ -2,6 +2,7 @@ package com.blacksnow1002.realmmod.event;
 
 import com.blacksnow1002.realmmod.RealmMod;
 import com.blacksnow1002.realmmod.capability.ModCapabilities;
+import com.blacksnow1002.realmmod.capability.realm_breakthrough.RealmBreakthroughProvider;
 import com.blacksnow1002.realmmod.capability.cultivation.CultivationProvider;
 import com.blacksnow1002.realmmod.capability.age.AgeProvider;
 import com.blacksnow1002.realmmod.capability.magic_point.MagicPointProvider;
@@ -44,6 +45,14 @@ public class ModEvents {
                 event.addCapability(
                         ResourceLocation.fromNamespaceAndPath(RealmMod.MOD_ID, MagicPointProvider.IDENTIFIER),
                         new MagicPointProvider()
+                );
+            }
+
+            //境界突破
+            if (!player.getCapability(ModCapabilities.BREAKTHROUGH_CAPABILITY_CAP).isPresent()) {
+                event.addCapability(
+                        ResourceLocation.fromNamespaceAndPath(RealmMod.MOD_ID, RealmBreakthroughProvider.IDENTIFIER),
+                        new RealmBreakthroughProvider()
                 );
             }
         }
@@ -109,6 +118,14 @@ public class ModEvents {
                 newPlayer.getCapability(ModCapabilities.MAGIC_POINT_CAP).ifPresent(newData -> {
                     newData.setMagicPointNow(oldData.getMagicPointMax());
                     newData.setMagicPointMax(oldData.getMagicPointMax());
+                });
+            });
+
+            originalPlayer.getCapability(ModCapabilities.BREAKTHROUGH_CAPABILITY_CAP).ifPresent(oldData -> {
+                newPlayer.getCapability(ModCapabilities.BREAKTHROUGH_CAPABILITY_CAP).ifPresent(newData -> {
+                    for (int i = 0; i < oldData.getCanBreakthrough().length; i++) {
+                        newData.setCanBreakthrough(i, oldData.getCanBreakthrough()[i]);
+                    }
                 });
             });
         } finally {

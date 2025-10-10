@@ -47,6 +47,15 @@ public class ModCreativeModeTabs {
 
                     }).build());
 
+    public static final RegistryObject<CreativeModeTab> ELIXIR_TAB = CREATIVE_MODE_TABS.register("elixir_tab",
+            () -> CreativeModeTab.builder().icon(() -> new ItemStack(ModItems.FOUNDATION_BUILD_ELIXIR.get()))
+                    .withTabsBefore(EXAMPLE_BLOCK_TAB.getId())
+                    .title(Component.translatable("creativetab.realmmod.elixir"))
+                    .displayItems((itemDisplayParameters, output) -> {
+
+                        output.accept(ModItems.FOUNDATION_BUILD_ELIXIR.get());
+                    }).build());
+
     public static void register(IEventBus eventBus) {
         CREATIVE_MODE_TABS.register(eventBus);
     }

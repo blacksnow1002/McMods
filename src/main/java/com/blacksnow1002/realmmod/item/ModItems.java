@@ -1,10 +1,7 @@
 package com.blacksnow1002.realmmod.item;
 
 import com.blacksnow1002.realmmod.RealmMod;
-import com.blacksnow1002.realmmod.item.custom.ChiselItem;
-import com.blacksnow1002.realmmod.item.custom.FuelItem;
-import com.blacksnow1002.realmmod.item.custom.SpiritFruitItem;
-import com.blacksnow1002.realmmod.item.custom.SpiritStoneItem;
+import com.blacksnow1002.realmmod.item.custom.*;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
@@ -22,6 +19,11 @@ public class ModItems {
     public static final RegistryObject<Item> SPIRIT_STONE_HIGH = ITEMS.register("spirit_stone_high",
             () -> new SpiritStoneItem(new Item.Properties(), 1000));
 
+    public static final RegistryObject<Item> FOUNDATION_BUILD_ELIXIR = ITEMS.register("foundation_build_elixir",
+            () -> new ElixirItem(new Item.Properties().food(ModFoodProperties.ELIXIR)));
+    public static final RegistryObject<Item> SPIRIT_FRUIT = ITEMS.register("spirit_fruit",
+            () ->  new SpiritFruitItem(new Item.Properties().food(ModFoodProperties.SPIRIT_FRUIT), 100));
+
 
 
 
@@ -38,8 +40,6 @@ public class ModItems {
 
     public static final RegistryObject<Item> KOHLRABI = ITEMS.register("kohlrabi",
             () -> new Item(new Item.Properties().food(ModFoodProperties.KOHLRABI)));
-    public static final RegistryObject<Item> SPIRIT_FRUIT = ITEMS.register("spirit_fruit",
-            () ->  new SpiritFruitItem(new Item.Properties().food(ModFoodProperties.SPIRIT_FRUIT), 100));
 
     public static final RegistryObject<Item> AURORA_ASHES = ITEMS.register("aurora_ashes",
             () -> new FuelItem(new Item.Properties(), 1200));

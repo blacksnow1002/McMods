@@ -1,5 +1,6 @@
 package com.blacksnow1002.realmmod.capability;
 
+import com.blacksnow1002.realmmod.capability.realm_breakthrough.IRealmBreakthroughData;
 import com.blacksnow1002.realmmod.capability.cultivation.ICultivationData;
 import com.blacksnow1002.realmmod.capability.magic_point.IMagicPointData;
 import com.blacksnow1002.realmmod.capability.world.IWorldData;
@@ -14,6 +15,8 @@ public class ModCapabilities {
     public static final Capability<IAgeData> AGE_CAP =
             CapabilityManager.get(new CapabilityToken<>(){});
     public static final Capability<IMagicPointData> MAGIC_POINT_CAP =
+            CapabilityManager.get(new CapabilityToken<>(){});
+    public static final Capability<IRealmBreakthroughData> BREAKTHROUGH_CAPABILITY_CAP =
             CapabilityManager.get(new CapabilityToken<>(){});
 
     public static final Capability<IWorldData> WORLD_CAP =

@@ -15,4 +15,13 @@ public class ModFoodProperties {
             .effect(new MobEffectInstance(MobEffects.GLOWING, 20, 0), 1.0F)
             .alwaysEdible()
             .build();
+
+    public static final FoodProperties ELIXIR = new FoodProperties.
+            Builder().
+            nutrition(0).
+            saturationModifier(0).
+            fast().
+            effect(new MobEffectInstance(MobEffects.GLOWING, 20, 0), 1.0F).
+            alwaysEdible().
+            build();
 }
