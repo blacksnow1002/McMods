@@ -11,7 +11,6 @@ import java.util.Map;
 import java.util.UUID;
 
 public abstract class BaseSpell {
-
     // 🔹 記錄玩家的冷卻時間：<玩家UUID, <法術名稱, 剩餘tick>>
     private static final Map<UUID, Map<String, Integer>> cooldowns = new HashMap<>();
 

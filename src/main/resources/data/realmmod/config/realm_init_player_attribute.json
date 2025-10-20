@@ -1,0 +1,172 @@
+{
+  "first": {
+    "displayName": "凡夫俗子",
+    "maxLayer": 1,
+    "requiredPerLayer": 1,
+    "breakthroughSuccessPossibility": 1.0,
+    "realmAge": 40,
+
+    "attack": 5,
+    "defense": 2,
+    "maxHealth": 20,
+    "speed": 0.1,
+    "dodgeRate": 0.0,
+    "critRate": 0.05,
+    "critMagnification": 1.5,
+    "currentMana": 0,
+    "maxMana": 0
+  },
+  "second": {
+    "displayName": "練氣",
+    "maxLayer": 10,
+    "requiredPerLayer": 100,
+    "breakthroughSuccessPossibility": 0.95,
+    "realmAge": 60,
+
+    "attack": 10,
+    "defense": 5,
+    "maxHealth": 40,
+    "speed": 0.12,
+    "dodgeRate": 0.02,
+    "critRate": 0.08,
+    "critMagnification": 1.6,
+    "currentMana": 100,
+    "maxMana": 100
+  },
+  "third": {
+    "displayName": "築基",
+    "maxLayer": 10,
+    "requiredPerLayer": 200,
+    "breakthroughSuccessPossibility": 0.9,
+    "realmAge": 120,
+
+    "attack": 20,
+    "defense": 10,
+    "maxHealth": 80,
+    "speed": 0.15,
+    "dodgeRate": 0.05,
+    "critRate": 0.12,
+    "critMagnification": 1.8,
+    "currentMana": 250,
+    "maxMana": 250
+  },
+  "fourth": {
+    "displayName": "金丹",
+    "maxLayer": 10,
+    "requiredPerLayer": 500,
+    "breakthroughSuccessPossibility": 0.8,
+    "realmAge": 300,
+
+    "attack": 50,
+    "defense": 25,
+    "maxHealth": 150,
+    "speed": 0.18,
+    "dodgeRate": 0.08,
+    "critRate": 0.15,
+    "critMagnification": 2.0,
+    "currentMana": 600,
+    "maxMana": 600
+  },
+  "fifth": {
+    "displayName": "元嬰",
+    "maxLayer": 10,
+    "requiredPerLayer": 1000,
+    "breakthroughSuccessPossibility": 0.7,
+    "realmAge": 1200,
+
+    "attack": 100,
+    "defense": 50,
+    "maxHealth": 300,
+    "speed": 0.22,
+    "dodgeRate": 0.12,
+    "critRate": 0.20,
+    "critMagnification": 2.2,
+    "currentMana": 1500,
+    "maxMana": 1500
+  },
+  "sixth": {
+    "displayName": "化神",
+    "maxLayer": 10,
+    "requiredPerLayer": 2000,
+    "breakthroughSuccessPossibility": 0.6,
+    "realmAge": 5000,
+
+    "attack": 200,
+    "defense": 100,
+    "maxHealth": 600,
+    "speed": 0.25,
+    "dodgeRate": 0.15,
+    "critRate": 0.25,
+    "critMagnification": 2.5,
+    "currentMana": 2500,
+    "maxMana": 2500
+  },
+  "seventh": {
+    "displayName": "反虛",
+    "maxLayer": 10,
+    "requiredPerLayer": 5000,
+    "breakthroughSuccessPossibility": 0.5,
+    "realmAge": 15000,
+
+    "attack": 400,
+    "defense": 200,
+    "maxHealth": 1200,
+    "speed": 0.30,
+    "dodgeRate": 0.20,
+    "critRate": 0.30,
+    "critMagnification": 2.8,
+    "currentMana": 4000,
+    "maxMana": 4000
+  },
+  "eighth": {
+    "displayName": "合體",
+    "maxLayer": 10,
+    "requiredPerLayer": 10000,
+    "breakthroughSuccessPossibility": 0.35,
+    "realmAge": 50000,
+
+    "attack": 800,
+    "defense": 400,
+    "maxHealth": 2400,
+    "speed": 0.35,
+    "dodgeRate": 0.25,
+    "critRate": 0.35,
+    "critMagnification": 3.0,
+    "currentMana": 6000,
+    "maxMana": 6000
+  },
+  "ninth": {
+    "displayName": "大乘",
+    "maxLayer": 10,
+    "requiredPerLayer": 20000,
+    "breakthroughSuccessPossibility": 0.2,
+    "realmAge": 200000,
+
+    "attack": 1600,
+    "defense": 800,
+    "maxHealth": 4800,
+    "speed": 0.40,
+    "dodgeRate": 0.30,
+    "critRate": 0.40,
+    "critMagnification": 3.5,
+    "currentMana": 9000,
+    "maxMana": 9000
+  },
+  "tenth": {
+    "displayName": "渡劫",
+    "maxLayer": 10,
+    "requiredPerLayer": 20000,
+    "breakthroughSuccessPossibility": 0.1,
+    "realmAge": 1000000,
+
+    "attack": 3200,
+    "defense": 1600,
+    "maxHealth": 9600,
+    "speed": 0.50,
+    "dodgeRate": 0.40,
+    "critRate": 0.50,
+    "critMagnification": 4.0,
+    "currentMana": 15000,
+    "maxMana": 15000
+  }
+}

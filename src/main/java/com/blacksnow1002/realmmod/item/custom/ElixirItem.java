@@ -29,11 +29,14 @@ public class ElixirItem extends Item {
 
             if(isFoundationPill) {
                 player.getCapability(ModCapabilities.BREAKTHROUGH_CAPABILITY_CAP).ifPresent(data -> {
-                    data.updateCondition(1, 1, true);
-                    player.sendSystemMessage(Component.literal("完成築基任務-服用築基丹"));
+                    if (!data.getRealmConditionFinished(1, 3)) {
+                        data.updateCondition(1, 3, true);
+                        player.sendSystemMessage(Component.literal("首次服用築基丹"));
+                        player.sendSystemMessage(Component.literal("完成築基任務-服用築基丹"));
 
-                    // 顯示詳細的任務狀態
-                    displayBreakthroughStatus(player, data, 1);
+                        // 顯示詳細的任務狀態
+                        displayBreakthroughStatus(player, data, 1);
+                    }
                 });
             }
         }

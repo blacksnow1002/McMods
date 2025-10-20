@@ -1,8 +1,8 @@
 package com.blacksnow1002.realmmod;
 
+import com.blacksnow1002.realmmod.assignment.npc.CustomNPCEntity;
 import com.blacksnow1002.realmmod.entity.PlayerCloneEntity;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
@@ -33,6 +33,11 @@ public class ModEntities {
 
     // 如果你有其他實體，可以在這裡繼續註冊
     // public static final RegistryObject<EntityType<OtherEntity>> OTHER_ENTITY = ...
+    public static final RegistryObject<EntityType<CustomNPCEntity>> CUSTOM_NPC = ENTITY_TYPES.register("custom_npc",
+            () -> EntityType.Builder.of(CustomNPCEntity::new, MobCategory.CREATURE)
+                    .sized(0.6f, 1.95f)
+                    .build(RealmMod.MOD_ID + ":custom_npc")
+    );
 
     /**
      * 內部事件監聽器類
@@ -51,6 +56,7 @@ public class ModEntities {
             event.put(PLAYER_CLONE.get(), PlayerCloneEntity.createAttributes().build());
 
             // 如果有其他實體，在這裡註冊它們的屬性
+            event.put(CUSTOM_NPC.get(), CustomNPCEntity.createAttributes().build());
             // event.put(OTHER_ENTITY.get(), OtherEntity.createAttributes().build());
         }
     }

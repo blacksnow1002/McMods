@@ -189,6 +189,12 @@ public class RealmBreakthroughData implements IRealmBreakthroughData {
         return completed + "/" + total;
     }
 
+    @Override
+    public boolean getRealmConditionFinished(int realmIndex, int conditionId) {
+        RealmBreakthroughConditions realm = realmConditions.get(realmIndex);
+        return realm != null && realm.getConditions().get(conditionId).isCompleted();
+    }
+
     public void saveNBTData(CompoundTag nbt) {
         ListTag realmList = new ListTag();
 

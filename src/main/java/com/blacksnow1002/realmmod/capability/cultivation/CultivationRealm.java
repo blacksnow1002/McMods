@@ -1,55 +1,50 @@
 package com.blacksnow1002.realmmod.capability.cultivation;
 
 public enum CultivationRealm {
-    first("凡夫俗子", 1, 1, 1.0f, 40, 0, 0),
-    second("練氣", 10, 100, 0.95f, 60, 100, 1),
-    third("築基", 10, 200, 0.9f, 120, 250, 2),
-    fourth("金丹", 10, 500, 0.8f, 300, 600, 4),
-    fifth("元嬰", 10, 1000, 0.7f, 1200, 1500, 6),
-    sixth("化神", 10, 2000, 0.6f, 5000, 2500, 10),
-    seventh("反虛", 10, 5000, 0.5f, 15000, 4000, 15),
-    eighth("合體", 10, 10000, 0.35f, 50000, 6000, 20),
-    ninth("大乘", 10, 20000, 0.2f, 200000, 9000, 30),
-    tenth("渡劫", 10, 20000, 0.1f, 1000000, 15000, 50);
+    first,
+    second,
+    third,
+    fourth,
+    fifth,
+    sixth,
+    seventh,
+    eighth,
+    ninth,
+    tenth;
 
-    private final String displayName;
-    private final int maxLayer;
-    private final int requiredPerLayer;
-    private final float BreakthroughSuccessPossibility;
-    private final int realmAge;
-    private final int realmMagicPoint;
-    private final int magicPointReceivePerSecond;
+    private RealmAttributeLoader.RealmConfig cachedConfig;
 
-    CultivationRealm(String displayName,
-                     int maxLayer,
-                     int requiredPerLayer,
-                     float BreakthroughSuccessPossibility,
-                     int realmAge,
-                     int realmMagicPoint,
-                     int magicPointReceivePerSecond) {
-        this.displayName = displayName;
-        this.maxLayer = maxLayer;
-        this.requiredPerLayer = requiredPerLayer;
-        this.BreakthroughSuccessPossibility = BreakthroughSuccessPossibility;
-        this.realmAge = realmAge;
-        this.realmMagicPoint = realmMagicPoint;
-        this.magicPointReceivePerSecond = magicPointReceivePerSecond;
+    /**
+     * 獲取配置（帶緩存）
+     */
+    private RealmAttributeLoader.RealmConfig getConfigCached() {
+        if (cachedConfig == null) {
+            cachedConfig = RealmAttributeLoader.getConfig(this);
+        }
+        return cachedConfig;
+    }
+
+    /**
+     * 清除緩存（資源重載時調用）
+     */
+    public void clearCache() {
+        cachedConfig = null;
     }
 
     public String getDisplayName() {
-        return displayName;
+        return getConfigCached().displayName;
     }
 
     public int getMaxLayer() {
-        return maxLayer;
+        return getConfigCached().maxLayer;
     }
 
     public int getRequiredPerLayer() {
-        return requiredPerLayer;
+        return getConfigCached().requiredPerLayer;
     }
 
     public float getBreakthroughSuccessPossibility() {
-        return BreakthroughSuccessPossibility;
+        return getConfigCached().breakthroughSuccessPossibility;
     }
 
     public CultivationRealm getNextRealm() {

@@ -2,6 +2,7 @@ package com.blacksnow1002.realmmod.client;
 
 import com.blacksnow1002.realmmod.ModEntities;
 import com.blacksnow1002.realmmod.RealmMod;
+import com.blacksnow1002.realmmod.client.renderer.CustomNPCRenderer;
 import com.blacksnow1002.realmmod.client.renderer.PlayerCloneRenderer;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;
@@ -30,6 +31,11 @@ public class ClientSetup {
         event.registerEntityRenderer(
                 ModEntities.PLAYER_CLONE.get(),     // 實體類型
                 PlayerCloneRenderer::new             // 渲染器工廠
+        );
+
+        event.registerEntityRenderer(
+                ModEntities.CUSTOM_NPC.get(),
+                CustomNPCRenderer::new
         );
 
         System.out.println("實體渲染器註冊完成");

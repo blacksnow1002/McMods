@@ -1,11 +1,13 @@
 package com.blacksnow1002.realmmod.capability.realm_breakthrough;
 
 public interface IRealmBreakthroughData {
-    public boolean canBreakthrough(int realmIndex);
-    public boolean[] getCanBreakthrough();
-    public void setCanBreakthrough(int realmIndex, boolean value);
+    boolean canBreakthrough(int realmIndex);
+    boolean[] getCanBreakthrough();
+    void setCanBreakthrough(int realmIndex, boolean value);
 
-    public void updateCondition(int realmIndex, int conditionId, boolean completed);
+    void updateCondition(int realmIndex, int conditionId, boolean completed);
 
-    public String getBreakthroughProgress(int realmIndex);
+    String getBreakthroughProgress(int realmIndex);
+
+    boolean getRealmConditionFinished(int realmIndex, int conditionId);
 }

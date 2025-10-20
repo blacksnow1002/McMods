@@ -1,13 +1,21 @@
 package com.blacksnow1002.realmmod.event;
 
 import com.blacksnow1002.realmmod.RealmMod;
+import com.blacksnow1002.realmmod.assignment.AssignmentProvider;
 import com.blacksnow1002.realmmod.capability.ModCapabilities;
+import com.blacksnow1002.realmmod.capability.attribute.PlayerTotalAttributeProvider;
+import com.blacksnow1002.realmmod.capability.attribute.allocate.AllocateAttributeProvider;
+import com.blacksnow1002.realmmod.capability.attribute.equipment.EquipmentAttributeProvider;
+import com.blacksnow1002.realmmod.capability.attribute.realm.RealmAttributeProvider;
+import com.blacksnow1002.realmmod.capability.attribute.technique.TechniqueAttributeProvider;
+import com.blacksnow1002.realmmod.capability.mana.ManaProvider;
 import com.blacksnow1002.realmmod.capability.realm_breakthrough.RealmBreakthroughProvider;
 import com.blacksnow1002.realmmod.capability.cultivation.CultivationProvider;
 import com.blacksnow1002.realmmod.capability.age.AgeProvider;
-import com.blacksnow1002.realmmod.capability.magic_point.MagicPointProvider;
+import com.blacksnow1002.realmmod.capability.spiritroot.SpiritRootProvider;
 import com.blacksnow1002.realmmod.network.ModMessages;
 import com.blacksnow1002.realmmod.network.packets.RealmSyncPacket;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
@@ -16,6 +24,8 @@ import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+
+import java.util.HashMap;
 
 @Mod.EventBusSubscriber(modid = RealmMod.MOD_ID)
 public class ModEvents {
@@ -40,14 +50,6 @@ public class ModEvents {
                 );
             }
 
-            //法力
-            if (!player.getCapability(ModCapabilities.MAGIC_POINT_CAP).isPresent()) {
-                event.addCapability(
-                        ResourceLocation.fromNamespaceAndPath(RealmMod.MOD_ID, MagicPointProvider.IDENTIFIER),
-                        new MagicPointProvider()
-                );
-            }
-
             //境界突破
             if (!player.getCapability(ModCapabilities.BREAKTHROUGH_CAPABILITY_CAP).isPresent()) {
                 event.addCapability(
@@ -55,6 +57,63 @@ public class ModEvents {
                         new RealmBreakthroughProvider()
                 );
             }
+
+            //靈根
+            if (!player.getCapability(ModCapabilities.SPIRIT_ROOT_CAP).isPresent()) {
+                event.addCapability(
+                        ResourceLocation.fromNamespaceAndPath(RealmMod.MOD_ID, SpiritRootProvider.IDENTIFIER),
+                        new SpiritRootProvider()
+                );
+            }
+
+            //真元
+            if (!player.getCapability(ModCapabilities.MANA_CAP).isPresent()) {
+                event.addCapability(
+                        ResourceLocation.fromNamespaceAndPath(RealmMod.MOD_ID, ManaProvider.IDENTIFIER),
+                        new ManaProvider()
+                );
+            }
+
+            //玩家數據
+            if(!player.getCapability(ModCapabilities.ALLOCATE_ATTRIBUTE_CAP).isPresent()){
+                event.addCapability(
+                        ResourceLocation.fromNamespaceAndPath(RealmMod.MOD_ID, AllocateAttributeProvider.IDENTIFIER),
+                        new AllocateAttributeProvider()
+                );
+            }
+            if(!player.getCapability(ModCapabilities.REALM_ATTRIBUTE_CAP).isPresent()){
+                event.addCapability(
+                        ResourceLocation.fromNamespaceAndPath(RealmMod.MOD_ID, RealmAttributeProvider.IDENTIFIER),
+                        new RealmAttributeProvider()
+                );
+            }
+            if(!player.getCapability(ModCapabilities.EQUIPMENT_ATTRIBUTE_CAP).isPresent()){
+                event.addCapability(
+                        ResourceLocation.fromNamespaceAndPath(RealmMod.MOD_ID, EquipmentAttributeProvider.IDENTIFIER),
+                        new EquipmentAttributeProvider()
+                );
+            }
+            if(!player.getCapability(ModCapabilities.TECHNIQUE_ATTRIBUTE_CAP).isPresent()){
+                event.addCapability(
+                        ResourceLocation.fromNamespaceAndPath(RealmMod.MOD_ID, TechniqueAttributeProvider.IDENTIFIER),
+                        new TechniqueAttributeProvider()
+                );
+            }
+            if(!player.getCapability(ModCapabilities.PLAYER_TOTAL_ATTRIBUTE_CAP).isPresent()){
+                event.addCapability(
+                        ResourceLocation.fromNamespaceAndPath(RealmMod.MOD_ID, PlayerTotalAttributeProvider.IDENTIFIER),
+                        new PlayerTotalAttributeProvider()
+                );
+            }
+
+            if(!player.getCapability(ModCapabilities.ASSIGNMENT_CAP).isPresent()){
+                event.addCapability(
+                        ResourceLocation.fromNamespaceAndPath(RealmMod.MOD_ID, AssignmentProvider.IDENTIFIER),
+                        new AssignmentProvider()
+                );
+            }
+
+
         }
     }
 
@@ -106,18 +165,18 @@ public class ModEvents {
                 });
             });
 
+            originalPlayer.getCapability(ModCapabilities.ASSIGNMENT_CAP).ifPresent(oldData -> {
+                newPlayer.getCapability(ModCapabilities.ASSIGNMENT_CAP).ifPresent(newData -> {
+                    CompoundTag tag = oldData.saveNBTData();
+                    newData.loadNBTData(tag);
+                });
+            });
+
             originalPlayer.getCapability(ModCapabilities.AGE_CAP).ifPresent(oldData -> {
                 newPlayer.getCapability(ModCapabilities.AGE_CAP).ifPresent(newData -> {
                     newData.setCurrentAge(oldData.getCurrentAge());
                     newData.setRealmAge(oldData.getRealmAge());
                     newData.setUltraAge(oldData.getUltraAge());
-                });
-            });
-
-            originalPlayer.getCapability(ModCapabilities.MAGIC_POINT_CAP).ifPresent(oldData -> {
-                newPlayer.getCapability(ModCapabilities.MAGIC_POINT_CAP).ifPresent(newData -> {
-                    newData.setMagicPointNow(oldData.getMagicPointMax());
-                    newData.setMagicPointMax(oldData.getMagicPointMax());
                 });
             });
 
@@ -128,6 +187,130 @@ public class ModEvents {
                     }
                 });
             });
+
+            originalPlayer.getCapability(ModCapabilities.MANA_CAP).ifPresent(oldData -> {
+                newPlayer.getCapability(ModCapabilities.MANA_CAP).ifPresent(newData -> {
+                    newData.setMana(oldData.getMana());
+                });
+            });
+
+            originalPlayer.getCapability(ModCapabilities.SPIRIT_ROOT_CAP).ifPresent(oldData -> {
+                newPlayer.getCapability(ModCapabilities.SPIRIT_ROOT_CAP).ifPresent(newData -> {
+                    newData.setGoldRootLevel(oldData.getGoldRootLevel());
+                    newData.setWoodRootLevel(oldData.getWoodRootLevel());
+                    newData.setWaterRootLevel(oldData.getWaterRootLevel());
+                    newData.setFireRootLevel(oldData.getFireRootLevel());
+                    newData.setEarthRootLevel(oldData.getEarthRootLevel());
+                });
+            });
+
+            originalPlayer.getCapability(ModCapabilities.ALLOCATE_ATTRIBUTE_CAP).ifPresent(oldData -> {
+                newPlayer.getCapability(ModCapabilities.ALLOCATE_ATTRIBUTE_CAP).ifPresent(newData -> {
+                    newData.setSpiritualSense(oldData.getSpiritualSense());
+                    newData.setPhysique(oldData.getPhysique());
+                    newData.setMovementTechnique(oldData.getMovementTechnique());
+                    newData.setFortune(oldData.getFortune());
+                });
+            });
+
+            originalPlayer.getCapability(ModCapabilities.REALM_ATTRIBUTE_CAP).ifPresent(oldData -> {
+                newPlayer.getCapability(ModCapabilities.REALM_ATTRIBUTE_CAP).ifPresent(newData -> {
+                    newData.setRealmAttack(oldData.getRealmAttack());
+                    newData.setRealmDefense(oldData.getRealmDefense());
+                    newData.setRealmMaxHealth(oldData.getRealmMaxHealth());
+                    newData.setRealmMoveSpeed(oldData.getRealmMoveSpeed());
+
+                    newData.setRealmDodgeRate(oldData.getRealmDodgeRate());
+                    newData.setRealmCritRate(oldData.getRealmCritRate());
+                    newData.setRealmCritMagnification(oldData.getRealmCritMagnification());
+
+                    newData.setRealmMaxMana(oldData.getRealmMaxMana());
+                });
+            });
+
+            originalPlayer.getCapability(ModCapabilities.EQUIPMENT_ATTRIBUTE_CAP).ifPresent(oldData -> {
+                newPlayer.getCapability(ModCapabilities.EQUIPMENT_ATTRIBUTE_CAP).ifPresent(newData -> {
+                    newData.setEquipmentAttack(oldData.getEquipmentAttack());
+                    newData.setEquipmentDefense(oldData.getEquipmentDefense());
+                    newData.setEquipmentMaxHealth(oldData.getEquipmentMaxHealth());
+                    newData.setEquipmentMoveSpeed(oldData.getEquipmentMoveSpeed());
+
+                    newData.setEquipmentDodgeRate(oldData.getEquipmentDodgeRate());
+                    newData.setEquipmentCritRate(oldData.getEquipmentCritRate());
+                    newData.setEquipmentCritMagnification(oldData.getEquipmentCritMagnification());
+
+                    newData.setEquipmentMaxMana(oldData.getEquipmentMaxMana());
+                });
+            });
+
+            originalPlayer.getCapability(ModCapabilities.TECHNIQUE_ATTRIBUTE_CAP).ifPresent(oldData -> {
+                newPlayer.getCapability(ModCapabilities.TECHNIQUE_ATTRIBUTE_CAP).ifPresent(newData -> {
+                    newData.setTechniqueAttack(oldData.getTechniqueAttack());
+                    newData.setTechniqueDefense(oldData.getTechniqueDefense());
+                    newData.setTechniqueMaxHealth(oldData.getTechniqueMaxHealth());
+                    newData.setTechniqueMoveSpeed(oldData.getTechniqueMoveSpeed());
+
+                    newData.setTechniqueDodgeRate(oldData.getTechniqueDodgeRate());
+                    newData.setTechniqueCritRate(oldData.getTechniqueCritRate());
+                    newData.setTechniqueCritMagnification(oldData.getTechniqueCritMagnification());
+
+                    newData.setTechniqueMaxMana(oldData.getTechniqueMaxMana());
+                });
+            });
+
+            originalPlayer.getCapability(ModCapabilities.PLAYER_TOTAL_ATTRIBUTE_CAP).ifPresent(oldData -> {
+                newPlayer.getCapability(ModCapabilities.PLAYER_TOTAL_ATTRIBUTE_CAP).ifPresent(newData -> {
+                    // 基礎屬性
+                    newData.setPlayerTotalMaxHealth(oldData.getPlayerTotalMaxHealth());
+                    newData.setPlayerTotalHealthReceive(oldData.getPlayerTotalHealthReceive());
+                    newData.setPlayerTotalMaxMana(oldData.getPlayerTotalMaxMana());
+                    newData.setPlayerTotalManaReceive(oldData.getPlayerTotalManaReceive());
+                    newData.setPlayerTotalMoveSpeed(oldData.getPlayerTotalMoveSpeed());
+
+                    // 攻擊屬性
+                    newData.setPlayerTotalPhysicalAttack(oldData.getPlayerTotalPhysicalAttack());
+                    newData.setPlayerTotalMagicalAttack(oldData.getPlayerTotalMagicalAttack());
+                    newData.setPlayerTotalIgnoreDefense(oldData.getPlayerTotalIgnoreDefense());
+                    newData.setPlayerTotalAttackSpeed(oldData.getPlayerTotalAttackSpeed());
+
+                    newData.setPlayerTotalAccuracyRate(oldData.getPlayerTotalAccuracyRate());
+                    newData.setPlayerTotalCritRate(oldData.getPlayerTotalCritRate());
+                    newData.setPlayerTotalCritMagnification(oldData.getPlayerTotalCritMagnification());
+
+                    newData.setPlayerTotalLifeStealRate(oldData.getPlayerTotalLifeStealRate());
+                    newData.setPlayerTotalLifeStealAmount(oldData.getPlayerTotalLifeStealAmount());
+                    newData.setPlayerTotalManaStealRate(oldData.getPlayerTotalManaStealRate());
+                    newData.setPlayerTotalManaStealAmount(oldData.getPlayerTotalManaStealAmount());
+
+                    newData.setPlayerTotalGoldAttack(oldData.getPlayerTotalGoldAttack());
+                    newData.setPlayerTotalWoodAttack(oldData.getPlayerTotalWoodAttack());
+                    newData.setPlayerTotalWaterAttack(oldData.getPlayerTotalWaterAttack());
+                    newData.setPlayerTotalFireAttack(oldData.getPlayerTotalFireAttack());
+                    newData.setPlayerTotalEarthAttack(oldData.getPlayerTotalEarthAttack());
+
+                    newData.setPlayerTotalDamageIncrease(oldData.getPlayerTotalDamageIncrease());
+
+                    //防禦屬性
+                    newData.setPlayerTotalPhysicalDefense(oldData.getPlayerTotalPhysicalDefense());
+                    newData.setPlayerTotalMagicalDefense(oldData.getPlayerTotalMagicalDefense());
+
+                    newData.setPlayerTotalDodgeRate(oldData.getPlayerTotalDodgeRate());
+                    newData.setPlayerTotalReflectRate(oldData.getPlayerTotalReflectRate());
+                    newData.setPlayerTotalReflectMagnification(oldData.getPlayerTotalReflectMagnification());
+
+                    newData.setPlayerTotalDebuffResistRate(oldData.getPlayerTotalDebuffResistRate());
+                    newData.setPlayerTotalTenacity(oldData.getPlayerTotalTenacity());
+
+                    newData.setPlayerTotalGoldDefense(oldData.getPlayerTotalGoldDefense());
+                    newData.setPlayerTotalWoodDefense(oldData.getPlayerTotalWoodDefense());
+                    newData.setPlayerTotalWaterDefense(oldData.getPlayerTotalWaterDefense());
+                    newData.setPlayerTotalFireDefense(oldData.getPlayerTotalFireDefense());
+                    newData.setPlayerTotalEarthDefense(oldData.getPlayerTotalEarthDefense());
+
+                    newData.setPlayerTotalDamageDecrease(oldData.getPlayerTotalDamageDecrease());
+                });
+            });
+
         } finally {
             // 清理舊玩家的 Capability
             originalPlayer.invalidateCaps();
