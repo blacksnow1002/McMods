@@ -29,6 +29,8 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.SPIRIT_FRUIT.get());
                         output.accept(ModItems.AURORA_ASHES.get());
 
+                        output.accept(ModItems.TECHNIQUE.get());
+
                     }).build());
 
     public static final RegistryObject<CreativeModeTab> EXAMPLE_BLOCK_TAB = CREATIVE_MODE_TABS.register("example_block_tab",

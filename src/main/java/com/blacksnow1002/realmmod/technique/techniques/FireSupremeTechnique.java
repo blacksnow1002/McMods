@@ -1,8 +1,10 @@
 package com.blacksnow1002.realmmod.technique.techniques;
 
+import com.blacksnow1002.realmmod.assignment.AssignmentRegistry;
 import com.blacksnow1002.realmmod.capability.attribute.technique.TechniqueAttributeData;
 import com.blacksnow1002.realmmod.capability.cultivation.CultivationRealm;
 import com.blacksnow1002.realmmod.technique.BaseTechnique;
+import com.blacksnow1002.realmmod.technique.TechniqueRegistry;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -24,7 +26,7 @@ import java.util.*;
 public class FireSupremeTechnique extends BaseTechnique {
 
     public FireSupremeTechnique() {
-        super("fire_supreme", "焚天訣", 9);
+        super(TechniqueRegistry.TechniqueIDs.FIRE_SUPREME, "焚天訣", 9);
     }
 
     // ==================== 解鎖條件 ====================
@@ -37,19 +39,14 @@ public class FireSupremeTechnique extends BaseTechnique {
     @Override
     public Map<SpiritRootType, Integer> getSpiritRootRequirements() {
         Map<SpiritRootType, Integer> requirements = new HashMap<>();
-        requirements.put(SpiritRootType.FIRE, 5);  // 火靈根5級
-        requirements.put(SpiritRootType.WOOD, 3);  // 木靈根3級（木生火）
+        requirements.put(SpiritRootType.FIRE, 0);  // 火靈根5級
+        requirements.put(SpiritRootType.WOOD, 0);  // 木靈根3級（木生火）
         return requirements;
     }
 
     @Override
-    public List<String> getPrerequisiteTechniques() {
-        return Collections.emptyList();
-    }
-
-    @Override
     public String getUnlockAssignmentId() {
-        return "assignment_ancient_fire_temple"; // 需要完成「上古火神殿」任務
+        return AssignmentRegistry.AssignmentIds.TEST_KILL_ENTITY_ASSIGNMENT; // 需要完成「上古火神殿」任務
     }
 
     // ==================== 進階條件 ====================
@@ -69,8 +66,9 @@ public class FireSupremeTechnique extends BaseTechnique {
     public String getAdvanceAssignmentId(int level) {
         // 只有突破大關卡時需要任務
         return switch (level) {
-            case 4 -> "assignment_fire_trial_golden";   // 進入金丹期需要火焰試煉
-            case 7 -> "assignment_fire_trial_nascent";  // 進入元嬰期需要更高級的試煉
+            case 3 -> AssignmentRegistry.AssignmentIds.FIRE_SUPREME_LEVEL_3;   // 進入金丹期需要火焰試煉
+            case 6 -> AssignmentRegistry.AssignmentIds.FIRE_SUPREME_LEVEL_6;  // 進入元嬰期需要更高級的試煉
+            case 9 -> AssignmentRegistry.AssignmentIds.FIRE_SUPREME_LEVEL_9;
             default -> null;
         };
     }

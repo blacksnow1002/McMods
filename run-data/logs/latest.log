@@ -1,27 +1,27 @@
-[0910月2025 21:10:21.789] [main/INFO] [cpw.mods.modlauncher.Launcher/MODLAUNCHER]: ModLauncher running: args [--launchTarget, forge_userdev_data, --assetIndex, 17, --assetsDir, C:\Users\adidi\.gradle\caches\forge_gradle\assets, --gameDir, ., --mod, realmmod, --all, --output, C:\MinecraftMods\McMod_Realm\src\generated\resources, --existing, C:\MinecraftMods\McMod_Realm\src\main\resources]
-[0910月2025 21:10:21.797] [main/INFO] [cpw.mods.modlauncher.Launcher/MODLAUNCHER]: JVM identified as Oracle Corporation Java HotSpot(TM) 64-Bit Server VM 21.0.8+12-LTS-250
-[0910月2025 21:10:21.798] [main/INFO] [cpw.mods.modlauncher.Launcher/MODLAUNCHER]: ModLauncher 10.2.4 starting: java version 21.0.8 by Oracle Corporation; OS Windows 11 arch amd64 version 10.0
-[0910月2025 21:10:21.946] [main/INFO] [net.minecraftforge.fml.loading.ImmediateWindowHandler/]: ImmediateWindowProvider not loading because launch target is forge_userdev_data
-[0910月2025 21:10:22.072] [main/INFO] [mixin/]: SpongePowered MIXIN Subsystem Version=0.8.7 Source=jar:file:///C:/Users/adidi/.gradle/caches/modules-2/files-2.1/org.spongepowered/mixin/0.8.7/8ab114ac385e6dbdad5efafe28aba4df8120915f/mixin-0.8.7.jar!/ Service=ModLauncher Env=UNKNOWN
-[0910月2025 21:10:22.831] [main/INFO] [net.minecraftforge.fml.loading.moddiscovery.JarInJarDependencyLocator/]: No dependencies to load found. Skipping!
-[0910月2025 21:10:23.634] [main/INFO] [cpw.mods.modlauncher.LaunchServiceHandler/MODLAUNCHER]: Launching target 'forge_userdev_data' with arguments [--gameDir, ., --assetsDir, C:\Users\adidi\.gradle\caches\forge_gradle\assets, --assetIndex, 17, --mod, realmmod, --all, --output, C:\MinecraftMods\McMod_Realm\src\generated\resources, --existing, C:\MinecraftMods\McMod_Realm\src\main\resources]
-[0910月2025 21:10:28.946] [modloading-worker-0/INFO] [net.minecraftforge.common.ForgeMod/FORGEMOD]: Forge mod loading, version 52.1.0, for MC 1.21.1 with MCP 20240808.132146
-[0910月2025 21:10:28.947] [modloading-worker-0/INFO] [net.minecraftforge.common.MinecraftForge/FORGE]: MinecraftForge v52.1.0 Initialized
-[0910月2025 21:10:28.974] [modloading-worker-0/INFO] [net.minecraftforge.common.ForgeMod/FORGEMOD]: Opening jdk.naming.dns/com.sun.jndi.dns to java.naming
-[0910月2025 21:10:29.302] [main/INFO] [net.minecraftforge.data.loading.DatagenModLoader/]: Initializing Data Gatherer for mods [realmmod]
-[0910月2025 21:10:29.355] [main/WARN] [net.minecraft.server.packs.VanillaPackResourcesBuilder/]: Assets URL 'union:/C:/Users/adidi/.gradle/caches/forge_gradle/minecraft_user_repo/net/minecraftforge/forge/1.21.1-52.1.0_mapped_parchment_2024.11.17-1.21.1/forge-1.21.1-52.1.0_mapped_parchment_2024.11.17-1.21.1-recomp.jar%230!/assets/.mcassetsroot' uses unexpected schema
-[0910月2025 21:10:29.356] [main/WARN] [net.minecraft.server.packs.VanillaPackResourcesBuilder/]: Assets URL 'union:/C:/Users/adidi/.gradle/caches/forge_gradle/minecraft_user_repo/net/minecraftforge/forge/1.21.1-52.1.0_mapped_parchment_2024.11.17-1.21.1/forge-1.21.1-52.1.0_mapped_parchment_2024.11.17-1.21.1-recomp.jar%230!/data/.mcassetsroot' uses unexpected schema
-[0910月2025 21:10:29.533] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Loot Tables
-[0910月2025 21:10:29.672] [main/INFO] [net.minecraft.data.DataGenerator/]: Loot Tables finished after 138 ms
-[0910月2025 21:10:29.673] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Recipes
-[0910月2025 21:10:29.707] [main/INFO] [net.minecraft.data.DataGenerator/]: Recipes finished after 34 ms
-[0910月2025 21:10:29.707] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Tags for minecraft:block mod id realmmod
-[0910月2025 21:10:29.715] [main/INFO] [net.minecraft.data.DataGenerator/]: Tags for minecraft:block mod id realmmod finished after 8 ms
-[0910月2025 21:10:29.716] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Tags for minecraft:item mod id realmmod
-[0910月2025 21:10:29.717] [main/INFO] [net.minecraft.data.DataGenerator/]: Tags for minecraft:item mod id realmmod finished after 1 ms
-[0910月2025 21:10:29.718] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Item Models: realmmod
-[0910月2025 21:10:29.724] [main/INFO] [net.minecraft.data.DataGenerator/]: Item Models: realmmod finished after 5 ms
-[0910月2025 21:10:29.724] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Block States: realmmod
-[0910月2025 21:10:29.819] [main/INFO] [net.minecraft.data.DataGenerator/]: Block States: realmmod finished after 94 ms
-[0910月2025 21:10:29.820] [main/INFO] [net.minecraft.data.DataGenerator/]: All providers took: 287 ms
-[0910月2025 21:10:29.831] [main/INFO] [net.minecraft.data.HashCache/]: Caching: total files: 62, old count: 61, new count: 63, removed stale: 0, written: 1
+[2010月2025 23:52:58.058] [main/INFO] [cpw.mods.modlauncher.Launcher/MODLAUNCHER]: ModLauncher running: args [--launchTarget, forge_userdev_data, --assetIndex, 17, --assetsDir, C:\Users\adidi\.gradle\caches\forge_gradle\assets, --gameDir, ., --mod, realmmod, --all, --output, C:\MinecraftMods\McMod_Realm\src\generated\resources, --existing, C:\MinecraftMods\McMod_Realm\src\main\resources]
+[2010月2025 23:52:58.061] [main/INFO] [cpw.mods.modlauncher.Launcher/MODLAUNCHER]: JVM identified as Oracle Corporation Java HotSpot(TM) 64-Bit Server VM 21.0.8+12-LTS-250
+[2010月2025 23:52:58.062] [main/INFO] [cpw.mods.modlauncher.Launcher/MODLAUNCHER]: ModLauncher 10.2.4 starting: java version 21.0.8 by Oracle Corporation; OS Windows 11 arch amd64 version 10.0
+[2010月2025 23:52:58.206] [main/INFO] [net.minecraftforge.fml.loading.ImmediateWindowHandler/]: ImmediateWindowProvider not loading because launch target is forge_userdev_data
+[2010月2025 23:52:58.327] [main/INFO] [mixin/]: SpongePowered MIXIN Subsystem Version=0.8.7 Source=jar:file:///C:/Users/adidi/.gradle/caches/modules-2/files-2.1/org.spongepowered/mixin/0.8.7/8ab114ac385e6dbdad5efafe28aba4df8120915f/mixin-0.8.7.jar!/ Service=ModLauncher Env=UNKNOWN
+[2010月2025 23:52:59.310] [main/INFO] [net.minecraftforge.fml.loading.moddiscovery.JarInJarDependencyLocator/]: No dependencies to load found. Skipping!
+[2010月2025 23:53:00.430] [main/INFO] [cpw.mods.modlauncher.LaunchServiceHandler/MODLAUNCHER]: Launching target 'forge_userdev_data' with arguments [--gameDir, ., --assetsDir, C:\Users\adidi\.gradle\caches\forge_gradle\assets, --assetIndex, 17, --mod, realmmod, --all, --output, C:\MinecraftMods\McMod_Realm\src\generated\resources, --existing, C:\MinecraftMods\McMod_Realm\src\main\resources]
+[2010月2025 23:53:06.534] [modloading-worker-0/INFO] [net.minecraftforge.common.ForgeMod/FORGEMOD]: Forge mod loading, version 52.1.0, for MC 1.21.1 with MCP 20240808.132146
+[2010月2025 23:53:06.534] [modloading-worker-0/INFO] [net.minecraftforge.common.MinecraftForge/FORGE]: MinecraftForge v52.1.0 Initialized
+[2010月2025 23:53:06.582] [modloading-worker-0/INFO] [net.minecraftforge.common.ForgeMod/FORGEMOD]: Opening jdk.naming.dns/com.sun.jndi.dns to java.naming
+[2010月2025 23:53:06.984] [main/INFO] [net.minecraftforge.data.loading.DatagenModLoader/]: Initializing Data Gatherer for mods [realmmod]
+[2010月2025 23:53:07.073] [main/WARN] [net.minecraft.server.packs.VanillaPackResourcesBuilder/]: Assets URL 'union:/C:/Users/adidi/.gradle/caches/forge_gradle/minecraft_user_repo/net/minecraftforge/forge/1.21.1-52.1.0_mapped_parchment_2024.11.17-1.21.1/forge-1.21.1-52.1.0_mapped_parchment_2024.11.17-1.21.1-recomp.jar%230!/assets/.mcassetsroot' uses unexpected schema
+[2010月2025 23:53:07.073] [main/WARN] [net.minecraft.server.packs.VanillaPackResourcesBuilder/]: Assets URL 'union:/C:/Users/adidi/.gradle/caches/forge_gradle/minecraft_user_repo/net/minecraftforge/forge/1.21.1-52.1.0_mapped_parchment_2024.11.17-1.21.1/forge-1.21.1-52.1.0_mapped_parchment_2024.11.17-1.21.1-recomp.jar%230!/data/.mcassetsroot' uses unexpected schema
+[2010月2025 23:53:07.268] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Loot Tables
+[2010月2025 23:53:07.448] [main/INFO] [net.minecraft.data.DataGenerator/]: Loot Tables finished after 179 ms
+[2010月2025 23:53:07.448] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Recipes
+[2010月2025 23:53:07.486] [main/INFO] [net.minecraft.data.DataGenerator/]: Recipes finished after 37 ms
+[2010月2025 23:53:07.486] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Tags for minecraft:block mod id realmmod
+[2010月2025 23:53:07.499] [main/INFO] [net.minecraft.data.DataGenerator/]: Tags for minecraft:block mod id realmmod finished after 12 ms
+[2010月2025 23:53:07.499] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Tags for minecraft:item mod id realmmod
+[2010月2025 23:53:07.501] [main/INFO] [net.minecraft.data.DataGenerator/]: Tags for minecraft:item mod id realmmod finished after 1 ms
+[2010月2025 23:53:07.501] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Item Models: realmmod
+[2010月2025 23:53:07.507] [main/INFO] [net.minecraft.data.DataGenerator/]: Item Models: realmmod finished after 5 ms
+[2010月2025 23:53:07.507] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Block States: realmmod
+[2010月2025 23:53:07.609] [main/INFO] [net.minecraft.data.DataGenerator/]: Block States: realmmod finished after 101 ms
+[2010月2025 23:53:07.609] [main/INFO] [net.minecraft.data.DataGenerator/]: All providers took: 342 ms
+[2010月2025 23:53:07.616] [main/INFO] [net.minecraft.data.HashCache/]: Caching: total files: 63, old count: 63, new count: 64, removed stale: 0, written: 0

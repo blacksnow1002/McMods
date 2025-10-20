@@ -2,6 +2,7 @@ package com.blacksnow1002.realmmod.item;
 
 import com.blacksnow1002.realmmod.RealmMod;
 import com.blacksnow1002.realmmod.item.custom.*;
+import com.blacksnow1002.realmmod.technique.TechniqueRegistry;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
@@ -23,6 +24,9 @@ public class ModItems {
             () -> new ElixirItem(new Item.Properties().food(ModFoodProperties.ELIXIR)));
     public static final RegistryObject<Item> SPIRIT_FRUIT = ITEMS.register("spirit_fruit",
             () ->  new SpiritFruitItem(new Item.Properties().food(ModFoodProperties.SPIRIT_FRUIT), 100));
+
+    public static final RegistryObject<Item> TECHNIQUE = ITEMS.register("technique",
+            () -> new TechniqueItem(TechniqueRegistry.TechniqueIDs.FIRE_SUPREME, new Item.Properties()));
 
 
 

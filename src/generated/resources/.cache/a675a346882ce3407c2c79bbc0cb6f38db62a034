@@ -1,4 +1,4 @@
-// 1.21.1	2025-10-09T21:10:29.8216473	Item Models: realmmod
+// 1.21.1	2025-10-20T16:27:54.2226958	Item Models: realmmod
 f75de9c3cb9bcbf957ffce08378025391451703a assets/realmmod/models/item/alexandrite.json
 f2cce8d31f3acc76323fa03eca6a14e8486e31ac assets/realmmod/models/item/aurora_ashes.json
 8b1640084323bf7051db64110bfa3caaa53ea636 assets/realmmod/models/item/chisel.json
@@ -10,3 +10,4 @@ a41fcbe555315c68e377d909f1911a83bd4efa51 assets/realmmod/models/item/kohlrabi.js
 98794d069de48ad37dd9809dca53e86eabf384e3 assets/realmmod/models/item/spirit_stone_high.json
 22fc67690a473913aa932ce87e496c456f01b0b2 assets/realmmod/models/item/spirit_stone_low.json
 e8c355f2017a2746058469f71dad018c4834ea88 assets/realmmod/models/item/spirit_stone_middle.json
+a56f55c90da3c79ec0edbd75ff9d14762b62d64f assets/realmmod/models/item/technique.json

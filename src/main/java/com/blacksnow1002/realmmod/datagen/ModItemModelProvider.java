@@ -20,6 +20,8 @@ public class ModItemModelProvider extends ItemModelProvider {
 
         basicItem(ModItems.FOUNDATION_BUILD_ELIXIR.get());
 
+        basicItem(ModItems.TECHNIQUE.get());
+
         basicItem(ModItems.MAGIC_DRUG.get());
 
         basicItem(ModItems.ALEXANDRITE.get());

@@ -1,11 +1,12 @@
 package com.blacksnow1002.realmmod.technique;
 
 import com.blacksnow1002.realmmod.assignment.AssignmentSystem;
+import com.blacksnow1002.realmmod.assignment.IAssignmentDataManager;
 import com.blacksnow1002.realmmod.capability.ModCapabilities;
 import com.blacksnow1002.realmmod.capability.cultivation.CultivationRealm;
 import com.blacksnow1002.realmmod.capability.spiritroot.ISpiritRootData;
-import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Player;
 
 import java.util.*;
@@ -19,24 +20,26 @@ public class TechniqueSystem {
     private static TechniqueSystem INSTANCE;
 
     private final Map<String, BaseTechnique> techniques = new HashMap<>();
-    private final TechniqueDataManager dataManager;
 
     private TechniqueSystem() {
-        this.dataManager = new TechniqueDataManager();
     }
 
     public static TechniqueSystem getInstance() {
         if (INSTANCE == null) {
-            throw new IllegalStateException("TechniqueSystem not initialized! Call init() first.");
+            INSTANCE = new TechniqueSystem();
         }
         return INSTANCE;
     }
 
-    /** ✅ 初始化方法 */
     public static void init() {
         if (INSTANCE == null) {
             INSTANCE = new TechniqueSystem();
         }
+    }
+
+    public ITechniqueDataManager getTechniqueData(ServerPlayer player) {
+        return player.getCapability(ModCapabilities.TECHNIQUE_CAP)
+                .orElseThrow(() -> new IllegalStateException("Technique data manager has not been initialized!"));
     }
 
     // ==================== 功法註冊 ====================
@@ -62,15 +65,25 @@ public class TechniqueSystem {
         BaseTechnique technique = techniques.get(techniqueId);
         if (technique == null) return false;
 
+        ITechniqueDataManager dataManager = getTechniqueData(player);
         // 已經解鎖
-        if (dataManager.isUnlocked(player.getUUID(), techniqueId)) {
+        if (dataManager.isUnlocked(techniqueId)) {
+            player.sendSystemMessage(Component.literal("該功法已被解鎖"));
+            return false;
+        } else if (!(checkRealmRequirement(player, technique.getRequiredRealm()))) {
+            player.sendSystemMessage(Component.literal("境界不足，請達到" + technique.getRequiredRealm().getDisplayName() + "再來解鎖"));
+            return false;
+        } else if (!(checkSpiritRootRequirement(player, technique.getSpiritRootRequirements()))) {
+            player.sendSystemMessage(Component.literal("靈根等級不足"));
+            return false;
+        } else if (!checkPrerequisiteTechniques(player, technique.getPrerequisiteTechniques())) {
+            player.sendSystemMessage(Component.literal("前置功法未滿足"));
+            return false;
+        } else if (!checkUnlockAssignment(player, technique.getUnlockAssignmentId())) {
+            player.sendSystemMessage(Component.literal("前置任務未滿足"));
             return false;
         }
-
-        return checkRealmRequirement(player, technique.getRequiredRealm())
-                && checkSpiritRootRequirement(player, technique.getSpiritRootRequirements())
-                && checkPrerequisiteTechniques(player, technique.getPrerequisiteTechniques())
-                && checkUnlockAssignment(player, technique.getUnlockAssignmentId());
+        return true;
     }
 
     /**
@@ -81,11 +94,13 @@ public class TechniqueSystem {
             return false;
         }
 
-        UUID uuid = player.getUUID();
-        dataManager.setUnlocked(uuid, techniqueId, true);
-        dataManager.setLevel(uuid, techniqueId, 1);
-
         BaseTechnique technique = techniques.get(techniqueId);
+
+        ITechniqueDataManager dataManager = getTechniqueData(player);
+
+        dataManager.unlockTechnique(techniqueId);
+        dataManager.setTechniqueLevel(techniqueId, 1);
+
         applyGlobalAttributes(player, technique, 1);
 
         player.sendSystemMessage(Component.literal("§a成功解鎖功法: " + techniques.get(techniqueId).getDisplayName()));
@@ -101,12 +116,12 @@ public class TechniqueSystem {
         BaseTechnique technique = techniques.get(techniqueId);
         if (technique == null) return false;
 
-        UUID uuid = player.getUUID();
-        if (!dataManager.isUnlocked(uuid, techniqueId)) {
+        ITechniqueDataManager dataManager = getTechniqueData(player);
+        if (!dataManager.isUnlocked(techniqueId)) {
             return false;
         }
 
-        int currentLevel = dataManager.getLevel(uuid, techniqueId);
+        int currentLevel = dataManager.getTechniqueLevel(techniqueId);
         if (currentLevel >= technique.getMaxLevel()) {
             return false;
         }
@@ -124,9 +139,10 @@ public class TechniqueSystem {
             return false;
         }
 
-        UUID uuid = player.getUUID();
-        int newLevel = dataManager.getLevel(uuid, techniqueId) + 1;
-        dataManager.setLevel(uuid, techniqueId, newLevel);
+        ITechniqueDataManager dataManager = getTechniqueData(player);
+
+        int newLevel = dataManager.getTechniqueLevel(techniqueId) + 1;
+        dataManager.setTechniqueLevel(techniqueId, newLevel);
 
         BaseTechnique technique = techniques.get(techniqueId);
         applyGlobalAttributes(player, technique, newLevel);
@@ -145,15 +161,15 @@ public class TechniqueSystem {
         BaseTechnique technique = techniques.get(techniqueId);
         if (technique == null) return false;
 
-        UUID uuid = player.getUUID();
+        ITechniqueDataManager dataManager = getTechniqueData(player);
 
         // 未解鎖
-        if (!dataManager.isUnlocked(uuid, techniqueId)) {
+        if (!dataManager.isUnlocked(techniqueId)) {
             return false;
         }
 
         // 已裝備
-        if (dataManager.isEquipped(uuid, techniqueId)) {
+        if (dataManager.isEquipped(techniqueId)) {
             return false;
         }
 
@@ -168,11 +184,11 @@ public class TechniqueSystem {
             return false;
         }
 
-        UUID uuid = player.getUUID();
-        dataManager.setEquipped(uuid, techniqueId, true);
+        ITechniqueDataManager dataManager = getTechniqueData(player);
+        dataManager.equipTechnique(techniqueId);
 
         BaseTechnique technique = techniques.get(techniqueId);
-        int level = dataManager.getLevel(uuid, techniqueId);
+        int level = dataManager.getTechniqueLevel(techniqueId);
 
         // 應用裝備效果
         applyEquippedAttributes(player, technique, level, true);
@@ -185,43 +201,48 @@ public class TechniqueSystem {
      * 卸下功法
      */
     public boolean unequipTechnique(ServerPlayer player, String techniqueId) {
-        UUID uuid = player.getUUID();
+        ITechniqueDataManager dataManager = getTechniqueData(player);
 
-        if (!dataManager.isEquipped(uuid, techniqueId)) {
+        if (!dataManager.isEquipped(techniqueId)) {
             return false;
         }
 
         BaseTechnique technique = techniques.get(techniqueId);
-        int level = dataManager.getLevel(uuid, techniqueId);
+        int level = dataManager.getTechniqueLevel(techniqueId);
 
         // 移除裝備效果
         applyEquippedAttributes(player, technique, level, false);
 
-        dataManager.setEquipped(uuid, techniqueId, false);
+        dataManager.unequipTechnique(techniqueId);
         player.sendSystemMessage(Component.literal("§e卸下功法: " + technique.getDisplayName()));
         return true;
     }
 
     // ==================== 查詢方法 ====================
 
-    public boolean isTechniqueUnlocked(Player player, String techniqueId) {
-        return dataManager.isUnlocked(player.getUUID(), techniqueId);
+    public boolean isTechniqueUnlocked(ServerPlayer player, String techniqueId) {
+        ITechniqueDataManager dataManager = getTechniqueData(player);
+        return dataManager.isUnlocked(techniqueId);
     }
 
-    public boolean isTechniqueEquipped(Player player, String techniqueId) {
-        return dataManager.isEquipped(player.getUUID(), techniqueId);
+    public boolean isTechniqueEquipped(ServerPlayer player, String techniqueId) {
+        ITechniqueDataManager dataManager = getTechniqueData(player);
+        return dataManager.isEquipped(techniqueId);
     }
 
-    public int getTechniqueLevel(Player player, String techniqueId) {
-        return dataManager.getLevel(player.getUUID(), techniqueId);
+    public int getTechniqueLevel(ServerPlayer player, String techniqueId) {
+        ITechniqueDataManager dataManager = getTechniqueData(player);
+        return dataManager.getTechniqueLevel(techniqueId);
     }
 
-    public Set<String> getUnlockedTechniques(Player player) {
-        return dataManager.getUnlockedTechniques(player.getUUID());
+    public Set<String> getUnlockedTechniques(ServerPlayer player) {
+        ITechniqueDataManager dataManager = getTechniqueData(player);
+        return dataManager.getUnlockedTechniques();
     }
 
-    public Set<String> getEquippedTechniques(Player player) {
-        return dataManager.getEquippedTechniques(player.getUUID());
+    public Set<String> getEquippedTechniques(ServerPlayer player) {
+        ITechniqueDataManager dataManager = getTechniqueData(player);
+        return dataManager.getEquippedTechniques();
     }
 
     // ==================== 輔助方法 ====================
@@ -263,9 +284,9 @@ public class TechniqueSystem {
     private boolean checkPrerequisiteTechniques(ServerPlayer player, List<String> prerequisites) {
         if (prerequisites.isEmpty()) return true;
 
-        UUID uuid = player.getUUID();
+        ITechniqueDataManager dataManager = getTechniqueData(player);
         for (String prereq : prerequisites) {
-            if (!dataManager.isUnlocked(uuid, prereq)) {
+            if (!dataManager.isUnlocked(prereq)) {
                 return false;
             }
         }
@@ -274,62 +295,19 @@ public class TechniqueSystem {
 
     private boolean checkUnlockAssignment(ServerPlayer player, String assignmentId) {
         if (assignmentId == null) return true;
-        // TODO: 整合任務系統
         return AssignmentSystem.getInstance().isAssignmentCompleted(player, assignmentId);
     }
 
     private boolean checkAdvanceAssignment(ServerPlayer player, String assignmentId) {
         if (assignmentId == null) return true;
-        // TODO: 整合任務系統
         return AssignmentSystem.getInstance().isAssignmentCompleted(player, assignmentId);
     }
 
     private void applyGlobalAttributes(ServerPlayer player, BaseTechnique technique, int level) {
-        Map<String, Number> attributes = technique.getGlobalAttributes(level);
-        player.getCapability(ModCapabilities.TECHNIQUE_ATTRIBUTE_CAP).ifPresent(cap -> {
-            cap.setTechniqueAttack(cap.getTechniqueAttack() + (int) attributes.getOrDefault("attack", 0));
-            cap.setTechniqueDefense(cap.getTechniqueDefense() + (int) attributes.getOrDefault("defense", 0));
-            cap.setTechniqueMaxHealth(cap.getTechniqueMaxHealth() + (int) attributes.getOrDefault("health", 0));
-            cap.setTechniqueMoveSpeed(cap.getTechniqueMoveSpeed() + (float) attributes.getOrDefault("speed", 0));
-            cap.setTechniqueDodgeRate(cap.getTechniqueDodgeRate() + (float) attributes.getOrDefault("dodgeRate", 0));
-            cap.setTechniqueCritRate(cap.getTechniqueCritRate() + (float) attributes.getOrDefault("critRate", 0));
-            cap.setTechniqueCritMagnification(cap.getTechniqueCritMagnification() + (float) attributes.getOrDefault("critMag", 0));
-            cap.setTechniqueMaxMana(cap.getTechniqueMaxMana() + (int) attributes.getOrDefault("mana", 0));
-        });
+        // TODO: 全域效果
     }
 
     private void applyEquippedAttributes(ServerPlayer player, BaseTechnique technique, int level, boolean apply) {
-        Map<String, Number> attributes = technique.getEquippedAttributes(level);
-        player.getCapability(ModCapabilities.TECHNIQUE_ATTRIBUTE_CAP).ifPresent(cap -> {
-            if (apply) {
-                cap.setTechniqueAttack(cap.getTechniqueAttack() + (int) attributes.getOrDefault("attack", 0));
-                cap.setTechniqueDefense(cap.getTechniqueDefense() + (int) attributes.getOrDefault("defense", 0));
-                cap.setTechniqueMaxHealth(cap.getTechniqueMaxHealth() + (int) attributes.getOrDefault("health", 0));
-                cap.setTechniqueMoveSpeed(cap.getTechniqueMoveSpeed() + (float) attributes.getOrDefault("speed", 0));
-                cap.setTechniqueDodgeRate(cap.getTechniqueDodgeRate() + (float) attributes.getOrDefault("dodgeRate", 0));
-                cap.setTechniqueCritRate(cap.getTechniqueCritRate() + (float) attributes.getOrDefault("critRate", 0));
-                cap.setTechniqueCritMagnification(cap.getTechniqueCritMagnification() + (float) attributes.getOrDefault("critMag", 0));
-                cap.setTechniqueMaxMana(cap.getTechniqueMaxMana() + (int) attributes.getOrDefault("mana", 0));
-            } else {
-                cap.setTechniqueAttack(cap.getTechniqueAttack() - (int) attributes.getOrDefault("attack", 0));
-                cap.setTechniqueDefense(cap.getTechniqueDefense() - (int) attributes.getOrDefault("defense", 0));
-                cap.setTechniqueMaxHealth(cap.getTechniqueMaxHealth() - (int) attributes.getOrDefault("health", 0));
-                cap.setTechniqueMoveSpeed(cap.getTechniqueMoveSpeed() - (float) attributes.getOrDefault("speed", 0));
-                cap.setTechniqueDodgeRate(cap.getTechniqueDodgeRate() - (float) attributes.getOrDefault("dodgeRate", 0));
-                cap.setTechniqueCritRate(cap.getTechniqueCritRate() - (float) attributes.getOrDefault("critRate", 0));
-                cap.setTechniqueCritMagnification(cap.getTechniqueCritMagnification() - (float) attributes.getOrDefault("critMag", 0));
-                cap.setTechniqueMaxMana(cap.getTechniqueMaxMana() - (int) attributes.getOrDefault("mana", 0));
-            }
-        });
-
-        player.getCapability(ModCapabilities.PLAYER_TOTAL_ATTRIBUTE_CAP).ifPresent(cap -> {
-            cap.refreshPlayerTotalAttributeData(player);
-        });
-    }
-
-    // ==================== 數據管理 ====================
-
-    public TechniqueDataManager getDataManager() {
-        return dataManager;
+        // TODO: 裝備效果
     }
 }

@@ -12,7 +12,7 @@ import java.util.*;
 public class QiCondensationTechnique extends BaseTechnique {
 
     public QiCondensationTechnique() {
-        super(TechniqueRegistry.IDs.QI_CONDENSATION, "引氣訣", 3);
+        super(TechniqueRegistry.TechniqueIDs.QI_CONDENSATION, "引氣訣", 3);
     }
 
     // ==================== 解鎖條件 ====================

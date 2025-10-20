@@ -15,6 +15,7 @@ import com.blacksnow1002.realmmod.capability.age.AgeProvider;
 import com.blacksnow1002.realmmod.capability.spiritroot.SpiritRootProvider;
 import com.blacksnow1002.realmmod.network.ModMessages;
 import com.blacksnow1002.realmmod.network.packets.RealmSyncPacket;
+import com.blacksnow1002.realmmod.technique.TechniqueProvider;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
@@ -113,6 +114,15 @@ public class ModEvents {
                 );
             }
 
+            if(!player.getCapability(ModCapabilities.TECHNIQUE_CAP).isPresent()){
+                event.addCapability(
+                        ResourceLocation.fromNamespaceAndPath(RealmMod.MOD_ID, TechniqueProvider.IDENTIFIER),
+                        new TechniqueProvider()
+                );
+            }
+
+
+
 
         }
     }
@@ -167,6 +177,13 @@ public class ModEvents {
 
             originalPlayer.getCapability(ModCapabilities.ASSIGNMENT_CAP).ifPresent(oldData -> {
                 newPlayer.getCapability(ModCapabilities.ASSIGNMENT_CAP).ifPresent(newData -> {
+                    CompoundTag tag = oldData.saveNBTData();
+                    newData.loadNBTData(tag);
+                });
+            });
+
+            originalPlayer.getCapability(ModCapabilities.TECHNIQUE_CAP).ifPresent(oldData -> {
+                newPlayer.getCapability(ModCapabilities.TECHNIQUE_CAP).ifPresent(newData -> {
                     CompoundTag tag = oldData.saveNBTData();
                     newData.loadNBTData(tag);
                 });
