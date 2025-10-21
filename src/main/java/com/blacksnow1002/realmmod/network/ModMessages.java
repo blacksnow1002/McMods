@@ -1,7 +1,11 @@
 package com.blacksnow1002.realmmod.network;
 
-import com.blacksnow1002.realmmod.network.packets.*;
+import com.blacksnow1002.realmmod.network.packets.C2S.*;
+import com.blacksnow1002.realmmod.network.packets.S2C.LingMuSyncPacket;
+import com.blacksnow1002.realmmod.network.packets.S2C.RealmSyncPacket;
+import com.blacksnow1002.realmmod.network.packets.S2C.TitleSyncPacket;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.entity.Entity;
 import net.minecraftforge.network.ChannelBuilder;
 import net.minecraftforge.network.NetworkDirection;
 import net.minecraftforge.network.PacketDistributor;
@@ -110,6 +114,12 @@ public class ModMessages {
                 .encoder(RealmSyncPacket::encode)
                 .consumerMainThread(RealmSyncPacket::handle)
                 .add();
+
+        INSTANCE.messageBuilder(TitleSyncPacket.class, nextId(), NetworkDirection.PLAY_TO_CLIENT)
+                .decoder(TitleSyncPacket::new)
+                .encoder(TitleSyncPacket::encode)
+                .consumerMainThread(TitleSyncPacket::handle)
+                .add();
     }
 
     // 從客戶端發送到伺服器
@@ -165,5 +175,13 @@ public class ModMessages {
 
     public static void sendToPlayer(RealmSyncPacket packet, ServerPlayer player) {
         INSTANCE.send(packet, PacketDistributor.PLAYER.with(player));
+    }
+
+    public static void sendToPlayer(TitleSyncPacket packet, ServerPlayer player) {
+        INSTANCE.send(packet, PacketDistributor.PLAYER.with(player));
+    }
+
+    public static <MSG> void sendToPlayersTrackingEntityAndSelf(MSG message, Entity entity) {
+        INSTANCE.send(message, PacketDistributor.TRACKING_ENTITY_AND_SELF.with(entity));
     }
 }

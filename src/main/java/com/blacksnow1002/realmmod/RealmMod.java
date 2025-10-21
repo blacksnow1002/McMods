@@ -11,6 +11,7 @@ import com.blacksnow1002.realmmod.client.ClientSetup;
 import com.blacksnow1002.realmmod.command.BreakthroughCommand;
 import com.blacksnow1002.realmmod.command.SetRealmCommand;
 import com.blacksnow1002.realmmod.command.DongTianCommand;
+import com.blacksnow1002.realmmod.command.TitleCommand;
 import com.blacksnow1002.realmmod.dimension.dong_tian.DongTianConfig;
 import com.blacksnow1002.realmmod.dimension.dong_tian.DongTianLifecycleManager;
 import com.blacksnow1002.realmmod.item.ModCreativeModeTabs;
@@ -19,6 +20,8 @@ import com.blacksnow1002.realmmod.network.ModMessages;
 import com.blacksnow1002.realmmod.spell.SpellRegistry;
 import com.blacksnow1002.realmmod.technique.TechniqueRegistry;
 import com.blacksnow1002.realmmod.technique.TechniqueSystem;
+import com.blacksnow1002.realmmod.title.TitleRegistry;
+import com.blacksnow1002.realmmod.title.TitleSystem;
 import com.mojang.logging.LogUtils;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
@@ -94,6 +97,10 @@ public class RealmMod
         NPCRegistry.registerAll();
         LOGGER.info("NPC初始化完成，已註冊 {} 個NPC", NPCRegistry.getInstance().getAllNPCs().size());
 
+        LOGGER.info("稱號系統初始化中...");
+        TitleRegistry.registerAll();
+        LOGGER.info("稱號系統初始化完成，已註冊 {} 個稱號", TitleSystem.getInstance().getAllTitles().size());
+
         LOGGER.info("功法系統初始化中...");
         TechniqueSystem.init();
         TechniqueRegistry.registerAll();
@@ -147,6 +154,7 @@ public class RealmMod
         SetRealmCommand.register(event.getDispatcher());
         DongTianCommand.register(event.getDispatcher());
         AssignmentCommands.register(event.getDispatcher());
+        TitleCommand.register(event.getDispatcher());
 
     }
 

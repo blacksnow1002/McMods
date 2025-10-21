@@ -4,9 +4,11 @@ import com.blacksnow1002.realmmod.ModEntities;
 import com.blacksnow1002.realmmod.RealmMod;
 import com.blacksnow1002.realmmod.client.renderer.CustomNPCRenderer;
 import com.blacksnow1002.realmmod.client.renderer.PlayerCloneRenderer;
+import com.blacksnow1002.realmmod.client.renderer.TitleRenderLayer;
+import net.minecraft.client.renderer.entity.player.PlayerRenderer;
+import net.minecraft.client.resources.PlayerSkin;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;
-import net.minecraftforge.eventbus.api.Event;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
@@ -54,5 +56,21 @@ public class ClientSetup {
         // event.registerLayerDefinition(ModModelLayers.CUSTOM_LAYER, CustomModel::createBodyLayer);
 
         System.out.println("模型層註冊完成");
+    }
+
+    /**
+     * 為玩家渲染器添加稱號層
+     * 使用 AddLayers 事件來添加自定義渲染層
+     */
+    @SubscribeEvent
+    public static void onAddLayers(EntityRenderersEvent.AddLayers event) {
+        // 遍歷所有玩家皮膚類型（"default" 和 "slim"）
+        for (PlayerSkin.Model skin : event.getSkins()) {
+            PlayerRenderer renderer = event.getPlayerSkin(skin);
+            if (renderer != null) {
+                renderer.addLayer(new TitleRenderLayer(renderer));
+                System.out.println("為玩家皮膚類型 '" + skin + "' 添加了稱號渲染層");
+            }
+        }
     }
 }

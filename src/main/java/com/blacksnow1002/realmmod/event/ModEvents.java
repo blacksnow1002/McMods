@@ -14,8 +14,10 @@ import com.blacksnow1002.realmmod.capability.cultivation.CultivationProvider;
 import com.blacksnow1002.realmmod.capability.age.AgeProvider;
 import com.blacksnow1002.realmmod.capability.spiritroot.SpiritRootProvider;
 import com.blacksnow1002.realmmod.network.ModMessages;
-import com.blacksnow1002.realmmod.network.packets.RealmSyncPacket;
+import com.blacksnow1002.realmmod.network.packets.S2C.RealmSyncPacket;
 import com.blacksnow1002.realmmod.technique.TechniqueProvider;
+import com.blacksnow1002.realmmod.title.TitleProvider;
+import com.blacksnow1002.realmmod.title.TitleSystem;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
@@ -25,8 +27,6 @@ import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-
-import java.util.HashMap;
 
 @Mod.EventBusSubscriber(modid = RealmMod.MOD_ID)
 public class ModEvents {
@@ -121,6 +121,13 @@ public class ModEvents {
                 );
             }
 
+            if(!player.getCapability(ModCapabilities.TITLE_CAP).isPresent()){
+                event.addCapability(
+                        ResourceLocation.fromNamespaceAndPath(RealmMod.MOD_ID, TitleProvider.IDENTIFIER),
+                        new TitleProvider()
+                );
+            }
+
 
 
 
@@ -186,6 +193,21 @@ public class ModEvents {
                 newPlayer.getCapability(ModCapabilities.TECHNIQUE_CAP).ifPresent(newData -> {
                     CompoundTag tag = oldData.saveNBTData();
                     newData.loadNBTData(tag);
+                });
+            });
+
+            originalPlayer.getCapability(ModCapabilities.TITLE_CAP).ifPresent(oldData -> {
+                newPlayer.getCapability(ModCapabilities.TITLE_CAP).ifPresent(newData -> {
+                    CompoundTag tag = oldData.saveNBTData();
+                    newData.loadNBTData(tag);
+
+                    if (event.getEntity() instanceof ServerPlayer player) {
+                        player.getServer().execute(() -> {
+                            TitleSystem.getInstance().syncEquippedTitle(player);
+                            System.out.println("[TitleSync] 玩家 " + player.getName().getString() + " Clone 事件，已同步稱號");
+                        });
+                    }
+
                 });
             });
 
@@ -351,6 +373,13 @@ public class ModEvents {
                 System.out.println(">>> 玩家登入時同步資料: " + data.getRealm().getDisplayName() + " " + data.getLayer() + "層");
             });
         }
+
+        if (event.getEntity() instanceof ServerPlayer player) {
+            player.getServer().execute(() -> {
+                TitleSystem.getInstance().syncAllVisibleTitles(player);
+                System.out.println("[TitleSync] 玩家 " + player.getName().getString() + " 登入，已同步所有可見稱號");
+            });
+        }
     }
 
     // 追蹤玩家重生事件(用於調試)
@@ -374,6 +403,13 @@ public class ModEvents {
             });
         }
 
+        if (event.getEntity() instanceof ServerPlayer player) {
+            player.getServer().execute(() -> {
+                TitleSystem.getInstance().syncEquippedTitle(player);
+                System.out.println("[TitleSync] 玩家 " + player.getName().getString() + " 重生，已同步稱號");
+            });
+        }
+
         System.out.println("========================================");
     }
 
@@ -390,6 +426,25 @@ public class ModEvents {
                 );
                 System.out.println(">>> 維度切換時同步資料: "
                         + data.getRealm().getDisplayName() + " " + data.getLayer() + "層");
+            });
+        }
+
+        if (event.getEntity() instanceof ServerPlayer player) {
+            player.getServer().execute(() -> {
+                TitleSystem.getInstance().syncEquippedTitle(player);
+                System.out.println("[TitleSync] 玩家 " + player.getName().getString() + " 切換維度，已同步稱號");
+            });
+        }
+    }
+
+    @SubscribeEvent
+    public static void onPlayerStartTracking(PlayerEvent.StartTracking event) {
+        if (event.getTarget() instanceof ServerPlayer targetPlayer &&
+                event.getEntity() instanceof ServerPlayer observer) {
+
+            // 把被追蹤玩家的稱號同步給觀察者
+            observer.getServer().execute(() -> {
+                TitleSystem.getInstance().syncEquippedTitleTo(targetPlayer, observer);
             });
         }
     }

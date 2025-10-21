@@ -1,4 +1,4 @@
-package com.blacksnow1002.realmmod.network.packets;
+package com.blacksnow1002.realmmod.network.packets.C2S;
 
 import com.blacksnow1002.realmmod.spell.BaseSpell;
 import com.blacksnow1002.realmmod.spell.SpellRegistry;
@@ -7,12 +7,12 @@ import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.event.network.CustomPayloadEvent;
 
-public record TransformSpellPacket(int keyId) implements CustomPacketPayload {
+public record FlySpellPacket(int keyId) implements CustomPacketPayload {
 
-    public static final Type<TransformSpellPacket> TYPE =
-            new Type<>(ResourceLocation.fromNamespaceAndPath("realmmod", "transform_spell_packet"));
+    public static final Type<FlySpellPacket> TYPE =
+            new Type<>(ResourceLocation.fromNamespaceAndPath("realmmod", "fly_spell_packet"));
 
-    public TransformSpellPacket(FriendlyByteBuf buf) {
+    public FlySpellPacket(FriendlyByteBuf buf) {
         this(buf.readInt());
     }
 
@@ -21,16 +21,16 @@ public record TransformSpellPacket(int keyId) implements CustomPacketPayload {
     }
 
     @Override
-    public Type<TransformSpellPacket> type() {
+    public Type<FlySpellPacket> type() {
         return TYPE;
     }
 
 
-    public static void handle(TransformSpellPacket packet, CustomPayloadEvent.Context context) {
+    public static void handle(FlySpellPacket packet, CustomPayloadEvent.Context context) {
         context.enqueueWork(() -> {
             var player = context.getSender();
             if (player != null) {
-                BaseSpell spell = SpellRegistry.get("造化之力");
+                BaseSpell spell = SpellRegistry.get("御劍飛行");
                 if (spell != null) {
                     spell.tryCast(player);
                 }

@@ -3,7 +3,7 @@ package com.blacksnow1002.realmmod.client.key.input_handlers;
 import com.blacksnow1002.realmmod.RealmMod;
 import com.blacksnow1002.realmmod.client.key.ModKeyBindings;
 import com.blacksnow1002.realmmod.network.ModMessages;
-import com.blacksnow1002.realmmod.network.packets.SpellPacket;
+import com.blacksnow1002.realmmod.network.packets.C2S.SpellPacket;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.InputEvent;

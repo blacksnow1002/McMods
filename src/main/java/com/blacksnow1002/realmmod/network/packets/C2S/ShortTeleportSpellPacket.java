@@ -1,4 +1,4 @@
-package com.blacksnow1002.realmmod.network.packets;
+package com.blacksnow1002.realmmod.network.packets.C2S;
 
 import com.blacksnow1002.realmmod.spell.BaseSpell;
 import com.blacksnow1002.realmmod.spell.SpellRegistry;

@@ -1,10 +1,7 @@
 package com.blacksnow1002.realmmod.technique;
 
-import com.blacksnow1002.realmmod.capability.attribute.technique.TechniqueAttributeData;
 import com.blacksnow1002.realmmod.capability.cultivation.CultivationRealm;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.entity.ai.attributes.AttributeModifier;
-import net.minecraft.world.entity.ai.attributes.Attribute;
 
 import java.util.*;
 

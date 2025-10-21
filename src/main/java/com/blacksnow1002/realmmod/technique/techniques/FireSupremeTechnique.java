@@ -1,13 +1,9 @@
 package com.blacksnow1002.realmmod.technique.techniques;
 
 import com.blacksnow1002.realmmod.assignment.AssignmentRegistry;
-import com.blacksnow1002.realmmod.capability.attribute.technique.TechniqueAttributeData;
 import com.blacksnow1002.realmmod.capability.cultivation.CultivationRealm;
 import com.blacksnow1002.realmmod.technique.BaseTechnique;
 import com.blacksnow1002.realmmod.technique.TechniqueRegistry;
-import net.minecraft.world.entity.ai.attributes.Attribute;
-import net.minecraft.world.entity.ai.attributes.AttributeModifier;
-import net.minecraft.world.entity.ai.attributes.Attributes;
 
 import java.util.*;
 
@@ -26,7 +22,7 @@ import java.util.*;
 public class FireSupremeTechnique extends BaseTechnique {
 
     public FireSupremeTechnique() {
-        super(TechniqueRegistry.TechniqueIDs.FIRE_SUPREME, "焚天訣", 9);
+        super(TechniqueRegistry.TechniqueIds.FIRE_SUPREME, "焚天訣", 9);
     }
 
     // ==================== 解鎖條件 ====================

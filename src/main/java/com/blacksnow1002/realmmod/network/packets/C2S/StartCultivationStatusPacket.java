@@ -1,4 +1,4 @@
-package com.blacksnow1002.realmmod.network.packets;
+package com.blacksnow1002.realmmod.network.packets.C2S;
 
 import com.blacksnow1002.realmmod.capability.cultivation.CultivationRealm;
 import com.blacksnow1002.realmmod.capability.ModCapabilities;

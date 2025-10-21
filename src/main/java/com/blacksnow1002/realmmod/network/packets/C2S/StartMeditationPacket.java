@@ -1,4 +1,4 @@
-package com.blacksnow1002.realmmod.network.packets;
+package com.blacksnow1002.realmmod.network.packets.C2S;
 
 import com.blacksnow1002.realmmod.capability.ModCapabilities;
 import net.minecraft.nbt.CompoundTag;
@@ -6,7 +6,6 @@ import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.event.network.CustomPayloadEvent;
 
 public record StartMeditationPacket(int keyId) implements CustomPacketPayload {

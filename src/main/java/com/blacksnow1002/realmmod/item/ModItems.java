@@ -26,7 +26,7 @@ public class ModItems {
             () ->  new SpiritFruitItem(new Item.Properties().food(ModFoodProperties.SPIRIT_FRUIT), 100));
 
     public static final RegistryObject<Item> TECHNIQUE = ITEMS.register("technique",
-            () -> new TechniqueItem(TechniqueRegistry.TechniqueIDs.FIRE_SUPREME, new Item.Properties()));
+            () -> new TechniqueItem(TechniqueRegistry.TechniqueIds.FIRE_SUPREME, new Item.Properties()));
 
 
 

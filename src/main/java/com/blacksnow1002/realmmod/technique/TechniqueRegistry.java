@@ -37,7 +37,7 @@ public class TechniqueRegistry {
     // ==================== 功法ID常量 ====================
     // 方便在代碼中引用，避免字符串錯誤
 
-    public static final class TechniqueIDs {
+    public static final class TechniqueIds {
         public static final String FIRE_SUPREME = "fire_supreme";
         public static final String QI_CONDENSATION = "qi_condensation";
 

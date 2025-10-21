@@ -2,12 +2,11 @@ package com.blacksnow1002.realmmod.capability.cultivation;
 
 import com.blacksnow1002.realmmod.capability.ModCapabilities;
 import com.blacksnow1002.realmmod.network.ModMessages;
-import com.blacksnow1002.realmmod.network.packets.RealmSyncPacket;
+import com.blacksnow1002.realmmod.network.packets.S2C.RealmSyncPacket;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Player;
-import net.minecraftforge.common.capabilities.Capability;
 
 import java.util.Map;
 

@@ -3,7 +3,7 @@ package com.blacksnow1002.realmmod.spell.spells;
 import com.blacksnow1002.realmmod.capability.cultivation.CultivationRealm;
 import com.blacksnow1002.realmmod.handlers.utility.DelayedTaskHandler;
 import com.blacksnow1002.realmmod.network.ModMessages;
-import com.blacksnow1002.realmmod.network.packets.LingMuSyncPacket;
+import com.blacksnow1002.realmmod.network.packets.S2C.LingMuSyncPacket;
 import com.blacksnow1002.realmmod.spell.BaseSpell;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;

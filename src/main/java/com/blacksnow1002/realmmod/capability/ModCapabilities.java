@@ -13,6 +13,7 @@ import com.blacksnow1002.realmmod.capability.spiritroot.ISpiritRootData;
 import com.blacksnow1002.realmmod.capability.world.IWorldData;
 import com.blacksnow1002.realmmod.capability.age.IAgeData;
 import com.blacksnow1002.realmmod.technique.ITechniqueDataManager;
+import com.blacksnow1002.realmmod.title.ITitleDataManager;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.CapabilityManager;
 import net.minecraftforge.common.capabilities.CapabilityToken;
@@ -34,6 +35,8 @@ public class ModCapabilities {
     public static final Capability<IAssignmentDataManager> ASSIGNMENT_CAP =
             CapabilityManager.get(new CapabilityToken<>(){});
     public static final Capability<ITechniqueDataManager> TECHNIQUE_CAP =
+            CapabilityManager.get(new CapabilityToken<>(){});
+    public static final Capability<ITitleDataManager> TITLE_CAP =
             CapabilityManager.get(new CapabilityToken<>(){});
 
     public static final Capability<IAllocateAttributeData> ALLOCATE_ATTRIBUTE_CAP =

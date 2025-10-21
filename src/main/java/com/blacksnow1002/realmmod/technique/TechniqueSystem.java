@@ -165,11 +165,13 @@ public class TechniqueSystem {
 
         // 未解鎖
         if (!dataManager.isUnlocked(techniqueId)) {
+            player.sendSystemMessage(Component.literal("尚未解鎖此功法"));
             return false;
         }
 
         // 已裝備
         if (dataManager.isEquipped(techniqueId)) {
+            player.sendSystemMessage(Component.literal("已裝備此功法"));
             return false;
         }
 
