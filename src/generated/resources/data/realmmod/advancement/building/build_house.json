@@ -1,0 +1,46 @@
+{
+  "parent": "realmmod:building/root",
+  "criteria": {
+    "manual_only": {
+      "conditions": {
+        "items": [
+          {
+            "items": "minecraft:barrier"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "manual_trigger": {
+      "conditions": {
+        "items": [
+          {
+            "items": "minecraft:barrier"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancement.realmmod.building.build_house.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "minecraft:bricks"
+    },
+    "title": {
+      "translate": "advancement.realmmod.building.build_house.title"
+    }
+  },
+  "requirements": [
+    [
+      "manual_only"
+    ],
+    [
+      "manual_trigger"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

@@ -1,0 +1,47 @@
+{
+  "parent": "realmmod:exploration/visit_10_biomes",
+  "criteria": {
+    "manual_only": {
+      "conditions": {
+        "items": [
+          {
+            "items": "minecraft:barrier"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "manual_trigger": {
+      "conditions": {
+        "items": [
+          {
+            "items": "minecraft:barrier"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancement.realmmod.exploration.world_explorer.description"
+    },
+    "frame": "challenge",
+    "icon": {
+      "count": 1,
+      "id": "minecraft:filled_map"
+    },
+    "title": {
+      "translate": "advancement.realmmod.exploration.world_explorer.title"
+    }
+  },
+  "requirements": [
+    [
+      "manual_only"
+    ],
+    [
+      "manual_trigger"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

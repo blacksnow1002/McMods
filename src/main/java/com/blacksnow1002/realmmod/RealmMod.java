@@ -8,10 +8,7 @@ import com.blacksnow1002.realmmod.assignment.npc.NPCRegistry;
 import com.blacksnow1002.realmmod.assignment.npc.NPCSpawner;
 import com.blacksnow1002.realmmod.block.ModBlocks;
 import com.blacksnow1002.realmmod.client.ClientSetup;
-import com.blacksnow1002.realmmod.command.BreakthroughCommand;
-import com.blacksnow1002.realmmod.command.SetRealmCommand;
-import com.blacksnow1002.realmmod.command.DongTianCommand;
-import com.blacksnow1002.realmmod.command.TitleCommand;
+import com.blacksnow1002.realmmod.command.*;
 import com.blacksnow1002.realmmod.dimension.dong_tian.DongTianConfig;
 import com.blacksnow1002.realmmod.dimension.dong_tian.DongTianLifecycleManager;
 import com.blacksnow1002.realmmod.item.ModCreativeModeTabs;
@@ -58,7 +55,7 @@ public class RealmMod
     public RealmMod(FMLJavaModLoadingContext context) {
         IEventBus modEventBus = context.getModEventBus();
 
-        // Register the commonSetup method for modloading
+        // Register the commonSetup method for modLoading
         modEventBus.addListener(this::commonSetup);
 
         ModItems.register(modEventBus);
@@ -155,6 +152,7 @@ public class RealmMod
         DongTianCommand.register(event.getDispatcher());
         AssignmentCommands.register(event.getDispatcher());
         TitleCommand.register(event.getDispatcher());
+        AchievementCommand.register(event.getDispatcher());
 
     }
 

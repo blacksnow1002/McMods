@@ -1,0 +1,41 @@
+{
+  "criteria": {
+    "auto_grant": {
+      "trigger": "minecraft:tick"
+    },
+    "manual_trigger": {
+      "conditions": {
+        "items": [
+          {
+            "items": "minecraft:barrier"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "background": "minecraft:textures/block/stone.png",
+    "description": {
+      "translate": "advancement.realmmod.combat.root.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "minecraft:iron_sword"
+    },
+    "show_toast": false,
+    "title": {
+      "translate": "advancement.realmmod.combat.root.title"
+    }
+  },
+  "requirements": [
+    [
+      "auto_grant"
+    ],
+    [
+      "manual_trigger"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

@@ -1,6 +1,8 @@
 package com.blacksnow1002.realmmod.event;
 
 import com.blacksnow1002.realmmod.RealmMod;
+import com.blacksnow1002.realmmod.achievement.AchievementManager;
+import com.blacksnow1002.realmmod.achievement.CustomAchievements;
 import com.blacksnow1002.realmmod.assignment.AssignmentProvider;
 import com.blacksnow1002.realmmod.capability.ModCapabilities;
 import com.blacksnow1002.realmmod.capability.attribute.PlayerTotalAttributeProvider;
@@ -361,6 +363,8 @@ public class ModEvents {
     // 額外保險:玩家登入時同步數據
     @SubscribeEvent
     public static void onPlayerLoggedIn(PlayerEvent.PlayerLoggedInEvent event) {
+
+        //境界
         if (event.getEntity() instanceof ServerPlayer serverPlayer) {
             serverPlayer.getCapability(ModCapabilities.CULTIVATION_CAP).ifPresent(data -> {
                 ModMessages.sendToPlayer(
@@ -374,11 +378,18 @@ public class ModEvents {
             });
         }
 
+        //稱號
         if (event.getEntity() instanceof ServerPlayer player) {
             player.getServer().execute(() -> {
                 TitleSystem.getInstance().syncAllVisibleTitles(player);
                 System.out.println("[TitleSync] 玩家 " + player.getName().getString() + " 登入，已同步所有可見稱號");
             });
+        }
+
+        if (event.getEntity() instanceof ServerPlayer player) {
+            AchievementManager.grantAchievement(player, CustomAchievements.EXPLORATION_ROOT);
+            AchievementManager.grantAchievement(player, CustomAchievements.BUILDING_ROOT);
+            AchievementManager.grantAchievement(player, CustomAchievements.COMBAT_ROOT);
         }
     }
 
