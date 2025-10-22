@@ -1,5 +1,6 @@
 package com.blacksnow1002.realmmod.title;
 
+import com.blacksnow1002.realmmod.broadcast.BroadcastManager;
 import com.blacksnow1002.realmmod.capability.ModCapabilities;
 import com.blacksnow1002.realmmod.network.ModMessages;
 import com.blacksnow1002.realmmod.network.packets.S2C.TitleSyncPacket;
@@ -9,6 +10,7 @@ import net.minecraft.server.level.ServerPlayer;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
+
 
 public class TitleSystem {
 
@@ -105,6 +107,7 @@ public class TitleSystem {
 
         player.sendSystemMessage(Component.literal("§a配戴稱號: " + title.getDisplayName()));
         broadcastTitle(player, titleId);
+        BroadcastManager.broadcast("§c玩家配§6戴稱號" + title.getDisplayName(), 60);
         return true;
     }
 
@@ -113,6 +116,7 @@ public class TitleSystem {
         dataManager.unequipTitle();
 
         broadcastTitle(player, "");
+        BroadcastManager.broadcast("§c玩§6家§e卸§a下§b稱§9號§5！", 60);
     }
 
     // ==================== 稱號渲染 =====================

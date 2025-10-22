@@ -1,5 +1,6 @@
 package com.blacksnow1002.realmmod.Mixin;
 
+import com.blacksnow1002.realmmod.broadcast.ClientBroadcastHandler;
 import net.minecraft.client.DeltaTracker;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
@@ -61,5 +62,11 @@ public class GuiMixin {
                 guiGraphics.drawString(mc.font, message, x, y, 0xFFFFFF);
             }
         }
+    }
+
+    //廣播系統mixin
+    @Inject(method = "render", at = @At("TAIL"))
+    private void onRender(GuiGraphics guiGraphics, DeltaTracker deltaTracker, CallbackInfo ci) {
+        ClientBroadcastHandler.render(guiGraphics);
     }
 }

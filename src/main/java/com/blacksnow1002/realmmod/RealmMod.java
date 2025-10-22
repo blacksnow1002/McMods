@@ -7,6 +7,7 @@ import com.blacksnow1002.realmmod.assignment.npc.BaseNPC;
 import com.blacksnow1002.realmmod.assignment.npc.NPCRegistry;
 import com.blacksnow1002.realmmod.assignment.npc.NPCSpawner;
 import com.blacksnow1002.realmmod.block.ModBlocks;
+import com.blacksnow1002.realmmod.broadcast.ClientBroadcastHandler;
 import com.blacksnow1002.realmmod.client.ClientSetup;
 import com.blacksnow1002.realmmod.command.*;
 import com.blacksnow1002.realmmod.dimension.dong_tian.DongTianConfig;
@@ -66,11 +67,15 @@ public class RealmMod
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
 
+        // Register broadcast system
+        MinecraftForge.EVENT_BUS.register(ClientBroadcastHandler.class);
+
         // Register the item to a creative tab
         modEventBus.addListener(this::addCreative);
 
         // Register our mod's ForgeConfigSpec so that Forge can create and load the config file for us
         context.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
+
 
         DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> {
             modEventBus.addListener(ClientSetup::registerRenderers);

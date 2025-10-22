@@ -1,6 +1,7 @@
 package com.blacksnow1002.realmmod.network;
 
 import com.blacksnow1002.realmmod.network.packets.C2S.*;
+import com.blacksnow1002.realmmod.network.packets.S2C.BroadcastSyncPacket;
 import com.blacksnow1002.realmmod.network.packets.S2C.LingMuSyncPacket;
 import com.blacksnow1002.realmmod.network.packets.S2C.RealmSyncPacket;
 import com.blacksnow1002.realmmod.network.packets.S2C.TitleSyncPacket;
@@ -120,6 +121,12 @@ public class ModMessages {
                 .encoder(TitleSyncPacket::encode)
                 .consumerMainThread(TitleSyncPacket::handle)
                 .add();
+
+        INSTANCE.messageBuilder(BroadcastSyncPacket.class, nextId(), NetworkDirection.PLAY_TO_CLIENT)
+                .decoder(BroadcastSyncPacket::new)
+                .encoder(BroadcastSyncPacket::encode)
+                .consumerMainThread(BroadcastSyncPacket::handle)
+                .add();
     }
 
     // 從客戶端發送到伺服器
@@ -181,6 +188,12 @@ public class ModMessages {
         INSTANCE.send(packet, PacketDistributor.PLAYER.with(player));
     }
 
+    // 傳送給所有玩家
+    public static void sendToAllPlayers(BroadcastSyncPacket packet) {
+        INSTANCE.send(packet, PacketDistributor.ALL.noArg());
+    }
+
+    // 傳送給所有視野範圍內的玩家
     public static <MSG> void sendToPlayersTrackingEntityAndSelf(MSG message, Entity entity) {
         INSTANCE.send(message, PacketDistributor.TRACKING_ENTITY_AND_SELF.with(entity));
     }
