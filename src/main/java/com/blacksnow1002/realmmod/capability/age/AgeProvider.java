@@ -24,9 +24,7 @@ public class AgeProvider implements ICapabilitySerializable<CompoundTag> {
     // ✅ 新版 API：必須帶 HolderLookup.Provider
     @Override
     public CompoundTag serializeNBT(HolderLookup.Provider provider) {
-        CompoundTag tag = new CompoundTag();
-        backend.saveNBTData(tag);
-        return tag;
+        return backend.saveNBTData();
     }
 
     @Override

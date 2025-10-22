@@ -57,7 +57,9 @@ public class TechniqueAttributeData implements ITechniqueAttributeData {
     @Override
     public void setTechniqueMaxMana(int maxManaValue) { this.techniqueMaxMana = maxManaValue; }
 
-    public void saveNBTData(CompoundTag nbt) {
+    @Override
+    public CompoundTag saveNBTData() {
+        CompoundTag nbt = new CompoundTag();
         nbt.putInt("TechniqueAttack", techniqueAttack);
         nbt.putInt("TechniqueDefense", techniqueDefense);
         nbt.putInt("TechniqueMaxHealth", techniqueMaxHealth);
@@ -66,8 +68,10 @@ public class TechniqueAttributeData implements ITechniqueAttributeData {
         nbt.putFloat("TechniqueCritRate", techniqueCritRate);
         nbt.putFloat("TechniqueCritMagnification", techniqueCritMagnification);
         nbt.putInt("TechniqueMaxMana", techniqueMaxMana);
+        return nbt;
     }
 
+    @Override
     public void loadNBTData(CompoundTag nbt) {
         if (nbt.contains("TechniqueAttack")) techniqueAttack = nbt.getInt("TechniqueAttack");
         if (nbt.contains("TechniqueDefense")) techniqueDefense = nbt.getInt("TechniqueDefense");

@@ -1,5 +1,7 @@
 package com.blacksnow1002.realmmod.capability.attribute.equipment;
 
+import net.minecraft.nbt.CompoundTag;
+
 public interface IEquipmentAttributeData {
 
     int getEquipmentAttack();
@@ -28,4 +30,6 @@ public interface IEquipmentAttributeData {
     int getEquipmentMaxMana();
     void setEquipmentMaxMana(int maxManaValue);
 
+    CompoundTag saveNBTData();
+    void loadNBTData(CompoundTag nbt);
 }

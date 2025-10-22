@@ -29,13 +29,17 @@ public class AllocateAttributeData implements IAllocateAttributeData {
     @Override
     public void setFortune(int fortuneValue) { fortune = fortuneValue; }
 
-    public void saveNBTData(CompoundTag nbt) {
+    @Override
+    public CompoundTag saveNBTData() {
+        CompoundTag nbt = new CompoundTag();
         nbt.putInt("SpiritualSense", spiritualSense);
         nbt.putInt("Physique", physique);
         nbt.putInt("MovementTechnique", movementTechnique);
         nbt.putInt("Fortune", fortune);
+        return nbt;
     }
 
+    @Override
     public void loadNBTData(CompoundTag nbt) {
         if (nbt.contains("SpiritualSense")) spiritualSense = nbt.getInt("SpiritualSense");
         if (nbt.contains("Physique")) physique = nbt.getInt("Physique");

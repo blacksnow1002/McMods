@@ -1,6 +1,8 @@
-package com.blacksnow1002.realmmod.capability.attribute;
+package com.blacksnow1002.realmmod.capability.money;
 
 import com.blacksnow1002.realmmod.capability.ModCapabilities;
+import com.blacksnow1002.realmmod.capability.mana.IManaData;
+import com.blacksnow1002.realmmod.capability.mana.ManaData;
 import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
@@ -10,15 +12,15 @@ import net.minecraftforge.common.util.LazyOptional;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public class PlayerTotalAttributeProvider implements ICapabilitySerializable<CompoundTag> {
-    public static final String IDENTIFIER = "player_attribute";
+public class MoneyProvider implements ICapabilitySerializable<CompoundTag> {
+    public static final String IDENTIFIER = "money";
 
-    private final PlayerTotalAttributeData backend = new PlayerTotalAttributeData();
-    private final LazyOptional<IPlayerTotalAttributeData> optional = LazyOptional.of(() -> backend);
+    private final MoneyData backend = new MoneyData();
+    private final LazyOptional<IMoneyData> optional = LazyOptional.of(() -> backend);
 
     @Override
     public <T> @NotNull LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
-        return cap == ModCapabilities.PLAYER_TOTAL_ATTRIBUTE_CAP ? optional.cast() : LazyOptional.empty();
+        return cap == ModCapabilities.MONEY_CAP ? optional.cast() : LazyOptional.empty();
     }
 
     @Override
@@ -29,9 +31,5 @@ public class PlayerTotalAttributeProvider implements ICapabilitySerializable<Com
     @Override
     public void deserializeNBT(HolderLookup.Provider provider, CompoundTag nbt) {
         backend.loadNBTData(nbt);
-    }
-
-    public PlayerTotalAttributeData getData() {
-        return backend;
     }
 }

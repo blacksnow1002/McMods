@@ -70,11 +70,13 @@ public class CultivationData implements ICultivationData {
     }
 
     @Override
-    public void saveNBTData(CompoundTag nbt) {
+    public CompoundTag saveNBTData() {
+        CompoundTag nbt = new CompoundTag();
         nbt.putString("Stage", realm.name());
         nbt.putInt("Layer", layer);
         nbt.putFloat("BreakthroughSuccessPossibility", breakthroughSuccessPossibility);
         nbt.putInt("Cultivation", cultivation);
+        return nbt;
     }
 
     @Override

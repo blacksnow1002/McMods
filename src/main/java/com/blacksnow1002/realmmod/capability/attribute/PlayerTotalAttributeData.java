@@ -278,27 +278,15 @@ public class PlayerTotalAttributeData implements IPlayerTotalAttributeData {
     @Override
     public void setPlayerTotalDamageDecrease(float damageDecrease) { this.playerTotalDamageDecrease = damageDecrease; }
 
-
-    public void saveNBTData(CompoundTag nbt) {
-        nbt.putInt("PlayerTotalAttack", playerTotalPhysicalAttack);
-        nbt.putInt("PlayerTotalDefense", playerTotalPhysicalDefense);
-        nbt.putInt("PlayerTotalMaxHealth", playerTotalMaxHealth);
-        nbt.putFloat("PlayerTotalMoveSpeed", playerTotalMoveSpeed);
-        nbt.putFloat("PlayerTotalDodgeRate", playerTotalDodgeRate);
-        nbt.putFloat("PlayerTotalCritRate", playerTotalCritRate);
-        nbt.putFloat("PlayerTotalCritMagnification", playerTotalCritMagnification);
-        nbt.putInt("PlayerTotalMaxMana", playerTotalMaxMana);
+    @Override
+    public CompoundTag saveNBTData() {
+        CompoundTag nbt = new CompoundTag();
+        //TODO: 補完屬性
+        return nbt;
     }
 
+    @Override
     public void loadNBTData(CompoundTag nbt) {
-        if (nbt.contains("PlayerTotalAttack")) playerTotalPhysicalAttack = nbt.getInt("PlayerTotalAttack");
-        if (nbt.contains("PlayerTotalDefense")) playerTotalPhysicalDefense = nbt.getInt("PlayerTotalDefense");
-        if (nbt.contains("PlayerTotalMaxHealth")) playerTotalMaxHealth = nbt.getInt("PlayerTotalMaxHealth");
-        if (nbt.contains("PlayerTotalMoveSpeed")) playerTotalMoveSpeed = nbt.getFloat("PlayerTotalMoveSpeed");
-        if (nbt.contains("PlayerTotalDodgeRate")) playerTotalDodgeRate = nbt.getFloat("PlayerTotalDodgeRate");
-        if (nbt.contains("PlayerTotalCritRate")) playerTotalCritRate = nbt.getFloat("PlayerTotalCritRate");
-        if (nbt.contains("PlayerTotalCritMagnification")) playerTotalCritMagnification = nbt.getFloat("PlayerTotalCritMagnification");
-        if (nbt.contains("PlayerTotalMaxMana")) playerTotalMaxMana = nbt.getInt("PlayerTotalMaxMana");
-
+        //TODO: 補完屬性
     }
 }

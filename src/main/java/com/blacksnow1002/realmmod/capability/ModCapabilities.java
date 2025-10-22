@@ -7,6 +7,7 @@ import com.blacksnow1002.realmmod.capability.attribute.equipment.IEquipmentAttri
 import com.blacksnow1002.realmmod.capability.attribute.realm.IRealmAttributeData;
 import com.blacksnow1002.realmmod.capability.attribute.technique.ITechniqueAttributeData;
 import com.blacksnow1002.realmmod.capability.mana.IManaData;
+import com.blacksnow1002.realmmod.capability.money.IMoneyData;
 import com.blacksnow1002.realmmod.capability.realm_breakthrough.IRealmBreakthroughData;
 import com.blacksnow1002.realmmod.capability.cultivation.ICultivationData;
 import com.blacksnow1002.realmmod.capability.spiritroot.ISpiritRootData;
@@ -30,6 +31,9 @@ public class ModCapabilities {
             CapabilityManager.get(new CapabilityToken<>(){});
 
     public static final Capability<IManaData> MANA_CAP =
+            CapabilityManager.get(new CapabilityToken<>(){});
+
+    public static final Capability<IMoneyData> MONEY_CAP =
             CapabilityManager.get(new CapabilityToken<>(){});
 
     public static final Capability<IAssignmentDataManager> ASSIGNMENT_CAP =

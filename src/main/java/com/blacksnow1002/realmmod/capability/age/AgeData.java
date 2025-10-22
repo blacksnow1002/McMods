@@ -29,12 +29,16 @@ public class AgeData implements IAgeData {
     @Override
     public int getMaxAge() { return realmAge + ultraAge; }
 
-    public void saveNBTData(CompoundTag nbt) {
+    @Override
+    public CompoundTag saveNBTData() {
+        CompoundTag nbt = new CompoundTag();
         nbt.putInt("CurrentAge", currentAge);
         nbt.putInt("RealmAge", realmAge);
         nbt.putInt("UltraAge", ultraAge);
+        return nbt;
     }
 
+    @Override
     public void loadNBTData(CompoundTag nbt) {
         if (nbt.contains("CurrentAge")) currentAge = nbt.getInt("CurrentAge");
         if (nbt.contains("RealmAge")) realmAge = nbt.getInt("RealmAge");

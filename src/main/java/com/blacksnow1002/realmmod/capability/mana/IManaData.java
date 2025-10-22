@@ -1,5 +1,6 @@
 package com.blacksnow1002.realmmod.capability.mana;
 
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.entity.player.Player;
 
 public interface IManaData {
@@ -11,4 +12,7 @@ public interface IManaData {
     void addMana(float value);
 
     void subtractMana(float value);
+
+    CompoundTag saveNBTData();
+    void loadNBTData(CompoundTag nbt);
 }

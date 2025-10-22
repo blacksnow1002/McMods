@@ -20,8 +20,8 @@ public interface ICultivationData {
 
     void addCultivation(Player player, int  amount);
 
-    void saveNBTData(CompoundTag nbt);
-    void loadNBTData(CompoundTag nbt);
-
     void tryBreakthrough(Player player);
+
+    CompoundTag saveNBTData();
+    void loadNBTData(CompoundTag nbt);
 }

@@ -57,7 +57,9 @@ public class EquipmentAttributeData implements IEquipmentAttributeData {
     @Override
     public void setEquipmentMaxMana(int maxManaValue) { this.equipmentMaxMana = maxManaValue; }
 
-    public void saveNBTData(CompoundTag nbt) {
+    @Override
+    public CompoundTag saveNBTData() {
+        CompoundTag nbt = new CompoundTag();
         nbt.putInt("EquipmentAttack", equipmentAttack);
         nbt.putInt("EquipmentDefense", equipmentDefense);
         nbt.putInt("EquipmentMaxHealth", equipmentMaxHealth);
@@ -66,8 +68,10 @@ public class EquipmentAttributeData implements IEquipmentAttributeData {
         nbt.putFloat("EquipmentCritRate", equipmentCritRate);
         nbt.putFloat("EquipmentCritMagnification", equipmentCritMagnification);
         nbt.putInt("EquipmentMaxMana", equipmentMaxMana);
+        return nbt;
     }
 
+    @Override
     public void loadNBTData(CompoundTag nbt) {
         if (nbt.contains("EquipmentAttack")) equipmentAttack = nbt.getInt("EquipmentAttack");
         if (nbt.contains("EquipmentDefense")) equipmentDefense = nbt.getInt("EquipmentDefense");

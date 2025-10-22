@@ -1,5 +1,7 @@
 package com.blacksnow1002.realmmod.capability.spiritroot;
 
+import net.minecraft.nbt.CompoundTag;
+
 public interface ISpiritRootData {
 
     int getGoldRootLevel();
@@ -18,4 +20,7 @@ public interface ISpiritRootData {
     void setEarthRootLevel(int earthRootLevel);
 
     int getSumRootLevel();
+
+    CompoundTag saveNBTData();
+    void loadNBTData(CompoundTag nbt);
 }

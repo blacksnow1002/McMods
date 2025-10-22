@@ -23,9 +23,7 @@ public class RealmAttributeProvider implements ICapabilitySerializable<CompoundT
 
     @Override
     public CompoundTag serializeNBT(HolderLookup.Provider provider) {
-        CompoundTag tag = new CompoundTag();
-        backend.saveNBTData(tag);
-        return tag;
+        return backend.saveNBTData();
     }
 
     @Override

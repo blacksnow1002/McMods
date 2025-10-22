@@ -1,5 +1,7 @@
 package com.blacksnow1002.realmmod.capability.attribute.realm;
 
+import net.minecraft.nbt.CompoundTag;
+
 public interface IRealmAttributeData {
 
     int getRealmAttack();
@@ -27,5 +29,8 @@ public interface IRealmAttributeData {
 
     int getRealmMaxMana();
     void setRealmMaxMana(int maxManaValue);
+
+    CompoundTag saveNBTData();
+    void loadNBTData(CompoundTag nbt);
 
 }

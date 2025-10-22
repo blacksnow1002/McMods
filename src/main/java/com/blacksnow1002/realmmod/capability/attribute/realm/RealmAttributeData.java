@@ -60,7 +60,9 @@ public class RealmAttributeData implements IRealmAttributeData {
     @Override
     public void setRealmMaxMana(int maxManaValue) { this.realmMaxMana = maxManaValue; }
 
-    public void saveNBTData(CompoundTag nbt) {
+    @Override
+    public CompoundTag saveNBTData() {
+        CompoundTag nbt = new CompoundTag();
         nbt.putInt("RealmAttack", realmAttack);
         nbt.putInt("RealmDefense", realmDefense);
         nbt.putInt("RealmMaxHealth", realmMaxHealth);
@@ -69,8 +71,10 @@ public class RealmAttributeData implements IRealmAttributeData {
         nbt.putFloat("RealmCritRate", realmCritRate);
         nbt.putFloat("RealmCritMagnification", realmCritMagnification);
         nbt.putInt("RealmMaxMana", realmMaxMana);
+        return nbt;
     }
 
+    @Override
     public void loadNBTData(CompoundTag nbt) {
         if (nbt.contains("RealmAttack")) realmAttack = nbt.getInt("RealmAttack");
         if (nbt.contains("RealmDefense")) realmDefense = nbt.getInt("RealmDefense");

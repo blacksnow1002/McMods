@@ -1,5 +1,7 @@
 package com.blacksnow1002.realmmod.capability.realm_breakthrough;
 
+import net.minecraft.nbt.CompoundTag;
+
 public interface IRealmBreakthroughData {
     boolean canBreakthrough(int realmIndex);
     boolean[] getCanBreakthrough();
@@ -10,4 +12,7 @@ public interface IRealmBreakthroughData {
     String getBreakthroughProgress(int realmIndex);
 
     boolean getRealmConditionFinished(int realmIndex, int conditionId);
+
+    CompoundTag saveNBTData();
+    void loadNBTData(CompoundTag nbt);
 }

@@ -37,15 +37,19 @@ public class SpiritRootData implements ISpiritRootData{
     @Override
     public int getSumRootLevel() { return goldRootLevel + woodRootLevel + waterRootLevel + fireRootLevel + earthRootLevel; }
 
-    public void saveNBTData(CompoundTag nbt) {
+    @Override
+    public CompoundTag saveNBTData() {
+        CompoundTag nbt = new CompoundTag();
         nbt.putInt("GoldRootLevel", goldRootLevel);
         nbt.putInt("WoodRootLevel", woodRootLevel);
         nbt.putInt("WaterRootLevel", waterRootLevel);
         nbt.putInt("FireRootLevel", fireRootLevel);
         nbt.putInt("EarthRootLevel", earthRootLevel);
 
+        return nbt;
     }
 
+    @Override
     public void loadNBTData(CompoundTag nbt) {
         if (nbt.contains("GoldRootLevel")) goldRootLevel = nbt.getInt("GoldRootLevel");
         if (nbt.contains("WoodRootLevel")) woodRootLevel = nbt.getInt("WoodRootLevel");

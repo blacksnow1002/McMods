@@ -195,7 +195,9 @@ public class RealmBreakthroughData implements IRealmBreakthroughData {
         return realm != null && realm.getConditions().get(conditionId).isCompleted();
     }
 
-    public void saveNBTData(CompoundTag nbt) {
+    @Override
+    public CompoundTag saveNBTData() {
+        CompoundTag nbt  = new CompoundTag();
         ListTag realmList = new ListTag();
 
         for (Map.Entry<Integer, RealmBreakthroughConditions> entry : realmConditions.entrySet()) {
@@ -216,8 +218,10 @@ public class RealmBreakthroughData implements IRealmBreakthroughData {
         }
 
         nbt.put("realmConditions", realmList);
+        return nbt;
     }
 
+    @Override
     public void loadNBTData(CompoundTag nbt) {
         if (nbt.contains("realmConditions")) {
             ListTag realmList = nbt.getList("realmConditions", Tag.TAG_COMPOUND);

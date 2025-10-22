@@ -1,5 +1,7 @@
 package com.blacksnow1002.realmmod.capability.age;
 
+import net.minecraft.nbt.CompoundTag;
+
 /**
  * 玩家年齡與境界年齡資料介面
  */
@@ -20,4 +22,7 @@ public interface IAgeData {
     void addUltraAge(int years); // 增加超凡年齡
 
     int getMaxAge();
+
+    CompoundTag saveNBTData();
+    void loadNBTData(CompoundTag nbt);
 }

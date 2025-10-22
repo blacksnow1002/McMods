@@ -1,5 +1,7 @@
 package com.blacksnow1002.realmmod.capability.attribute.allocate;
 
+import net.minecraft.nbt.CompoundTag;
+
 public interface IAllocateAttributeData {
 
     //神念 神通上限、真元上限、真元回復速度
@@ -17,4 +19,7 @@ public interface IAllocateAttributeData {
     //氣運 爆擊率、採集倍率?、奇遇機率?、掉落品質
     int getFortune();
     void setFortune(int fortuneValue);
+
+    CompoundTag saveNBTData();
+    void loadNBTData(CompoundTag nbt);
 }

@@ -35,10 +35,14 @@ public class ManaData implements IManaData{
         currentMana = (int) Math.max(currentMana - value, 0);
     }
 
-    public void saveNBTData(CompoundTag nbt) {
+    @Override
+    public CompoundTag saveNBTData() {
+        CompoundTag nbt = new CompoundTag();
         nbt.putInt("playerCurrentMana", currentMana);
+        return nbt;
     }
 
+    @Override
     public void loadNBTData(CompoundTag nbt) {
         if (nbt.contains("playerCurrentMana")) currentMana = nbt.getInt("playerCurrentMana");
     }

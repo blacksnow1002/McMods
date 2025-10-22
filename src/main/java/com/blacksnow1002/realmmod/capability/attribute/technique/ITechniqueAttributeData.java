@@ -1,5 +1,7 @@
 package com.blacksnow1002.realmmod.capability.attribute.technique;
 
+import net.minecraft.nbt.CompoundTag;
+
 public interface ITechniqueAttributeData {
 
     int getTechniqueAttack();
@@ -24,8 +26,10 @@ public interface ITechniqueAttributeData {
     float getTechniqueCritMagnification();
     void setTechniqueCritMagnification(float critMagnification);
 
-
     int getTechniqueMaxMana();
     void setTechniqueMaxMana(int maxManaValue);
+
+    CompoundTag saveNBTData();
+    void loadNBTData(CompoundTag nbt);
 
 }

@@ -11,6 +11,7 @@ import com.blacksnow1002.realmmod.capability.attribute.equipment.EquipmentAttrib
 import com.blacksnow1002.realmmod.capability.attribute.realm.RealmAttributeProvider;
 import com.blacksnow1002.realmmod.capability.attribute.technique.TechniqueAttributeProvider;
 import com.blacksnow1002.realmmod.capability.mana.ManaProvider;
+import com.blacksnow1002.realmmod.capability.money.MoneyProvider;
 import com.blacksnow1002.realmmod.capability.realm_breakthrough.RealmBreakthroughProvider;
 import com.blacksnow1002.realmmod.capability.cultivation.CultivationProvider;
 import com.blacksnow1002.realmmod.capability.age.AgeProvider;
@@ -109,6 +110,13 @@ public class ModEvents {
                 );
             }
 
+            if(!player.getCapability(ModCapabilities.MONEY_CAP).isPresent()){
+                event.addCapability(
+                        ResourceLocation.fromNamespaceAndPath(RealmMod.MOD_ID, MoneyProvider.IDENTIFIER),
+                        new MoneyProvider()
+                );
+            }
+
             if(!player.getCapability(ModCapabilities.ASSIGNMENT_CAP).isPresent()){
                 event.addCapability(
                         ResourceLocation.fromNamespaceAndPath(RealmMod.MOD_ID, AssignmentProvider.IDENTIFIER),
@@ -153,22 +161,10 @@ public class ModEvents {
         try {
             // 從舊玩家讀取並複製到新玩家
             originalPlayer.getCapability(ModCapabilities.CULTIVATION_CAP).ifPresent(oldData -> {
-                System.out.println(">>> 成功取得舊資料");
-                System.out.println(">>> 舊資料 - 境界: " + oldData.getRealm().getDisplayName());
-                System.out.println(">>> 舊資料 - 層數: " + oldData.getLayer());
-                System.out.println(">>> 舊資料 - 修為: " + oldData.getCultivation());
-
-                // 複製到新玩家
                 newPlayer.getCapability(ModCapabilities.CULTIVATION_CAP).ifPresent(newData -> {
-                    System.out.println(">>> 開始複製資料...");
 
-                    newData.setRealm(oldData.getRealm());
-                    newData.setLayer(oldData.getLayer());
-                    newData.setCultivation(oldData.getCultivation());
-                    newData.setBreakthroughSuccessPossibility(oldData.getBreakthroughSuccessPossibility());
-
-                    System.out.println(">>> 複製完成: " + newData.getRealm().getDisplayName() + " " + newData.getLayer() + "層");
-                    System.out.println(">>> 修為值: " + newData.getCultivation());
+                    CompoundTag tag = oldData.saveNBTData();
+                    newData.loadNBTData(tag);
 
                     // 同步到客戶端
                     if (newPlayer instanceof ServerPlayer serverPlayer) {
@@ -179,7 +175,6 @@ public class ModEvents {
                                 ),
                                 serverPlayer
                         );
-                        System.out.println(">>> 已發送同步封包");
                     }
                 });
             });
@@ -215,140 +210,71 @@ public class ModEvents {
 
             originalPlayer.getCapability(ModCapabilities.AGE_CAP).ifPresent(oldData -> {
                 newPlayer.getCapability(ModCapabilities.AGE_CAP).ifPresent(newData -> {
-                    newData.setCurrentAge(oldData.getCurrentAge());
-                    newData.setRealmAge(oldData.getRealmAge());
-                    newData.setUltraAge(oldData.getUltraAge());
+                    CompoundTag tag = oldData.saveNBTData();
+                    newData.loadNBTData(tag);
                 });
             });
 
             originalPlayer.getCapability(ModCapabilities.BREAKTHROUGH_CAPABILITY_CAP).ifPresent(oldData -> {
                 newPlayer.getCapability(ModCapabilities.BREAKTHROUGH_CAPABILITY_CAP).ifPresent(newData -> {
-                    for (int i = 0; i < oldData.getCanBreakthrough().length; i++) {
-                        newData.setCanBreakthrough(i, oldData.getCanBreakthrough()[i]);
-                    }
+                    CompoundTag tag = oldData.saveNBTData();
+                    newData.loadNBTData(tag);
                 });
             });
 
             originalPlayer.getCapability(ModCapabilities.MANA_CAP).ifPresent(oldData -> {
                 newPlayer.getCapability(ModCapabilities.MANA_CAP).ifPresent(newData -> {
-                    newData.setMana(oldData.getMana());
+                    CompoundTag tag = oldData.saveNBTData();
+                    newData.loadNBTData(tag);
+                });
+            });
+
+            originalPlayer.getCapability(ModCapabilities.MONEY_CAP).ifPresent(oldData -> {
+                newPlayer.getCapability(ModCapabilities.MONEY_CAP).ifPresent(newData -> {
+                    CompoundTag tag = oldData.saveNBTData();
+                    newData.loadNBTData(tag);
                 });
             });
 
             originalPlayer.getCapability(ModCapabilities.SPIRIT_ROOT_CAP).ifPresent(oldData -> {
                 newPlayer.getCapability(ModCapabilities.SPIRIT_ROOT_CAP).ifPresent(newData -> {
-                    newData.setGoldRootLevel(oldData.getGoldRootLevel());
-                    newData.setWoodRootLevel(oldData.getWoodRootLevel());
-                    newData.setWaterRootLevel(oldData.getWaterRootLevel());
-                    newData.setFireRootLevel(oldData.getFireRootLevel());
-                    newData.setEarthRootLevel(oldData.getEarthRootLevel());
+                    CompoundTag tag = oldData.saveNBTData();
+                    newData.loadNBTData(tag);
                 });
             });
 
             originalPlayer.getCapability(ModCapabilities.ALLOCATE_ATTRIBUTE_CAP).ifPresent(oldData -> {
                 newPlayer.getCapability(ModCapabilities.ALLOCATE_ATTRIBUTE_CAP).ifPresent(newData -> {
-                    newData.setSpiritualSense(oldData.getSpiritualSense());
-                    newData.setPhysique(oldData.getPhysique());
-                    newData.setMovementTechnique(oldData.getMovementTechnique());
-                    newData.setFortune(oldData.getFortune());
+                    CompoundTag tag = oldData.saveNBTData();
+                    newData.loadNBTData(tag);
                 });
             });
 
             originalPlayer.getCapability(ModCapabilities.REALM_ATTRIBUTE_CAP).ifPresent(oldData -> {
                 newPlayer.getCapability(ModCapabilities.REALM_ATTRIBUTE_CAP).ifPresent(newData -> {
-                    newData.setRealmAttack(oldData.getRealmAttack());
-                    newData.setRealmDefense(oldData.getRealmDefense());
-                    newData.setRealmMaxHealth(oldData.getRealmMaxHealth());
-                    newData.setRealmMoveSpeed(oldData.getRealmMoveSpeed());
-
-                    newData.setRealmDodgeRate(oldData.getRealmDodgeRate());
-                    newData.setRealmCritRate(oldData.getRealmCritRate());
-                    newData.setRealmCritMagnification(oldData.getRealmCritMagnification());
-
-                    newData.setRealmMaxMana(oldData.getRealmMaxMana());
+                    CompoundTag tag = oldData.saveNBTData();
+                    newData.loadNBTData(tag);
                 });
             });
 
             originalPlayer.getCapability(ModCapabilities.EQUIPMENT_ATTRIBUTE_CAP).ifPresent(oldData -> {
                 newPlayer.getCapability(ModCapabilities.EQUIPMENT_ATTRIBUTE_CAP).ifPresent(newData -> {
-                    newData.setEquipmentAttack(oldData.getEquipmentAttack());
-                    newData.setEquipmentDefense(oldData.getEquipmentDefense());
-                    newData.setEquipmentMaxHealth(oldData.getEquipmentMaxHealth());
-                    newData.setEquipmentMoveSpeed(oldData.getEquipmentMoveSpeed());
-
-                    newData.setEquipmentDodgeRate(oldData.getEquipmentDodgeRate());
-                    newData.setEquipmentCritRate(oldData.getEquipmentCritRate());
-                    newData.setEquipmentCritMagnification(oldData.getEquipmentCritMagnification());
-
-                    newData.setEquipmentMaxMana(oldData.getEquipmentMaxMana());
+                    CompoundTag tag = oldData.saveNBTData();
+                    newData.loadNBTData(tag);
                 });
             });
 
             originalPlayer.getCapability(ModCapabilities.TECHNIQUE_ATTRIBUTE_CAP).ifPresent(oldData -> {
                 newPlayer.getCapability(ModCapabilities.TECHNIQUE_ATTRIBUTE_CAP).ifPresent(newData -> {
-                    newData.setTechniqueAttack(oldData.getTechniqueAttack());
-                    newData.setTechniqueDefense(oldData.getTechniqueDefense());
-                    newData.setTechniqueMaxHealth(oldData.getTechniqueMaxHealth());
-                    newData.setTechniqueMoveSpeed(oldData.getTechniqueMoveSpeed());
-
-                    newData.setTechniqueDodgeRate(oldData.getTechniqueDodgeRate());
-                    newData.setTechniqueCritRate(oldData.getTechniqueCritRate());
-                    newData.setTechniqueCritMagnification(oldData.getTechniqueCritMagnification());
-
-                    newData.setTechniqueMaxMana(oldData.getTechniqueMaxMana());
+                    CompoundTag tag = oldData.saveNBTData();
+                    newData.loadNBTData(tag);
                 });
             });
 
             originalPlayer.getCapability(ModCapabilities.PLAYER_TOTAL_ATTRIBUTE_CAP).ifPresent(oldData -> {
                 newPlayer.getCapability(ModCapabilities.PLAYER_TOTAL_ATTRIBUTE_CAP).ifPresent(newData -> {
-                    // 基礎屬性
-                    newData.setPlayerTotalMaxHealth(oldData.getPlayerTotalMaxHealth());
-                    newData.setPlayerTotalHealthReceive(oldData.getPlayerTotalHealthReceive());
-                    newData.setPlayerTotalMaxMana(oldData.getPlayerTotalMaxMana());
-                    newData.setPlayerTotalManaReceive(oldData.getPlayerTotalManaReceive());
-                    newData.setPlayerTotalMoveSpeed(oldData.getPlayerTotalMoveSpeed());
-
-                    // 攻擊屬性
-                    newData.setPlayerTotalPhysicalAttack(oldData.getPlayerTotalPhysicalAttack());
-                    newData.setPlayerTotalMagicalAttack(oldData.getPlayerTotalMagicalAttack());
-                    newData.setPlayerTotalIgnoreDefense(oldData.getPlayerTotalIgnoreDefense());
-                    newData.setPlayerTotalAttackSpeed(oldData.getPlayerTotalAttackSpeed());
-
-                    newData.setPlayerTotalAccuracyRate(oldData.getPlayerTotalAccuracyRate());
-                    newData.setPlayerTotalCritRate(oldData.getPlayerTotalCritRate());
-                    newData.setPlayerTotalCritMagnification(oldData.getPlayerTotalCritMagnification());
-
-                    newData.setPlayerTotalLifeStealRate(oldData.getPlayerTotalLifeStealRate());
-                    newData.setPlayerTotalLifeStealAmount(oldData.getPlayerTotalLifeStealAmount());
-                    newData.setPlayerTotalManaStealRate(oldData.getPlayerTotalManaStealRate());
-                    newData.setPlayerTotalManaStealAmount(oldData.getPlayerTotalManaStealAmount());
-
-                    newData.setPlayerTotalGoldAttack(oldData.getPlayerTotalGoldAttack());
-                    newData.setPlayerTotalWoodAttack(oldData.getPlayerTotalWoodAttack());
-                    newData.setPlayerTotalWaterAttack(oldData.getPlayerTotalWaterAttack());
-                    newData.setPlayerTotalFireAttack(oldData.getPlayerTotalFireAttack());
-                    newData.setPlayerTotalEarthAttack(oldData.getPlayerTotalEarthAttack());
-
-                    newData.setPlayerTotalDamageIncrease(oldData.getPlayerTotalDamageIncrease());
-
-                    //防禦屬性
-                    newData.setPlayerTotalPhysicalDefense(oldData.getPlayerTotalPhysicalDefense());
-                    newData.setPlayerTotalMagicalDefense(oldData.getPlayerTotalMagicalDefense());
-
-                    newData.setPlayerTotalDodgeRate(oldData.getPlayerTotalDodgeRate());
-                    newData.setPlayerTotalReflectRate(oldData.getPlayerTotalReflectRate());
-                    newData.setPlayerTotalReflectMagnification(oldData.getPlayerTotalReflectMagnification());
-
-                    newData.setPlayerTotalDebuffResistRate(oldData.getPlayerTotalDebuffResistRate());
-                    newData.setPlayerTotalTenacity(oldData.getPlayerTotalTenacity());
-
-                    newData.setPlayerTotalGoldDefense(oldData.getPlayerTotalGoldDefense());
-                    newData.setPlayerTotalWoodDefense(oldData.getPlayerTotalWoodDefense());
-                    newData.setPlayerTotalWaterDefense(oldData.getPlayerTotalWaterDefense());
-                    newData.setPlayerTotalFireDefense(oldData.getPlayerTotalFireDefense());
-                    newData.setPlayerTotalEarthDefense(oldData.getPlayerTotalEarthDefense());
-
-                    newData.setPlayerTotalDamageDecrease(oldData.getPlayerTotalDamageDecrease());
+                    CompoundTag tag = oldData.saveNBTData();
+                    newData.loadNBTData(tag);
                 });
             });
 
