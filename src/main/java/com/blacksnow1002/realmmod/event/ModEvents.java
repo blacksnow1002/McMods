@@ -16,7 +16,11 @@ import com.blacksnow1002.realmmod.capability.realm_breakthrough.RealmBreakthroug
 import com.blacksnow1002.realmmod.capability.cultivation.CultivationProvider;
 import com.blacksnow1002.realmmod.capability.age.AgeProvider;
 import com.blacksnow1002.realmmod.capability.spiritroot.SpiritRootProvider;
+import com.blacksnow1002.realmmod.mailbox.ClientMailCache;
+import com.blacksnow1002.realmmod.mailbox.Mail;
+import com.blacksnow1002.realmmod.mailbox.MailboxStorage;
 import com.blacksnow1002.realmmod.network.ModMessages;
+import com.blacksnow1002.realmmod.network.packets.S2C.MailSyncPacket;
 import com.blacksnow1002.realmmod.network.packets.S2C.RealmSyncPacket;
 import com.blacksnow1002.realmmod.technique.TechniqueProvider;
 import com.blacksnow1002.realmmod.title.TitleProvider;
@@ -30,6 +34,8 @@ import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+
+import java.util.List;
 
 @Mod.EventBusSubscriber(modid = RealmMod.MOD_ID)
 public class ModEvents {
@@ -286,7 +292,6 @@ public class ModEvents {
         System.out.println("========================================");
     }
 
-    // 額外保險:玩家登入時同步數據
     @SubscribeEvent
     public static void onPlayerLoggedIn(PlayerEvent.PlayerLoggedInEvent event) {
 
@@ -312,11 +317,20 @@ public class ModEvents {
             });
         }
 
+        // 成就
         if (event.getEntity() instanceof ServerPlayer player) {
             AchievementManager.grantAchievement(player, CustomAchievements.EXPLORATION_ROOT);
             AchievementManager.grantAchievement(player, CustomAchievements.BUILDING_ROOT);
             AchievementManager.grantAchievement(player, CustomAchievements.COMBAT_ROOT);
         }
+
+        // 信箱
+        if  (event.getEntity() instanceof ServerPlayer player) {
+            MailboxStorage storage = MailboxStorage.get(player.level());
+            List<Mail> mails = storage.getMails(player.getUUID());
+            ModMessages.sendToPlayer(new MailSyncPacket(player.getUUID(), mails), player);
+        }
+
     }
 
     // 追蹤玩家重生事件(用於調試)
@@ -384,6 +398,15 @@ public class ModEvents {
                 TitleSystem.getInstance().syncEquippedTitleTo(targetPlayer, observer);
             });
         }
+    }
+
+    @SubscribeEvent
+    public static void onPlayerLoggedOut(PlayerEvent.PlayerLoggedOutEvent event) {
+        // 郵件系統
+        if (event.getEntity() instanceof ServerPlayer player) {
+            ClientMailCache.clearMails(player.getUUID());
+        }
+
     }
 
 }

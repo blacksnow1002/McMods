@@ -1,10 +1,7 @@
 package com.blacksnow1002.realmmod.network;
 
 import com.blacksnow1002.realmmod.network.packets.C2S.*;
-import com.blacksnow1002.realmmod.network.packets.S2C.BroadcastSyncPacket;
-import com.blacksnow1002.realmmod.network.packets.S2C.LingMuSyncPacket;
-import com.blacksnow1002.realmmod.network.packets.S2C.RealmSyncPacket;
-import com.blacksnow1002.realmmod.network.packets.S2C.TitleSyncPacket;
+import com.blacksnow1002.realmmod.network.packets.S2C.*;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
 import net.minecraftforge.network.ChannelBuilder;
@@ -101,6 +98,11 @@ public class ModMessages {
                 .encoder(CreateSpellPacket::encode)  // packet -> FriendlyByteBuf
                 .consumerMainThread(CreateSpellPacket::handle) // 處理 (主執行緒)
                 .add();
+        INSTANCE.messageBuilder(ClaimMailPacket.class, nextId(), NetworkDirection.PLAY_TO_SERVER)
+                .decoder(ClaimMailPacket::new)      // FriendlyByteBuf -> packet
+                .encoder(ClaimMailPacket::encode)  // packet -> FriendlyByteBuf
+                .consumerMainThread(ClaimMailPacket::handle) // 處理 (主執行緒)
+                .add();
 
 
 
@@ -126,6 +128,12 @@ public class ModMessages {
                 .decoder(BroadcastSyncPacket::new)
                 .encoder(BroadcastSyncPacket::encode)
                 .consumerMainThread(BroadcastSyncPacket::handle)
+                .add();
+
+        INSTANCE.messageBuilder(MailSyncPacket.class, nextId(), NetworkDirection.PLAY_TO_CLIENT)
+                .decoder(MailSyncPacket::new)
+                .encoder(MailSyncPacket::encode)
+                .consumerMainThread(MailSyncPacket::handle)
                 .add();
     }
 
@@ -175,6 +183,10 @@ public class ModMessages {
         INSTANCE.send(packet, PacketDistributor.SERVER.noArg());
     }
 
+    public static void sendToServer(ClaimMailPacket packet) {
+        INSTANCE.send(packet, PacketDistributor.SERVER.noArg());
+    }
+
     // 從伺服器發送到特定玩家
     public static void sendToPlayer(LingMuSyncPacket packet, ServerPlayer player) {
         INSTANCE.send(packet, PacketDistributor.PLAYER.with(player));
@@ -185,6 +197,10 @@ public class ModMessages {
     }
 
     public static void sendToPlayer(TitleSyncPacket packet, ServerPlayer player) {
+        INSTANCE.send(packet, PacketDistributor.PLAYER.with(player));
+    }
+
+    public static void sendToPlayer(MailSyncPacket packet, ServerPlayer player) {
         INSTANCE.send(packet, PacketDistributor.PLAYER.with(player));
     }
 

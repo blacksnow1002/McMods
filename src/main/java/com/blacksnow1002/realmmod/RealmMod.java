@@ -14,6 +14,9 @@ import com.blacksnow1002.realmmod.dimension.dong_tian.DongTianConfig;
 import com.blacksnow1002.realmmod.dimension.dong_tian.DongTianLifecycleManager;
 import com.blacksnow1002.realmmod.item.ModCreativeModeTabs;
 import com.blacksnow1002.realmmod.item.ModItems;
+import com.blacksnow1002.realmmod.mailbox.MailboxMenuProvider;
+import com.blacksnow1002.realmmod.mailbox.MailboxScreen;
+import com.blacksnow1002.realmmod.mailbox.ModMenuTypes;
 import com.blacksnow1002.realmmod.network.ModMessages;
 import com.blacksnow1002.realmmod.spell.SpellRegistry;
 import com.blacksnow1002.realmmod.technique.TechniqueRegistry;
@@ -21,6 +24,7 @@ import com.blacksnow1002.realmmod.technique.TechniqueSystem;
 import com.blacksnow1002.realmmod.title.TitleRegistry;
 import com.blacksnow1002.realmmod.title.TitleSystem;
 import com.mojang.logging.LogUtils;
+import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.Level;
@@ -72,6 +76,8 @@ public class RealmMod
 
         // Register the item to a creative tab
         modEventBus.addListener(this::addCreative);
+
+        ModMenuTypes.MENUS.register(modEventBus); // ← 加這行
 
         // Register our mod's ForgeConfigSpec so that Forge can create and load the config file for us
         context.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
@@ -158,6 +164,7 @@ public class RealmMod
         AssignmentCommands.register(event.getDispatcher());
         TitleCommand.register(event.getDispatcher());
         AchievementCommand.register(event.getDispatcher());
+        MailCommand.register(event.getDispatcher(), event.getBuildContext());
 
     }
 
@@ -166,8 +173,10 @@ public class RealmMod
     public static class ClientModEvents {
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event) {
-            // Some client setup code
-            LOGGER.info("[修仙模組] 客戶端設置完成");
+            event.enqueueWork(() -> {
+                MenuScreens.register(ModMenuTypes.MAILBOX_MENU.get(), MailboxScreen::new);
+                LOGGER.info("[修仙模組] 郵箱 GUI 註冊完成");
+            });
         }
     }
 }
