@@ -165,6 +165,7 @@ public class RealmMod
         TitleCommand.register(event.getDispatcher());
         AchievementCommand.register(event.getDispatcher());
         MailCommand.register(event.getDispatcher(), event.getBuildContext());
+        MarketCommand.register(event.getDispatcher());
 
     }
 
