@@ -1,6 +1,7 @@
 package com.blacksnow1002.realmmod.block;
 
 import com.blacksnow1002.realmmod.RealmMod;
+import com.blacksnow1002.realmmod.block.custom.HarvestableBlock;
 import com.blacksnow1002.realmmod.block.custom.MagicBlock;
 import com.blacksnow1002.realmmod.block.custom.SpiritVisualBlock;
 import com.blacksnow1002.realmmod.item.ModItems;
@@ -11,6 +12,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.DropExperienceBlock;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.material.MapColor;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -29,6 +31,68 @@ public class ModBlocks {
     public static final RegistryObject<Block> SPIRIT_ORE = registerBlock("spirit_ore",
             () -> new SpiritVisualBlock(BlockBehaviour.Properties.of()
             .strength(1.0F).requiresCorrectToolForDrops().sound(SoundType.AMETHYST)));
+
+    //可採集植物
+    public static final RegistryObject<Block> HARVESTABLE_BLOCK_9_COMMON_1 = registerBlock("harvestable_block_9_common_1",
+            () -> new HarvestableBlock(BlockBehaviour.Properties
+                    .of()
+                    .noCollission()
+                    .instabreak()
+                    .sound(SoundType.GRASS)
+                    .noOcclusion()
+                    .replaceable()
+                    .mapColor(MapColor.PLANT)
+            , 9, HarvestableBlock.HarvestType.COMMON));
+    public static final RegistryObject<Block> HARVESTABLE_BLOCK_9_COMMON_2 = registerBlock("harvestable_block_9_common_2",
+            () -> new HarvestableBlock(BlockBehaviour.Properties
+                    .of()
+                    .noCollission()
+                    .instabreak()
+                    .sound(SoundType.GRASS)
+                    .noOcclusion()
+                    .replaceable()
+                    .mapColor(MapColor.PLANT)
+            , 9, HarvestableBlock.HarvestType.COMMON));
+    public static final RegistryObject<Block> HARVESTABLE_BLOCK_9_COMMON_3 = registerBlock("harvestable_block_9_common_3",
+            () -> new HarvestableBlock(BlockBehaviour.Properties
+                    .of()
+                    .noCollission()
+                    .instabreak()
+                    .sound(SoundType.GRASS)
+                    .noOcclusion()
+                    .replaceable()
+                    .mapColor(MapColor.PLANT)
+            , 9, HarvestableBlock.HarvestType.COMMON));
+    public static final RegistryObject<Block> HARVESTABLE_BLOCK_9_RARE_1 = registerBlock("harvestable_block_9_rare_1",
+            () -> new HarvestableBlock(BlockBehaviour.Properties
+                    .of()
+                    .noCollission()
+                    .instabreak()
+                    .sound(SoundType.GRASS)
+                    .noOcclusion()
+                    .replaceable()
+                    .mapColor(MapColor.PLANT)
+            , 9, HarvestableBlock.HarvestType.COMMON));
+    public static final RegistryObject<Block> HARVESTABLE_BLOCK_9_RARE_2 = registerBlock("harvestable_block_9_rare_2",
+            () -> new HarvestableBlock(BlockBehaviour.Properties
+                    .of()
+                    .noCollission()
+                    .instabreak()
+                    .sound(SoundType.GRASS)
+                    .noOcclusion()
+                    .replaceable()
+                    .mapColor(MapColor.PLANT)
+            , 9, HarvestableBlock.HarvestType.COMMON));
+    public static final RegistryObject<Block> HARVESTABLE_BLOCK_9_TREASURE_1 = registerBlock("harvestable_block_9_treasure_1",
+            () -> new HarvestableBlock(BlockBehaviour.Properties
+                    .of()
+                    .noCollission()
+                    .instabreak()
+                    .sound(SoundType.GRASS)
+                    .noOcclusion()
+                    .replaceable()
+                    .mapColor(MapColor.PLANT)
+            , 9, HarvestableBlock.HarvestType.COMMON));
 
 
     public static final RegistryObject<Block> ALEXANDRITE_BLOCK = registerBlock("alexandrite_block",

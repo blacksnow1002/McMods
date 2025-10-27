@@ -28,7 +28,20 @@ public class ModItems {
     public static final RegistryObject<Item> TECHNIQUE = ITEMS.register("technique",
             () -> new TechniqueItem(TechniqueRegistry.TechniqueIds.FIRE_SUPREME, new Item.Properties()));
 
+    // 採集工具
+    public static final RegistryObject<Item> HARVEST_TOOL_9_MORTAL = ITEMS.register("harvest_tool_9_mortal",
+            () -> new HarvestToolItem(new Item.Properties().stacksTo(1), HarvestToolItem.Grades.MORTAL, 9));
+    public static final RegistryObject<Item> HARVEST_TOOL_9_MYSTIC = ITEMS.register("harvest_tool_9_mystic",
+            () -> new HarvestToolItem(new Item.Properties().stacksTo(1), HarvestToolItem.Grades.MYSTIC, 9));
+    public static final RegistryObject<Item> HARVEST_TOOL_9_EARTH = ITEMS.register("harvest_tool_9_earth",
+            () -> new HarvestToolItem(new Item.Properties().stacksTo(1), HarvestToolItem.Grades.EARTH, 9));
+    public static final RegistryObject<Item> HARVEST_TOOL_9_HEAVEN = ITEMS.register("harvest_tool_9_heaven",
+            () -> new HarvestToolItem(new Item.Properties().stacksTo(1), HarvestToolItem.Grades.HEAVEN, 9));
 
+    // 重鑄石
+    public static final RegistryObject<Item> TOOL_REFORGE_STONE = ITEMS.register("tool_reforge_stone",
+            () -> new ToolReforgeItem(new Item.Properties().stacksTo(16))
+    );
 
 
     public static final RegistryObject<Item> MAGIC_DRUG = ITEMS.register("magic_drug",

@@ -2,6 +2,8 @@ package com.blacksnow1002.realmmod.item;
 
 import com.blacksnow1002.realmmod.RealmMod;
 import com.blacksnow1002.realmmod.block.ModBlocks;
+import com.blacksnow1002.realmmod.item.custom.HarvestToolItem;
+import com.blacksnow1002.realmmod.profession.ToolFactory;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
@@ -56,6 +58,34 @@ public class ModCreativeModeTabs {
                     .displayItems((itemDisplayParameters, output) -> {
 
                         output.accept(ModItems.FOUNDATION_BUILD_ELIXIR.get());
+                    }).build());
+
+    public static final RegistryObject<CreativeModeTab> HARVEST_TOOlS_TAB = CREATIVE_MODE_TABS.register("harvest_tool_tab",
+            () -> CreativeModeTab.builder().icon(() -> new ItemStack(ModItems.HARVEST_TOOL_9_MORTAL.get()))
+                    .withTabsBefore(ELIXIR_TAB.getId())
+                    .title(Component.translatable("creativetab.realmmod.harvest_tools"))
+                    .displayItems((itemDisplayParameters, output) -> {
+
+                        output.accept(ToolFactory.createInitializedTool((HarvestToolItem) ModItems.HARVEST_TOOL_9_HEAVEN.get()));
+                        output.accept(ModItems.HARVEST_TOOL_9_EARTH.get());
+                        output.accept(ModItems.HARVEST_TOOL_9_MYSTIC.get());
+                        output.accept(ModItems.HARVEST_TOOL_9_MORTAL.get());
+                    }).build());
+
+    public static final RegistryObject<CreativeModeTab> HARVESTABLE_BLOCKS_TAB = CREATIVE_MODE_TABS.register("harvestable_blocks_tab",
+            () -> CreativeModeTab.builder().icon(() -> new ItemStack(ModBlocks.HARVESTABLE_BLOCK_9_COMMON_1.get()))
+                    .withTabsBefore(HARVEST_TOOlS_TAB.getId())
+                    .title(Component.translatable("creativetab.realmmod.harvestable_blocks"))
+                    .displayItems((itemDisplayParameters, output) -> {
+
+                        output.accept(ModBlocks.HARVESTABLE_BLOCK_9_COMMON_1.get());
+                        output.accept(ModBlocks.HARVESTABLE_BLOCK_9_COMMON_2.get());
+                        output.accept(ModBlocks.HARVESTABLE_BLOCK_9_COMMON_3.get());
+                        output.accept(ModBlocks.HARVESTABLE_BLOCK_9_RARE_1.get());
+                        output.accept(ModBlocks.HARVESTABLE_BLOCK_9_RARE_2.get());
+                        output.accept(ModBlocks.HARVESTABLE_BLOCK_9_TREASURE_1.get());
+
+                        output.accept(ModItems.TOOL_REFORGE_STONE.get());
                     }).build());
 
     public static void register(IEventBus eventBus) {

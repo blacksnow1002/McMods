@@ -1,8 +1,18 @@
-// 1.21.1	2025-10-20T16:27:54.2226958	Item Models: realmmod
+// 1.21.1	2025-10-27T00:16:16.0646083	Item Models: realmmod
 f75de9c3cb9bcbf957ffce08378025391451703a assets/realmmod/models/item/alexandrite.json
 f2cce8d31f3acc76323fa03eca6a14e8486e31ac assets/realmmod/models/item/aurora_ashes.json
 8b1640084323bf7051db64110bfa3caaa53ea636 assets/realmmod/models/item/chisel.json
 5881fa3951d536950f2421bed14761f2e17b50d3 assets/realmmod/models/item/foundation_build_elixir.json
+50e6d35393c98b5542afbdfc7e50b51ad7ba038a assets/realmmod/models/item/harvestable_block_9_common_1.json
+461a81d08aae87a383b8b4d3fc19ac6db21df23b assets/realmmod/models/item/harvestable_block_9_common_2.json
+ceb59b4edfd5125c92fe911c7f265891c68c9b5f assets/realmmod/models/item/harvestable_block_9_common_3.json
+7f093631663390609c5387b25b3211196c8688d5 assets/realmmod/models/item/harvestable_block_9_rare_1.json
+e650b66cfd2c09da7d8a13ca822fcd01f6b5430f assets/realmmod/models/item/harvestable_block_9_rare_2.json
+8f32fd87b67813c1b3dcca515ca2359ccc75d30d assets/realmmod/models/item/harvestable_block_9_treasure_1.json
+6081e6ea361a7cac41b880f2e4c6c9e2872a09be assets/realmmod/models/item/harvest_tool_9_earth.json
+a5cf5fc3771ee570a76baf612e34750e5f16bc49 assets/realmmod/models/item/harvest_tool_9_heaven.json
+44961d4e47a851c1e679602f82a9cb967e3b4223 assets/realmmod/models/item/harvest_tool_9_mortal.json
+e7fb973f60eef084f0593a0e62fada03e08ffa28 assets/realmmod/models/item/harvest_tool_9_mystic.json
 a41fcbe555315c68e377d909f1911a83bd4efa51 assets/realmmod/models/item/kohlrabi.json
 39dc775979defe875e6746b4510de04ca9615ac1 assets/realmmod/models/item/magic_drug.json
 5dda5baad55981512b036d8c36146130e5019f29 assets/realmmod/models/item/raw_alexandrite.json
@@ -11,3 +21,4 @@ a41fcbe555315c68e377d909f1911a83bd4efa51 assets/realmmod/models/item/kohlrabi.js
 22fc67690a473913aa932ce87e496c456f01b0b2 assets/realmmod/models/item/spirit_stone_low.json
 e8c355f2017a2746058469f71dad018c4834ea88 assets/realmmod/models/item/spirit_stone_middle.json
 a56f55c90da3c79ec0edbd75ff9d14762b62d64f assets/realmmod/models/item/technique.json
+2914f777fc4ff64ffe4375c6192ad69370e69277 assets/realmmod/models/item/tool_reforge_stone.json

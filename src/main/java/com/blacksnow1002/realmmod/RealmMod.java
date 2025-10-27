@@ -25,6 +25,8 @@ import com.blacksnow1002.realmmod.title.TitleRegistry;
 import com.blacksnow1002.realmmod.title.TitleSystem;
 import com.mojang.logging.LogUtils;
 import net.minecraft.client.gui.screens.MenuScreens;
+import net.minecraft.client.renderer.ItemBlockRenderTypes;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.Level;
@@ -166,6 +168,7 @@ public class RealmMod
         AchievementCommand.register(event.getDispatcher());
         MailCommand.register(event.getDispatcher(), event.getBuildContext());
         MarketCommand.register(event.getDispatcher());
+        ProfessionHarvestCommand.register(event.getDispatcher());
 
     }
 

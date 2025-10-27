@@ -1,7 +1,13 @@
-// 1.21.1	2025-10-05T17:38:31.7816099	Loot Tables
+// 1.21.1	2025-10-26T23:26:40.8248407	Loot Tables
 4a2ac793dc0fcd88ef7e32c50ad6e5e445eac558 data/realmmod/loot_table/blocks/alexandrite_block.json
 37603eb51ab330d88b2623cf7fecaa89ef02e36d data/realmmod/loot_table/blocks/alexandrite_deepslate_ore.json
 04d517a880d821d29944fb99695117245dc2a8a5 data/realmmod/loot_table/blocks/alexandrite_ore.json
+bb9b78e02d0293b6f807714757be8de294979bab data/realmmod/loot_table/blocks/harvestable_block_9_common_1.json
+706247cd2f6c488e6bfcb17701eff0952d5b19ce data/realmmod/loot_table/blocks/harvestable_block_9_common_2.json
+f41597fe9d75c6ee5abb222863015f0d2c305faf data/realmmod/loot_table/blocks/harvestable_block_9_common_3.json
+b6f8b8f1387e800246c6e3b588ccc64fae7c7921 data/realmmod/loot_table/blocks/harvestable_block_9_rare_1.json
+e706029c7dcc17adf8e8e01c329607f31f2aa4e2 data/realmmod/loot_table/blocks/harvestable_block_9_rare_2.json
+c6679b058de83c11aca9d1e2bf4d7c8638831074 data/realmmod/loot_table/blocks/harvestable_block_9_treasure_1.json
 1c180f811b52a716361fe5b0303c970075991248 data/realmmod/loot_table/blocks/magic_block.json
 d157b8ba8115b96f133142e1bd93221b422cf734 data/realmmod/loot_table/blocks/raw_alexandrite_block.json
 99437d7402a132d2bc558995d45e11c20144cc1c data/realmmod/loot_table/blocks/spirit_ore.json
