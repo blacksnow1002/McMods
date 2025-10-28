@@ -14,7 +14,9 @@ import com.blacksnow1002.realmmod.capability.spiritroot.ISpiritRootData;
 import com.blacksnow1002.realmmod.capability.world.IWorldData;
 import com.blacksnow1002.realmmod.capability.age.IAgeData;
 import com.blacksnow1002.realmmod.profession.IProfessionData;
-import com.blacksnow1002.realmmod.profession.harvest.IProfessionHarvestData;
+import com.blacksnow1002.realmmod.profession.common.IProfessionHeartDemonData;
+import com.blacksnow1002.realmmod.profession.harvest.capability.IProfessionHarvestData;
+import com.blacksnow1002.realmmod.profession.mining.capability.IProfessionMiningData;
 import com.blacksnow1002.realmmod.technique.ITechniqueDataManager;
 import com.blacksnow1002.realmmod.title.ITitleDataManager;
 import net.minecraftforge.common.capabilities.Capability;
@@ -58,8 +60,12 @@ public class ModCapabilities {
 
     public static final Capability<IProfessionData> PROFESSION_CAP =
             CapabilityManager.get(new CapabilityToken<>(){});
+    public static final Capability<IProfessionHeartDemonData> PROFESSION_HEART_DEMON_CAP =
+            CapabilityManager.get(new CapabilityToken<>(){});
 
     public static final Capability<IProfessionHarvestData> PROFESSION_HARVEST_CAP =
+            CapabilityManager.get(new CapabilityToken<>(){});
+    public static final Capability<IProfessionMiningData> PROFESSION_MINING_CAP =
             CapabilityManager.get(new CapabilityToken<>(){});
 
 

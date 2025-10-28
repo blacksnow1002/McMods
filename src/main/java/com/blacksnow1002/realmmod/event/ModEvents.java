@@ -22,8 +22,10 @@ import com.blacksnow1002.realmmod.mailbox.MailboxStorage;
 import com.blacksnow1002.realmmod.network.ModMessages;
 import com.blacksnow1002.realmmod.network.packets.S2C.MailSyncPacket;
 import com.blacksnow1002.realmmod.network.packets.S2C.RealmSyncPacket;
+import com.blacksnow1002.realmmod.profession.common.ProfessionHeartDemonProvider;
 import com.blacksnow1002.realmmod.profession.ProfessionProvider;
-import com.blacksnow1002.realmmod.profession.harvest.ProfessionHarvestProvider;
+import com.blacksnow1002.realmmod.profession.harvest.capability.ProfessionHarvestProvider;
+import com.blacksnow1002.realmmod.profession.mining.capability.ProfessionMiningProvider;
 import com.blacksnow1002.realmmod.technique.TechniqueProvider;
 import com.blacksnow1002.realmmod.title.TitleProvider;
 import com.blacksnow1002.realmmod.title.TitleSystem;
@@ -153,10 +155,23 @@ public class ModEvents {
                 );
             }
 
+            if(!player.getCapability(ModCapabilities.PROFESSION_HEART_DEMON_CAP).isPresent()){
+                event.addCapability(
+                        ResourceLocation.fromNamespaceAndPath(RealmMod.MOD_ID, ProfessionHeartDemonProvider.IDENTIFIER),
+                        new ProfessionHeartDemonProvider()
+                );
+            }
+
             if(!player.getCapability(ModCapabilities.PROFESSION_HARVEST_CAP).isPresent()){
                 event.addCapability(
                         ResourceLocation.fromNamespaceAndPath(RealmMod.MOD_ID, ProfessionHarvestProvider.IDENTIFIER),
                         new ProfessionHarvestProvider()
+                );
+            }
+            if(!player.getCapability(ModCapabilities.PROFESSION_MINING_CAP).isPresent()){
+                event.addCapability(
+                        ResourceLocation.fromNamespaceAndPath(RealmMod.MOD_ID, ProfessionMiningProvider.IDENTIFIER),
+                        new ProfessionMiningProvider()
                 );
             }
 
@@ -307,8 +322,21 @@ public class ModEvents {
                 });
             });
 
+            originalPlayer.getCapability(ModCapabilities.PROFESSION_HEART_DEMON_CAP).ifPresent(oldData -> {
+                newPlayer.getCapability(ModCapabilities.PROFESSION_HEART_DEMON_CAP).ifPresent(newData -> {
+                    CompoundTag tag = oldData.saveNBTData();
+                    newData.loadNBTData(tag);
+                });
+            });
+
             originalPlayer.getCapability(ModCapabilities.PROFESSION_HARVEST_CAP).ifPresent(oldData -> {
                 newPlayer.getCapability(ModCapabilities.PROFESSION_HARVEST_CAP).ifPresent(newData -> {
+                    CompoundTag tag = oldData.saveNBTData();
+                    newData.loadNBTData(tag);
+                });
+            });
+            originalPlayer.getCapability(ModCapabilities.PROFESSION_MINING_CAP).ifPresent(oldData -> {
+                newPlayer.getCapability(ModCapabilities.PROFESSION_MINING_CAP).ifPresent(newData -> {
                     CompoundTag tag = oldData.saveNBTData();
                     newData.loadNBTData(tag);
                 });

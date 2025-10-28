@@ -1,73 +1,76 @@
 package com.blacksnow1002.realmmod.profession;
 
-import com.blacksnow1002.realmmod.item.custom.HarvestToolItem;
+import com.blacksnow1002.realmmod.item.custom.base.BaseProfessionCollectionToolItem;
+import com.blacksnow1002.realmmod.item.custom.base.BaseProfessionCollectionToolItem.Grades;
+import com.blacksnow1002.realmmod.item.custom.base.BaseProfessionCollectionToolItem.BonusEntry;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.component.CustomData;
 
 /**
- * 工具工廠類
- * 用於創建已初始化的工具ItemStack
- * 推薦在以下場景使用：
- * 1. 煉器配方輸出
+ * 工具工厂类
+ * 用于创建已初始化的工具ItemStack
+ * 支持所有继承自BaseProfessionCollectionToolItem的工具
+ * 推荐在以下场景使用:
+ * 1. 炼器配方输出
  * 2. NPC交易商品
- * 3. 任務獎勵
- * 4. 管理員命令給予物品
+ * 3. 任务奖励
+ * 4. 管理员命令给予物品
  */
 public class ToolFactory {
 
     /**
-     * 創建一個完全初始化的工具
-     * @param tool 工具物品
-     * @param count 數量
+     * 创建一个完全初始化的工具
+     * @param tool 工具物品(必须继承自BaseProfessionCollectionToolItem)
+     * @param count 数量
      * @return 已初始化的ItemStack
      */
-    public static ItemStack createInitializedTool(HarvestToolItem tool, int count) {
+    public static ItemStack createInitializedTool(BaseProfessionCollectionToolItem tool, int count) {
         ItemStack stack = new ItemStack(tool, count);
         initializeTool(stack, tool);
         return stack;
     }
 
     /**
-     * 創建一個完全初始化的工具（數量1）
+     * 创建一个完全初始化的工具(数量1)
      */
-    public static ItemStack createInitializedTool(HarvestToolItem tool) {
+    public static ItemStack createInitializedTool(BaseProfessionCollectionToolItem tool) {
         return createInitializedTool(tool, 1);
     }
 
     /**
      * 初始化已存在的工具ItemStack
-     * 只會初始化一次，不會重複初始化
+     * 只会初始化一次,不会重复初始化
      */
-    public static void initializeTool(ItemStack stack, HarvestToolItem tool) {
-        // 添加日誌
-        System.out.println("[ToolFactory] 開始初始化工具: " + tool.getGrade());
+    public static void initializeTool(ItemStack stack, BaseProfessionCollectionToolItem tool) {
+        // 添加日志
+        System.out.println("[ToolFactory] 开始初始化工具: " + tool.getGrade() + " - " + tool.getProfessionType());
 
-        // 檢查是否已經初始化過
+        // 检查是否已经初始化过
         if (isInitialized(stack)) {
-            System.out.println("[ToolFactory] 工具已經初始化過了，跳過");
+            System.out.println("[ToolFactory] 工具已经初始化过了,跳过");
             return;
         }
 
-        HarvestToolItem.Grades grade = tool.getGrade();
-        System.out.println("[ToolFactory] 工具品階: " + grade);
+        Grades grade = tool.getGrade();
+        System.out.println("[ToolFactory] 工具品阶: " + grade.getDisplayName());
 
-        // 天階工具賦予隨機詞條
-        if (grade == HarvestToolItem.Grades.HEAVEN) {
-            System.out.println("[ToolFactory] 這是天階工具，開始添加詞條");
-            HarvestToolItem.setRandomBonus(stack);
+        // 天阶工具赋予随机词条
+        if (grade == Grades.HEAVEN) {
+            System.out.println("[ToolFactory] 这是天阶工具,开始添加词条");
+            BaseProfessionCollectionToolItem.setRandomBonus(stack);
 
-            // 驗證詞條是否成功設置
-            HarvestToolItem.BonusEntry bonus = HarvestToolItem.getBonus(stack);
+            // 验证词条是否成功设置
+            BonusEntry bonus = BaseProfessionCollectionToolItem.getBonus(stack);
             if (bonus != null) {
-                System.out.println("[ToolFactory] 詞條設置成功: " + bonus.getDisplayName());
+                System.out.println("[ToolFactory] 词条设置成功: " + bonus.getDisplayName());
             } else {
-                System.out.println("[ToolFactory] 警告: 詞條設置失敗!");
+                System.out.println("[ToolFactory] 警告: 词条设置失败!");
             }
         }
 
-        // 標記為已初始化
+        // 标记为已初始化
         CompoundTag tag = getOrCreateTag(stack);
         tag.putBoolean("Initialized", true);
         stack.set(DataComponents.CUSTOM_DATA, CustomData.of(tag));
@@ -76,19 +79,18 @@ public class ToolFactory {
     }
 
     /**
-     * 創建一個指定詞條的天階工具
-     * 用於測試或特殊獎勵
+     * 创建一个指定词条的天阶工具
+     * 用于测试或特殊奖励
      */
-    public static ItemStack createHeavenToolWithEntry(HarvestToolItem tool,
-                                                      HarvestToolItem.BonusEntry entry) {
-        if (tool.getGrade() != HarvestToolItem.Grades.HEAVEN) {
-            throw new IllegalArgumentException("只有天階工具才能指定詞條!");
+    public static ItemStack createHeavenToolWithEntry(BaseProfessionCollectionToolItem tool,
+                                                      BonusEntry entry) {
+        if (tool.getGrade() != Grades.HEAVEN) {
+            throw new IllegalArgumentException("只有天阶工具才能指定词条!");
         }
 
         ItemStack stack = new ItemStack(tool, 1);
-        // 天階無限耐久（已在構造函數中設置）
 
-        // 設置指定詞條
+        // 设置指定词条
         CompoundTag tag = new CompoundTag();
         tag.putInt("BonusEntry", entry.ordinal());
         tag.putBoolean("Initialized", true);
@@ -98,7 +100,7 @@ public class ToolFactory {
     }
 
     /**
-     * 檢查工具是否已初始化
+     * 检查工具是否已初始化
      */
     public static boolean isInitialized(ItemStack stack) {
         CustomData customData = stack.get(DataComponents.CUSTOM_DATA);
@@ -111,12 +113,12 @@ public class ToolFactory {
 
     /**
      * 重置工具耐久度到最大值
-     * 可用於修理系統
+     * 可用于修理系统
      */
-    public static void repairTool(ItemStack stack, HarvestToolItem tool) {
-        HarvestToolItem.Grades grade = tool.getGrade();
+    public static void repairTool(ItemStack stack, BaseProfessionCollectionToolItem tool) {
+        Grades grade = tool.getGrade();
 
-        // 天階和地階無限耐久，不需要修理
+        // 天阶和地阶无限耐久,不需要修理
         if (grade.hasUnbreakable()) {
             return;
         }
@@ -125,7 +127,7 @@ public class ToolFactory {
         stack.setDamageValue(0);
     }
 
-    // 輔助方法：獲取或創建NBT
+    // 辅助方法:获取或创建NBT
     private static CompoundTag getOrCreateTag(ItemStack stack) {
         CustomData customData = stack.get(DataComponents.CUSTOM_DATA);
         if (customData != null) {

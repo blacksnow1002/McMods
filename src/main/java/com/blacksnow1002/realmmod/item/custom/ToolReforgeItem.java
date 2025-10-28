@@ -1,5 +1,6 @@
 package com.blacksnow1002.realmmod.item.custom;
 
+import com.blacksnow1002.realmmod.item.custom.base.BaseProfessionCollectionToolItem;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
@@ -23,18 +24,18 @@ public class ToolReforgeItem extends Item {
         ItemStack offHand = player.getItemInHand(hand == InteractionHand.MAIN_HAND ?
                 InteractionHand.OFF_HAND : InteractionHand.MAIN_HAND);
         if (!level.isClientSide) {
-            if (!(offHand.getItem() instanceof HarvestToolItem tool)) {
+            if (!(offHand.getItem() instanceof BaseProfessionCollectionToolItem tool)) {
                 player.sendSystemMessage(Component.literal("§c請將要重鑄的工具放在副手!"));
                 return InteractionResultHolder.fail(reforgeStone);
             }
-            if (tool.getGrade() != HarvestToolItem.Grades.HEAVEN) {
+            if (tool.getGrade() != BaseProfessionCollectionToolItem.Grades.HEAVEN) {
                 player.sendSystemMessage(Component.literal("§c只能重鑄天階工具!"));
                 return InteractionResultHolder.fail(reforgeStone);
             }
 
             // 刷新詞條
-            HarvestToolItem.setRandomBonus(offHand);
-            HarvestToolItem.BonusEntry newBonus = HarvestToolItem.getBonus(offHand);
+            BaseProfessionCollectionToolItem.setRandomBonus(offHand);
+            BaseProfessionCollectionToolItem.BonusEntry newBonus = BaseProfessionCollectionToolItem.getBonus(offHand);
 
             player.sendSystemMessage(Component.literal("§a重鑄成功!"));
             player.sendSystemMessage(Component.literal("§d新詞條: " + newBonus.getDisplayName()));

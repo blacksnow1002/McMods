@@ -1,4 +1,4 @@
-package com.blacksnow1002.realmmod.profession.harvest;
+package com.blacksnow1002.realmmod.profession.harvest.capability;
 
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
@@ -18,9 +18,6 @@ public class ProfessionHarvestData implements IProfessionHarvestData {
 
     // 每個品級的首次成功記錄
     private boolean[] firstSuccess = new boolean[10];
-
-    // 心魔狀態
-    private boolean isHeartDemon = false;
 
     // 天材地寶每日出現次數(低品級採集時) 每品級不同
     private int[] dailyTreasureCount = new int[10];
@@ -99,15 +96,6 @@ public class ProfessionHarvestData implements IProfessionHarvestData {
     }
 
     @Override
-    public boolean isHeartDemon() {
-        return isHeartDemon;
-    }
-    @Override
-    public void setHeartDemon(boolean state) {
-        this.isHeartDemon = state;
-    }
-
-    @Override
     public int getDailyTreasureCount(int rank) {
         return dailyTreasureCount[rank];
     }
@@ -127,7 +115,6 @@ public class ProfessionHarvestData implements IProfessionHarvestData {
         CompoundTag tag = new CompoundTag();
         tag.putInt("HarvestRank", rank);
         tag.putInt("HarvestExp", exp);
-        tag.putBoolean("HeartDemon", isHeartDemon);
 
         // 保存成功率
         CompoundTag rateTag = new CompoundTag();
@@ -157,7 +144,6 @@ public class ProfessionHarvestData implements IProfessionHarvestData {
     public void loadNBTData(CompoundTag tag) {
         this.rank = tag.getInt("HarvestRank");
         this.exp = tag.getInt("HarvestExp");
-        this.isHeartDemon = tag.getBoolean("HeartDemon");
 
         // 讀取成功率
         if (tag.contains("HarvestSuccessRates")) {

@@ -351,7 +351,7 @@ java.lang.IllegalAccessException: class io.netty.util.internal.PlatformDependent
 [2710月2025 00:27:34.468] [modloading-worker-0/DEBUG] [net.minecraftforge.fml.javafmlmod.AutomaticEventSubscriber/LOADING]: Auto-subscribing net.minecraftforge.common.ForgeSpawnEggItem$CommonHandler to MOD
 [2710月2025 00:27:34.470] [modloading-worker-0/DEBUG] [net.minecraftforge.fml.javafmlmod.AutomaticEventSubscriber/LOADING]: Auto-subscribing com.blacksnow1002.realmmod.ModEntities$EntityAttributeRegistry to MOD
 [2710月2025 00:27:34.471] [modloading-worker-0/DEBUG] [net.minecraftforge.fml.javafmlmod.AutomaticEventSubscriber/LOADING]: Auto-subscribing net.minecraftforge.common.ForgeSpawnEggItem$ColorRegisterHandler to MOD
-[2710月2025 00:27:34.474] [modloading-worker-0/DEBUG] [net.minecraftforge.fml.javafmlmod.AutomaticEventSubscriber/LOADING]: Auto-subscribing com.blacksnow1002.realmmod.profession.HarvestEventHandler to FORGE
+[2710月2025 00:27:34.474] [modloading-worker-0/DEBUG] [net.minecraftforge.fml.javafmlmod.AutomaticEventSubscriber/LOADING]: Auto-subscribing com.blacksnow1002.realmmod.profession.harvest.HarvestEventHandler to FORGE
 [2710月2025 00:27:34.480] [modloading-worker-0/DEBUG] [net.minecraftforge.fml.javafmlmod.AutomaticEventSubscriber/LOADING]: Auto-subscribing net.minecraftforge.client.model.data.ModelDataManager to FORGE
 [2710月2025 00:27:34.480] [modloading-worker-0/DEBUG] [net.minecraftforge.fml.javafmlmod.AutomaticEventSubscriber/LOADING]: Auto-subscribing com.blacksnow1002.realmmod.profession.ToolInitializationEvent to FORGE
 [2710月2025 00:27:34.486] [modloading-worker-0/DEBUG] [net.minecraftforge.fml.javafmlmod.AutomaticEventSubscriber/LOADING]: Auto-subscribing com.blacksnow1002.realmmod.RealmMod$ClientModEvents to MOD

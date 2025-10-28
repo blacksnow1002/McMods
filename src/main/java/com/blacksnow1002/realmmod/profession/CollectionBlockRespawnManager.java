@@ -11,7 +11,7 @@ import java.util.*;
  * 採集方塊重生管理器
  * 統一管理所有被採集方塊的重生
  */
-public class HarvestRespawnManager {
+public class CollectionBlockRespawnManager {
 
     private static final int MAX_RESPAWNS_PER_TICK = 30;
     private static final int RESPAWN_TIME_TICKS = 60 * 20;
@@ -21,7 +21,7 @@ public class HarvestRespawnManager {
 
     private static int tickCounter = 0;
 
-    public static void recordHarvested(ServerLevel level, BlockPos pos, Block block, BlockState blockState) {
+    public static void recordBroke(ServerLevel level, BlockPos pos, Block block, BlockState blockState) {
         BlockPos immutablePos = pos.immutable();
 
         RespawnData data = new RespawnData(

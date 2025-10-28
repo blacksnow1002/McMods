@@ -1,12 +1,15 @@
-package com.blacksnow1002.realmmod.profession;
+package com.blacksnow1002.realmmod.profession.harvest;
 
 import com.blacksnow1002.realmmod.RealmMod;
 import com.blacksnow1002.realmmod.block.ModBlocks;
 import com.blacksnow1002.realmmod.block.custom.HarvestableBlock;
+import com.blacksnow1002.realmmod.block.custom.base.BaseProfessionCollectionBlock;
 import com.blacksnow1002.realmmod.broadcast.BroadcastManager;
 import com.blacksnow1002.realmmod.capability.ModCapabilities;
 import com.blacksnow1002.realmmod.item.custom.HarvestToolItem;
-import com.blacksnow1002.realmmod.profession.harvest.IProfessionHarvestData;
+import com.blacksnow1002.realmmod.profession.CollectionBlockRespawnManager;
+import com.blacksnow1002.realmmod.profession.common.IProfessionHeartDemonData;
+import com.blacksnow1002.realmmod.profession.harvest.capability.IProfessionHarvestData;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
@@ -52,8 +55,9 @@ public class HarvestEventHandler {
 
         // 處理採集邏輯
         LazyOptional<IProfessionHarvestData> capabilityOptional = player.getCapability(ModCapabilities.PROFESSION_HARVEST_CAP);
+        LazyOptional<IProfessionHeartDemonData> demonOptional = player.getCapability(ModCapabilities.PROFESSION_HEART_DEMON_CAP);
 
-        if (!capabilityOptional.isPresent()) {
+        if (!capabilityOptional.isPresent() || !demonOptional.isPresent()) {
             event.setCanceled(true);
             player.sendSystemMessage(Component.literal("數據載入失敗，請重新登入"));
             System.err.println("[HarvestEvent] 玩家 " + player.getName().getString() + " 的 Capability 不存在！");
@@ -61,6 +65,7 @@ public class HarvestEventHandler {
         }
 
         IProfessionHarvestData cap = capabilityOptional.resolve().orElse(null);
+        IProfessionHeartDemonData demonCap = demonOptional.resolve().orElse(null);
 
         int playerRank = cap.getRank();
         int toolRank = tool.getRank();
@@ -94,7 +99,7 @@ public class HarvestEventHandler {
         }
 
         // 計算成功率並處理採集
-        HarvestResult result = calculateHarvest(cap, tool, held, harvestableBlock, rankDiff);
+        HarvestResult result = calculateHarvest(cap, demonCap, tool, held, harvestableBlock, rankDiff);
 
         // 取消原本的掉落
         event.setCanceled(true);
@@ -102,39 +107,39 @@ public class HarvestEventHandler {
         if (result.success) {
             if (!level.isClientSide && level instanceof ServerLevel serverLevel) {
                 serverLevel.setBlockAndUpdate(pos, Blocks.AIR.defaultBlockState());
-                HarvestRespawnManager.recordHarvested(serverLevel, pos, block, blockState);
+                CollectionBlockRespawnManager.recordBroke(serverLevel, pos, block, blockState);
             }
 
             handleSuccess(player, cap, harvestableBlock, tool, held, result);
         } else {
-            handleFailure(player, cap, harvestableBlock, tool, held, result);
+            handleFailure(player, cap, demonCap, harvestableBlock, tool, held, result);
         }
     }
 
 
 
-    private static HarvestResult calculateHarvest(IProfessionHarvestData cap, HarvestToolItem tool,
-                                                  ItemStack toolStack, HarvestableBlock block,
-                                                  int rankDiff) {
+    private static HarvestResult calculateHarvest(IProfessionHarvestData cap, IProfessionHeartDemonData demonCap,
+                                                  HarvestToolItem tool, ItemStack toolStack,
+                                                  BaseProfessionCollectionBlock block, int rankDiff) {
         HarvestResult result = new HarvestResult();
-        HarvestableBlock.HarvestType blockType = block.getType();
+        BaseProfessionCollectionBlock.ResourceType blockType = block.getResourceType();
         String blockId = block.toString();
         HarvestToolItem.BonusEntry bonus = HarvestToolItem.getBonus(toolStack);
         HarvestToolItem.Grades grade = tool.getGrade();
 
-        double baseRate = blockType.getBaseSameSuccessRate();
+        double baseRate = blockType.getBaseSuccessRate();
         double finalRate = baseRate;
 
         // 同品級
         if (rankDiff == 0) {
             // 累積成功率(稀有產物)
-            if (blockType == HarvestableBlock.HarvestType.RARE) {
+            if (blockType == BaseProfessionCollectionBlock.ResourceType.RARE) {
                 double accumulated = cap.getSuccessRateBonus(blockId);
                 finalRate += accumulated;
             }
 
             // 普通產物工具加成(天地玄)
-            if (blockType == HarvestableBlock.HarvestType.COMMON) {
+            if (blockType == BaseProfessionCollectionBlock.ResourceType.COMMON) {
                 finalRate += grade.getSuccessBonus();
             }
         }
@@ -145,7 +150,7 @@ public class HarvestEventHandler {
         }
         // 高一品級
         else if (rankDiff == 1) {
-            if (blockType == HarvestableBlock.HarvestType.COMMON) {
+            if (blockType == BaseProfessionCollectionBlock.ResourceType.COMMON) {
                 finalRate = 0.5;
                 result.heartDemonChance = 0.4;
 
@@ -158,7 +163,7 @@ public class HarvestEventHandler {
                 if (bonus == HarvestToolItem.BonusEntry.ENTRY_6) {
                     finalRate = baseRate;
                 }
-            } else if (blockType == HarvestableBlock.HarvestType.RARE) {
+            } else if (blockType == BaseProfessionCollectionBlock.ResourceType.RARE) {
                 finalRate = 0.1;
                 result.heartDemonChance = 0.8;
                 result.killOnFail = true;
@@ -179,7 +184,7 @@ public class HarvestEventHandler {
         }
 
         // 心魔狀態：成功率減半
-        if (cap.isHeartDemon()) {
+        if (demonCap.isHeartDemon()) {
             finalRate *= 0.5;
             result.noTreasure = true;
         }
@@ -192,9 +197,9 @@ public class HarvestEventHandler {
     }
 
     private static void handleSuccess(Player player, IProfessionHarvestData cap,
-                                      HarvestableBlock block, HarvestToolItem tool,
+                                      BaseProfessionCollectionBlock block, HarvestToolItem tool,
                                       ItemStack toolStack, HarvestResult result) {
-        HarvestableBlock.HarvestType blockType = block.getType();
+        BaseProfessionCollectionBlock.ResourceType blockType = block.getResourceType();
         HarvestToolItem.Grades grade = tool.getGrade();
         HarvestToolItem.BonusEntry bonus = HarvestToolItem.getBonus(toolStack);
         int blockRank = block.getRank();
@@ -204,7 +209,7 @@ public class HarvestEventHandler {
         // 掉落物品
         int dropCount = 1;
         if (bonus == HarvestToolItem.BonusEntry.ENTRY_5 && rankDiff == 0 &&
-                blockType != HarvestableBlock.HarvestType.TREASURE) {
+                blockType != BaseProfessionCollectionBlock.ResourceType.TREASURE) {
             if (RANDOM.nextDouble() < 0.3) {
                 dropCount = 2;
             }
@@ -217,7 +222,7 @@ public class HarvestEventHandler {
         if (!result.noExp && rankDiff >= 0) {
             int baseExp = blockType.getBaseExp();
             if (rankDiff == 1) {
-                baseExp = blockType == HarvestableBlock.HarvestType.COMMON ? 20 : 40;
+                baseExp = blockType == BaseProfessionCollectionBlock.ResourceType.COMMON ? 20 : 40;
             }
 
             double expMultiplier = 1.0 + grade.getExpBonus();
@@ -229,7 +234,7 @@ public class HarvestEventHandler {
 
             // 首次成功獎勵
             boolean isFirstSuccess = !cap.hasFirstSuccess(blockRank);
-            if (isFirstSuccess && blockType == HarvestableBlock.HarvestType.RARE &&
+            if (isFirstSuccess && blockType == BaseProfessionCollectionBlock.ResourceType.RARE &&
                     rankDiff == 0 && !result.noFirstBonus) {
                 baseExp += 160;
                 cap.setFirstSuccess(blockRank);
@@ -246,7 +251,7 @@ public class HarvestEventHandler {
         }
 
         // 天材地寶判定
-        if (!result.noTreasure && blockType == HarvestableBlock.HarvestType.RARE) {
+        if (!result.noTreasure && blockType == BaseProfessionCollectionBlock.ResourceType.RARE) {
             double treasureChance = 0.01;
 
             // 詞條二：提升至5%
@@ -282,10 +287,10 @@ public class HarvestEventHandler {
         }
     }
 
-    private static void handleFailure(Player player, IProfessionHarvestData cap,
-                                      HarvestableBlock block, HarvestToolItem tool,
+    private static void handleFailure(Player player, IProfessionHarvestData cap, IProfessionHeartDemonData demonCap,
+                                      BaseProfessionCollectionBlock block, HarvestToolItem tool,
                                       ItemStack toolStack, HarvestResult result) {
-        HarvestableBlock.HarvestType blockType = block.getType();
+        BaseProfessionCollectionBlock.ResourceType blockType = block.getResourceType();
         HarvestToolItem.Grades grade = tool.getGrade();
         int blockRank = block.getRank();
         int playerRank = cap.getRank();
@@ -310,12 +315,12 @@ public class HarvestEventHandler {
 
         // 心魔判定
         if (result.heartDemonChance > 0 && RANDOM.nextDouble() < result.heartDemonChance) {
-            cap.setHeartDemon(true);
+            demonCap.setHeartDemon(true);
             player.sendSystemMessage(Component.literal("§4你產生了心魔! 採集成功率減半!"));
         }
 
         // 稀有產物失敗時增加成功率(使用玄階以上工具)
-        if (blockType == HarvestableBlock.HarvestType.RARE && rankDiff == 0) {
+        if (blockType == BaseProfessionCollectionBlock.ResourceType.RARE && rankDiff == 0) {
             double increment = 0.0;
             if (grade == HarvestToolItem.Grades.MYSTIC) {
                 increment = 0.005; // 0.5%
@@ -327,7 +332,7 @@ public class HarvestEventHandler {
                 cap.addSuccessRateBonus(blockId, increment);
                 double newRate = cap.getSuccessRateBonus(blockId);
                 player.sendSystemMessage(Component.literal(
-                        String.format("§7該產物成功率提升至 %.1f%%", (blockType.getBaseHighSuccessRate() + newRate + 0.5) * 100)
+                        String.format("§7該產物成功率提升至 %.1f%%", (blockType.getBaseSuccessRate() + newRate + 0.5) * 100)
                 ));
             }
         }

@@ -23,13 +23,13 @@ public class RespawnTickHandler {
         // 獲取主世界作為計時基準
         ServerLevel overworld = event.getServer().overworld();
         if (overworld != null) {
-            HarvestRespawnManager.tick(overworld);
+            CollectionBlockRespawnManager.tick(overworld);
         }
     }
 
     @SubscribeEvent
     public static void onServerStopping(ServerStoppingEvent event) {
         // 伺服器關閉時清空重生隊列
-        HarvestRespawnManager.clear();
+        CollectionBlockRespawnManager.clear();
     }
 }

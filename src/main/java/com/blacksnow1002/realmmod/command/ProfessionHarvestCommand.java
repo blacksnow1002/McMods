@@ -1,7 +1,6 @@
 package com.blacksnow1002.realmmod.command;
 
 import com.blacksnow1002.realmmod.capability.ModCapabilities;
-import com.blacksnow1002.realmmod.profession.harvest.IProfessionHarvestData;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.mojang.brigadier.context.CommandContext;
@@ -79,12 +78,10 @@ public class ProfessionHarvestCommand {
             int rank = cap.getRank();
             int exp = cap.getExp();
             int required = cap.getRequiredExp();
-            boolean demon = cap.isHeartDemon();
 
             context.getSource().sendSuccess(() -> Component.literal("§6=== " + player.getName().getString() + " 的採集職業信息 ==="), false);
             context.getSource().sendSuccess(() -> Component.literal("§e品級: §f" + (rank == 0 ? "未入門" : rank + "品")), false);
             context.getSource().sendSuccess(() -> Component.literal("§e經驗: §f" + exp + " / " + required), false);
-            context.getSource().sendSuccess(() -> Component.literal("§e心魔狀態: " + (demon ? "§c有" : "§a無")), false);
         });
         return 1;
     }
@@ -111,7 +108,7 @@ public class ProfessionHarvestCommand {
     }
 
     private static int clearHeartDemon(CommandContext<CommandSourceStack> context, ServerPlayer player) {
-        player.getCapability(ModCapabilities.PROFESSION_HARVEST_CAP).ifPresent(cap -> {
+        player.getCapability(ModCapabilities.PROFESSION_HEART_DEMON_CAP).ifPresent(cap -> {
             cap.setHeartDemon(false);
             context.getSource().sendSuccess(() -> Component.literal(
                     "§a已清除 " + player.getName().getString() + " 的心魔狀態"
@@ -125,7 +122,6 @@ public class ProfessionHarvestCommand {
         player.getCapability(ModCapabilities.PROFESSION_HARVEST_CAP).ifPresent(cap -> {
             cap.setRank(0);
             cap.setExp(0);
-            cap.setHeartDemon(false);
             context.getSource().sendSuccess(() -> Component.literal(
                     "§a已重置 " + player.getName().getString() + " 的採集職業數據"
             ), true);

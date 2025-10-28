@@ -1,4 +1,4 @@
-package com.blacksnow1002.realmmod.profession.harvest;
+package com.blacksnow1002.realmmod.profession.harvest.capability;
 
 import net.minecraft.nbt.CompoundTag;
 
@@ -18,9 +18,6 @@ public interface IProfessionHarvestData {
 
     boolean hasFirstSuccess(int rank);
     void setFirstSuccess(int rank);
-
-    boolean isHeartDemon();
-    void setHeartDemon(boolean state);
 
     int getDailyTreasureCount(int rank);
     void incrementDailyTreasure(int rank);

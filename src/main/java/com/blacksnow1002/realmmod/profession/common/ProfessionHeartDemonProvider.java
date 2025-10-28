@@ -1,4 +1,4 @@
-package com.blacksnow1002.realmmod.profession.harvest;
+package com.blacksnow1002.realmmod.profession.common;
 
 import com.blacksnow1002.realmmod.capability.ModCapabilities;
 import net.minecraft.core.Direction;
@@ -10,15 +10,15 @@ import net.minecraftforge.common.util.LazyOptional;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public class ProfessionHarvestProvider implements ICapabilitySerializable<CompoundTag> {
-    public static final String IDENTIFIER = "profession_harvest";
+public class ProfessionHeartDemonProvider implements ICapabilitySerializable<CompoundTag> {
+    public static final String IDENTIFIER = "profession_heart_demon";
 
-    private final ProfessionHarvestData backend = new ProfessionHarvestData();
-    private final LazyOptional<IProfessionHarvestData> optional = LazyOptional.of(() -> backend);
+    private final ProfessionHeartDemonData backend = new ProfessionHeartDemonData();
+    private final LazyOptional<IProfessionHeartDemonData> optional = LazyOptional.of(() -> backend);
 
     @Override
     public <T> @NotNull LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
-        return cap == ModCapabilities.PROFESSION_HARVEST_CAP ? optional.cast() : LazyOptional.empty();
+        return cap == ModCapabilities.PROFESSION_HEART_DEMON_CAP ? optional.cast() : LazyOptional.empty();
     }
 
     // ✅ 新版 API：必須帶 HolderLookup.Provider
