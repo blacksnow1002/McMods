@@ -7,16 +7,19 @@ import com.blacksnow1002.realmmod.assignment.npc.BaseNPC;
 import com.blacksnow1002.realmmod.assignment.npc.NPCRegistry;
 import com.blacksnow1002.realmmod.assignment.npc.NPCSpawner;
 import com.blacksnow1002.realmmod.block.ModBlocks;
+import com.blacksnow1002.realmmod.block.entity.ModBlockEntities;
 import com.blacksnow1002.realmmod.broadcast.ClientBroadcastHandler;
 import com.blacksnow1002.realmmod.client.ClientSetup;
 import com.blacksnow1002.realmmod.command.*;
 import com.blacksnow1002.realmmod.dimension.dong_tian.DongTianConfig;
 import com.blacksnow1002.realmmod.dimension.dong_tian.DongTianLifecycleManager;
 import com.blacksnow1002.realmmod.item.ModCreativeModeTabs;
+import com.blacksnow1002.realmmod.item.ModDataComponents;
 import com.blacksnow1002.realmmod.item.ModItems;
-import com.blacksnow1002.realmmod.mailbox.MailboxMenuProvider;
 import com.blacksnow1002.realmmod.mailbox.MailboxScreen;
-import com.blacksnow1002.realmmod.mailbox.ModMenuTypes;
+import com.blacksnow1002.realmmod.profession.alchemy.screen.AlchemyFurnaceMenu;
+import com.blacksnow1002.realmmod.profession.alchemy.screen.AlchemyFurnaceScreen;
+import com.blacksnow1002.realmmod.screen.ModMenuTypes;
 import com.blacksnow1002.realmmod.network.ModMessages;
 import com.blacksnow1002.realmmod.spell.SpellRegistry;
 import com.blacksnow1002.realmmod.technique.TechniqueRegistry;
@@ -25,8 +28,6 @@ import com.blacksnow1002.realmmod.title.TitleRegistry;
 import com.blacksnow1002.realmmod.title.TitleSystem;
 import com.mojang.logging.LogUtils;
 import net.minecraft.client.gui.screens.MenuScreens;
-import net.minecraft.client.renderer.ItemBlockRenderTypes;
-import net.minecraft.client.renderer.RenderType;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.Level;
@@ -67,6 +68,8 @@ public class RealmMod
 
         ModItems.register(modEventBus);
         ModBlocks.register(modEventBus);
+        ModBlockEntities.register(modEventBus);
+        ModDataComponents.DATA_COMPONENT_TYPES.register(modEventBus);
         ModCreativeModeTabs.register(modEventBus);
         ModEntities.ENTITY_TYPES.register(modEventBus);
 
@@ -79,7 +82,7 @@ public class RealmMod
         // Register the item to a creative tab
         modEventBus.addListener(this::addCreative);
 
-        ModMenuTypes.MENUS.register(modEventBus); // ← 加這行
+        ModMenuTypes.MENUS.register(modEventBus);
 
         // Register our mod's ForgeConfigSpec so that Forge can create and load the config file for us
         context.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
@@ -179,6 +182,7 @@ public class RealmMod
         public static void onClientSetup(FMLClientSetupEvent event) {
             event.enqueueWork(() -> {
                 MenuScreens.register(ModMenuTypes.MAILBOX_MENU.get(), MailboxScreen::new);
+                MenuScreens.register(ModMenuTypes.ALCHEMY_FURNACE_MENU.get(), AlchemyFurnaceScreen::new);
                 LOGGER.info("[修仙模組] 郵箱 GUI 註冊完成");
             });
         }

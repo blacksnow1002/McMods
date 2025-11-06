@@ -1,10 +1,13 @@
 package com.blacksnow1002.realmmod.block;
 
 import com.blacksnow1002.realmmod.RealmMod;
+import com.blacksnow1002.realmmod.block.custom.AlchemyToolBlock;
 import com.blacksnow1002.realmmod.block.custom.HarvestableBlock;
 import com.blacksnow1002.realmmod.block.custom.MagicBlock;
 import com.blacksnow1002.realmmod.block.custom.SpiritVisualBlock;
+import com.blacksnow1002.realmmod.block.custom.base.BaseProfessionCollectionBlock;
 import com.blacksnow1002.realmmod.item.ModItems;
+import com.blacksnow1002.realmmod.item.custom.AlchemyToolBlockItem;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
@@ -42,7 +45,7 @@ public class ModBlocks {
                     .noOcclusion()
                     .replaceable()
                     .mapColor(MapColor.PLANT)
-            , 9, HarvestableBlock.HarvestType.COMMON));
+            , 9, BaseProfessionCollectionBlock.ResourceType.COMMON));
     public static final RegistryObject<Block> HARVESTABLE_BLOCK_9_COMMON_2 = registerBlock("harvestable_block_9_common_2",
             () -> new HarvestableBlock(BlockBehaviour.Properties
                     .of()
@@ -52,7 +55,7 @@ public class ModBlocks {
                     .noOcclusion()
                     .replaceable()
                     .mapColor(MapColor.PLANT)
-            , 9, HarvestableBlock.HarvestType.COMMON));
+            , 9, BaseProfessionCollectionBlock.ResourceType.COMMON));
     public static final RegistryObject<Block> HARVESTABLE_BLOCK_9_COMMON_3 = registerBlock("harvestable_block_9_common_3",
             () -> new HarvestableBlock(BlockBehaviour.Properties
                     .of()
@@ -62,7 +65,7 @@ public class ModBlocks {
                     .noOcclusion()
                     .replaceable()
                     .mapColor(MapColor.PLANT)
-            , 9, HarvestableBlock.HarvestType.COMMON));
+            , 9, BaseProfessionCollectionBlock.ResourceType.COMMON));
     public static final RegistryObject<Block> HARVESTABLE_BLOCK_9_RARE_1 = registerBlock("harvestable_block_9_rare_1",
             () -> new HarvestableBlock(BlockBehaviour.Properties
                     .of()
@@ -72,7 +75,7 @@ public class ModBlocks {
                     .noOcclusion()
                     .replaceable()
                     .mapColor(MapColor.PLANT)
-            , 9, HarvestableBlock.HarvestType.COMMON));
+            , 9, BaseProfessionCollectionBlock.ResourceType.RARE));
     public static final RegistryObject<Block> HARVESTABLE_BLOCK_9_RARE_2 = registerBlock("harvestable_block_9_rare_2",
             () -> new HarvestableBlock(BlockBehaviour.Properties
                     .of()
@@ -82,7 +85,7 @@ public class ModBlocks {
                     .noOcclusion()
                     .replaceable()
                     .mapColor(MapColor.PLANT)
-            , 9, HarvestableBlock.HarvestType.COMMON));
+            , 9, BaseProfessionCollectionBlock.ResourceType.RARE));
     public static final RegistryObject<Block> HARVESTABLE_BLOCK_9_TREASURE_1 = registerBlock("harvestable_block_9_treasure_1",
             () -> new HarvestableBlock(BlockBehaviour.Properties
                     .of()
@@ -92,8 +95,48 @@ public class ModBlocks {
                     .noOcclusion()
                     .replaceable()
                     .mapColor(MapColor.PLANT)
-            , 9, HarvestableBlock.HarvestType.COMMON));
+            , 9, BaseProfessionCollectionBlock.ResourceType.TREASURE));
 
+    public static final RegistryObject<Block> HEAVEN_ALCHEMY_9_TOOL = registerAlchemyBlock("heaven_alchemy_tool",
+            () -> new AlchemyToolBlock(BlockBehaviour.Properties.of()
+                    .strength(5.0f, 6.0f)
+                    .sound(SoundType.METAL),
+                    AlchemyToolBlock.Grades.HEAVEN,
+                    9
+            ),
+            AlchemyToolBlock.Grades.HEAVEN,
+            9
+    );
+    public static final RegistryObject<Block> EARTH_ALCHEMY_9_TOOL = registerAlchemyBlock("earth_alchemy_tool",
+            () -> new AlchemyToolBlock(BlockBehaviour.Properties.of()
+                    .strength(5.0f, 6.0f)
+                    .sound(SoundType.METAL),
+                    AlchemyToolBlock.Grades.EARTH,
+                    9
+            ),
+            AlchemyToolBlock.Grades.EARTH,
+            9
+    );
+    public static final RegistryObject<Block> MYSTIC_ALCHEMY_9_TOOL = registerAlchemyBlock("mystic_alchemy_tool",
+            () -> new AlchemyToolBlock(BlockBehaviour.Properties.of()
+                    .strength(5.0f, 6.0f)
+                    .sound(SoundType.METAL),
+                    AlchemyToolBlock.Grades.MYSTIC,
+                    9
+            ),
+            AlchemyToolBlock.Grades.MYSTIC,
+            9
+    );
+    public static final RegistryObject<Block> MORTAL_ALCHEMY_9_TOOL = registerAlchemyBlock("mortal_alchemy_tool",
+            () -> new AlchemyToolBlock(BlockBehaviour.Properties.of()
+                    .strength(5.0f, 6.0f)
+                    .sound(SoundType.METAL),
+                    AlchemyToolBlock.Grades.MORTAL,
+                    9
+            ),
+            AlchemyToolBlock.Grades.MORTAL,
+            9
+    );
 
     public static final RegistryObject<Block> ALEXANDRITE_BLOCK = registerBlock("alexandrite_block",
             () -> new Block(BlockBehaviour.Properties.of()
@@ -121,6 +164,18 @@ public class ModBlocks {
 
     private static <T extends Block> void registerBlockItem(String name, RegistryObject<T> block) {
         ModItems.ITEMS.register(name,() -> new BlockItem(block.get(), new Item.Properties()));
+    }
+
+    private static RegistryObject<Block> registerAlchemyBlock(String name, Supplier<AlchemyToolBlock> block,
+                                                              AlchemyToolBlock.Grades grade, int rank) {
+        RegistryObject<Block> toReturn = BLOCKS.register(name, block);
+        registerAlchemyBlockItem(name, toReturn, grade, rank);
+        return toReturn;
+    }
+
+    private static void registerAlchemyBlockItem(String name, RegistryObject<Block> block,
+                                                 AlchemyToolBlock.Grades grade, int rank) {
+        ModItems.ITEMS.register(name, () -> new AlchemyToolBlockItem(block.get(), new Item.Properties(), grade, rank));
     }
 
     public static void register(IEventBus eventBus) {

@@ -22,6 +22,7 @@ import com.blacksnow1002.realmmod.mailbox.MailboxStorage;
 import com.blacksnow1002.realmmod.network.ModMessages;
 import com.blacksnow1002.realmmod.network.packets.S2C.MailSyncPacket;
 import com.blacksnow1002.realmmod.network.packets.S2C.RealmSyncPacket;
+import com.blacksnow1002.realmmod.profession.alchemy.capability.ProfessionAlchemyProvider;
 import com.blacksnow1002.realmmod.profession.common.ProfessionHeartDemonProvider;
 import com.blacksnow1002.realmmod.profession.ProfessionProvider;
 import com.blacksnow1002.realmmod.profession.harvest.capability.ProfessionHarvestProvider;
@@ -172,6 +173,12 @@ public class ModEvents {
                 event.addCapability(
                         ResourceLocation.fromNamespaceAndPath(RealmMod.MOD_ID, ProfessionMiningProvider.IDENTIFIER),
                         new ProfessionMiningProvider()
+                );
+            }
+            if(!player.getCapability(ModCapabilities.PROFESSION_ALCHEMY_CAP).isPresent()){
+                event.addCapability(
+                        ResourceLocation.fromNamespaceAndPath(RealmMod.MOD_ID, ProfessionAlchemyProvider.IDENTIFIER),
+                        new ProfessionAlchemyProvider()
                 );
             }
 
@@ -337,6 +344,12 @@ public class ModEvents {
             });
             originalPlayer.getCapability(ModCapabilities.PROFESSION_MINING_CAP).ifPresent(oldData -> {
                 newPlayer.getCapability(ModCapabilities.PROFESSION_MINING_CAP).ifPresent(newData -> {
+                    CompoundTag tag = oldData.saveNBTData();
+                    newData.loadNBTData(tag);
+                });
+            });
+            originalPlayer.getCapability(ModCapabilities.PROFESSION_ALCHEMY_CAP).ifPresent(oldData -> {
+                newPlayer.getCapability(ModCapabilities.PROFESSION_ALCHEMY_CAP).ifPresent(newData -> {
                     CompoundTag tag = oldData.saveNBTData();
                     newData.loadNBTData(tag);
                 });

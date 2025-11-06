@@ -38,6 +38,11 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         dropSelf(ModBlocks.HARVESTABLE_BLOCK_9_RARE_2.get());
         dropSelf(ModBlocks.HARVESTABLE_BLOCK_9_TREASURE_1.get());
 
+        dropSelf(ModBlocks.MORTAL_ALCHEMY_9_TOOL.get());
+        dropSelf(ModBlocks.MYSTIC_ALCHEMY_9_TOOL.get());
+        dropSelf(ModBlocks.EARTH_ALCHEMY_9_TOOL.get());
+        dropSelf(ModBlocks.HEAVEN_ALCHEMY_9_TOOL.get());
+
         this.add(ModBlocks.ALEXANDRITE_ORE.get(),
                 block -> createOreDrop(ModBlocks.ALEXANDRITE_ORE.get(), ModItems.RAW_ALEXANDRITE.get()));
         this.add(ModBlocks.ALEXANDRITE_DEEPSLATE_ORE.get(),

@@ -36,6 +36,15 @@ public class ModBlockStateProvider extends BlockStateProvider {
         crossBlock(ModBlocks.HARVESTABLE_BLOCK_9_RARE_1.get());
         crossBlock(ModBlocks.HARVESTABLE_BLOCK_9_RARE_2.get());
         largeMushroomBlock(ModBlocks.HARVESTABLE_BLOCK_9_TREASURE_1.get());
+
+        this.simpleBlockWithItem(ModBlocks.MORTAL_ALCHEMY_9_TOOL.get(),
+                models().getExistingFile(mcLoc("block/furnace")));
+        this.simpleBlockWithItem(ModBlocks.MYSTIC_ALCHEMY_9_TOOL.get(),
+            models().getExistingFile(mcLoc("block/furnace")));
+        this.simpleBlockWithItem(ModBlocks.EARTH_ALCHEMY_9_TOOL.get(),
+            models().getExistingFile(mcLoc("block/furnace")));
+        this.simpleBlockWithItem(ModBlocks.HEAVEN_ALCHEMY_9_TOOL.get(),
+            models().getExistingFile(mcLoc("block/furnace")));
     }
 
     private void blockWithItem(RegistryObject<Block> blockRegistryObject) {

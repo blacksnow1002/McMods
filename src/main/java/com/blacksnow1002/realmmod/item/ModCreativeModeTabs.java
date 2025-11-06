@@ -58,6 +58,7 @@ public class ModCreativeModeTabs {
                     .displayItems((itemDisplayParameters, output) -> {
 
                         output.accept(ModItems.FOUNDATION_BUILD_ELIXIR.get());
+                        output.accept(ModItems.HEALING_PILL_9.get());
                     }).build());
 
     public static final RegistryObject<CreativeModeTab> HARVEST_TOOlS_TAB = CREATIVE_MODE_TABS.register("harvest_tool_tab",
@@ -70,6 +71,11 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.HARVEST_TOOL_9_EARTH.get());
                         output.accept(ModItems.HARVEST_TOOL_9_MYSTIC.get());
                         output.accept(ModItems.HARVEST_TOOL_9_MORTAL.get());
+
+                        output.accept(ModBlocks.MORTAL_ALCHEMY_9_TOOL.get());
+                        output.accept(ModBlocks.MYSTIC_ALCHEMY_9_TOOL.get());
+                        output.accept(ModBlocks.EARTH_ALCHEMY_9_TOOL.get());
+                        output.accept(ModBlocks.HEAVEN_ALCHEMY_9_TOOL.get());
                     }).build());
 
     public static final RegistryObject<CreativeModeTab> HARVESTABLE_BLOCKS_TAB = CREATIVE_MODE_TABS.register("harvestable_blocks_tab",
@@ -86,6 +92,8 @@ public class ModCreativeModeTabs {
                         output.accept(ModBlocks.HARVESTABLE_BLOCK_9_TREASURE_1.get());
 
                         output.accept(ModItems.TOOL_REFORGE_STONE.get());
+
+                        output.accept(ModItems.ALCHEMY_RECIPE_HEALING_9.get());
                     }).build());
 
     public static void register(IEventBus eventBus) {

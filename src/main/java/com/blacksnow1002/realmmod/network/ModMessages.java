@@ -2,6 +2,7 @@ package com.blacksnow1002.realmmod.network;
 
 import com.blacksnow1002.realmmod.network.packets.C2S.*;
 import com.blacksnow1002.realmmod.network.packets.S2C.*;
+import com.blacksnow1002.realmmod.profession.alchemy.network.C2S.StartAlchemyPacket;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
 import net.minecraftforge.network.ChannelBuilder;
@@ -103,6 +104,11 @@ public class ModMessages {
                 .encoder(ClaimMailPacket::encode)  // packet -> FriendlyByteBuf
                 .consumerMainThread(ClaimMailPacket::handle) // 處理 (主執行緒)
                 .add();
+        INSTANCE.messageBuilder(StartAlchemyPacket.class, nextId(), NetworkDirection.PLAY_TO_SERVER)
+                .decoder(StartAlchemyPacket::new)      // FriendlyByteBuf -> packet
+                .encoder(StartAlchemyPacket::encode)  // packet -> FriendlyByteBuf
+                .consumerMainThread(StartAlchemyPacket::handle) // 處理 (主執行緒)
+                .add();
 
 
 
@@ -184,6 +190,10 @@ public class ModMessages {
     }
 
     public static void sendToServer(ClaimMailPacket packet) {
+        INSTANCE.send(packet, PacketDistributor.SERVER.noArg());
+    }
+
+    public static void sendToServer(StartAlchemyPacket packet) {
         INSTANCE.send(packet, PacketDistributor.SERVER.noArg());
     }
 

@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:item/generated",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "layer0": "realmmod:block/harvestable_block_9_treasure_1"
+  }
+}

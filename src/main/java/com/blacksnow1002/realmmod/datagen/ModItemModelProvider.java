@@ -51,6 +51,20 @@ public class ModItemModelProvider extends ItemModelProvider {
         blockItemWithGenerated(ModBlocks.HARVESTABLE_BLOCK_9_RARE_1.get());
         blockItemWithGenerated(ModBlocks.HARVESTABLE_BLOCK_9_RARE_2.get());
         blockItemWithGenerated(ModBlocks.HARVESTABLE_BLOCK_9_TREASURE_1.get());
+
+        blockItemWithExistingModel(ModBlocks.MORTAL_ALCHEMY_9_TOOL.get(), "furnace");
+        blockItemWithExistingModel(ModBlocks.MYSTIC_ALCHEMY_9_TOOL.get(), "furnace");
+        blockItemWithExistingModel(ModBlocks.EARTH_ALCHEMY_9_TOOL.get(), "furnace");
+        blockItemWithExistingModel(ModBlocks.HEAVEN_ALCHEMY_9_TOOL.get(), "furnace");
+
+        getBuilder(ModItems.ALCHEMY_RECIPE_HEALING_9.getId().getPath())
+                .parent(new ModelFile.UncheckedModelFile("item/generated"))
+                .texture("layer0", modLoc("item/alchemy_recipe"));
+
+        getBuilder(ModItems.HEALING_PILL_9.getId().getPath())
+                .parent(new ModelFile.UncheckedModelFile("item/generated"))
+                .texture("layer0", modLoc("item/alchemy_pill"));
+
     }
 
     private void basicItemWithVanillaParent(Item item, String vanillaItemName) {
@@ -68,5 +82,11 @@ public class ModItemModelProvider extends ItemModelProvider {
                 .parent(new ModelFile.UncheckedModelFile("item/generated"))
                 .texture("layer0", modLoc("block/" + path))
                 .renderType("cutout");
+    }
+
+    private void blockItemWithExistingModel(Block block, String vanillaBlockModel) {
+        ResourceLocation blockId = ForgeRegistries.BLOCKS.getKey(block);
+        getBuilder(blockId.getPath())
+                .parent(new ModelFile.UncheckedModelFile(mcLoc("block/" + vanillaBlockModel)));
     }
 }

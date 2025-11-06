@@ -2,7 +2,8 @@ package com.blacksnow1002.realmmod.profession;
 
 public enum ProfessionType {
     HARVEST("採集", "harvest"),
-    MINING("挖礦", "mining");
+    MINING("挖礦", "mining"),
+    ALCHEMY("煉丹", "alchemy");
 
     private final String displayName;
     private final String id;

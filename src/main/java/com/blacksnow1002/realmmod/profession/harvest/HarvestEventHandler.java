@@ -106,8 +106,9 @@ public class HarvestEventHandler {
 
         if (result.success) {
             if (!level.isClientSide && level instanceof ServerLevel serverLevel) {
-                serverLevel.setBlockAndUpdate(pos, Blocks.AIR.defaultBlockState());
-                CollectionBlockRespawnManager.recordBroke(serverLevel, pos, block, blockState);
+                // TODO: 刪除註解
+//                serverLevel.setBlockAndUpdate(pos, Blocks.AIR.defaultBlockState());
+//                CollectionBlockRespawnManager.recordBroke(serverLevel, pos, block, blockState);
             }
 
             handleSuccess(player, cap, harvestableBlock, tool, held, result);
@@ -330,9 +331,9 @@ public class HarvestEventHandler {
 
             if (increment > 0) {
                 cap.addSuccessRateBonus(blockId, increment);
-                double newRate = cap.getSuccessRateBonus(blockId);
+                double bonusRate = cap.getSuccessRateBonus(blockId);
                 player.sendSystemMessage(Component.literal(
-                        String.format("§7該產物成功率提升至 %.1f%%", (blockType.getBaseSuccessRate() + newRate + 0.5) * 100)
+                        String.format("§7該產物成功率提升至 %.1f%%", (blockType.getBaseSuccessRate() + bonusRate) * 100)
                 ));
             }
         }

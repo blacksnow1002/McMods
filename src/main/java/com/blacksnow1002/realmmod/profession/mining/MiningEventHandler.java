@@ -106,8 +106,9 @@ public class MiningEventHandler {
 
         if (result.success) {
             if (!level.isClientSide && level instanceof ServerLevel serverLevel) {
-                serverLevel.setBlockAndUpdate(pos, Blocks.AIR.defaultBlockState());
-                CollectionBlockRespawnManager.recordBroke(serverLevel, pos, block, blockState);
+                // TODO 刪除註解
+//                serverLevel.setBlockAndUpdate(pos, Blocks.AIR.defaultBlockState());
+//                CollectionBlockRespawnManager.recordBroke(serverLevel, pos, block, blockState);
             }
 
             handleSuccess(player, cap, harvestableBlock, tool, held, result);
