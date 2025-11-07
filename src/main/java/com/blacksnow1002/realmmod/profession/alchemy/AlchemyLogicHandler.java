@@ -41,7 +41,7 @@ public class AlchemyLogicHandler {
     private static final float LOW_RANK_SPIRIT = 0.15f;
     private static final float LOW_RANK_DAO = 0.10f;
 
-    private static final int ALCHEMY_TIME = 600;
+    private static int ALCHEMY_TIME = 600;
 
     // 完成煉丹
     public static void startAlchemy(Player player, BlockEntity blockEntity, ItemStack recipeItem,
@@ -117,20 +117,22 @@ public class AlchemyLogicHandler {
             return;
         }
 
-        furnace.consumeDurability();
+        int count = recipe.evaluateCount(demonCore, mainMaterial1, mainMaterial2, auxiliaryMaterialStack);
 
-        recipe.shrinkMaterial(itemHandler);
+        furnace.consumeDurability(count);
+
+        recipe.shrinkMaterial(itemHandler, count);
 
         PillQuality quality = calculateQuality(cap, recipe, rankDiff, demonCap.isHeartDemon(), auxiliaryMaterialStack);
 
         ItemStack outputPill;
         String returnText;
         if (quality.isWaste()) {
-            returnText = handleWaste(cap, recipe, grade, bonus, demonCap, itemHandler);
+            returnText = handleWaste(cap, recipe, count, grade, bonus, demonCap, itemHandler);
 
             outputPill = new ItemStack(ModItems.ALCHEMY_WASTE_ITEM.get(), 1);
         } else {
-            AbstractMap.SimpleEntry<Integer, String> result = handleSuccess(cap, recipe, grade, bonus, quality, rankDiff);
+            AbstractMap.SimpleEntry<Integer, String> result = handleSuccess(cap, recipe, count, grade, bonus, quality, rankDiff);
             int outputCount = result.getKey();
             returnText = result.getValue();
 
@@ -139,12 +141,13 @@ public class AlchemyLogicHandler {
         }
 
         AlchemyTask task;
+        ALCHEMY_TIME *= count;
         if (bonus == AlchemyToolBlock.BonusEntry.ENTRY_6){
             task = new AlchemyTask(blockPos, playerUUID, serverLevel, serverLevel.getServer().overworld().getGameTime() + ALCHEMY_TIME / 2, outputPill, returnText);
-            player.sendSystemMessage(Component.literal("開始煉丹，預計15秒後煉丹結束"));
+            player.sendSystemMessage(Component.literal("開始煉丹，預計" + (ALCHEMY_TIME / 40) +  "秒後煉丹結束"));
         } else {
             task = new AlchemyTask(blockPos, playerUUID, serverLevel, serverLevel.getServer().overworld().getGameTime() + ALCHEMY_TIME, outputPill, returnText);
-            player.sendSystemMessage(Component.literal("開始煉丹，預計30秒後煉丹結束"));
+            player.sendSystemMessage(Component.literal("開始煉丹，預計" + (ALCHEMY_TIME / 20) + "秒後煉丹結束"));
         }
 
         manager.startAlchemyTask(task);
@@ -199,7 +202,7 @@ public class AlchemyLogicHandler {
         //TODO: 加上輔材適用邏輯(還沒想好)
     }
 
-    private static String handleWaste(IProfessionAlchemyData cap, BaseAlchemyRecipe recipe,
+    private static String handleWaste(IProfessionAlchemyData cap, BaseAlchemyRecipe recipe, int count,
                                       AlchemyToolBlock.Grades grade, AlchemyToolBlock.BonusEntry bonus,
                                       IProfessionHeartDemonData demonCap, ItemStackHandler itemHandler) {
 
@@ -217,19 +220,19 @@ public class AlchemyLogicHandler {
         // 詞條二：返還其中一種主材
         if (bonus == AlchemyToolBlock.BonusEntry.ENTRY_2) {
             if (rand.nextBoolean()) {
-                recipe.returnMaterial(3, itemHandler);
+                recipe.returnMaterial(3, count, itemHandler);
             } else {
-                recipe.returnMaterial(4, itemHandler);
+                recipe.returnMaterial(4, count, itemHandler);
             }
             returnText += "\n§a觸發詞條二：返還了部分材料";
         }
 
         String pillId = recipe.getId();
         ProfessionAlchemyData.AlchemyQualityRate increase = new ProfessionAlchemyData.AlchemyQualityRate(
-                grade.getFloatingIncrease(),
-                grade.getCloudIncrease(),
-                grade.getSpiritIncrease(),
-                grade.getDaoIncrease()
+                grade.getFloatingIncrease() * count,
+                grade.getCloudIncrease()  * count,
+                grade.getSpiritIncrease()  * count,
+                grade.getDaoIncrease() * count
         );
         cap.addQualityRateBonus(pillId, increase);
 
@@ -237,13 +240,13 @@ public class AlchemyLogicHandler {
     }
 
     private static AbstractMap.SimpleEntry<Integer, String> handleSuccess(
-            IProfessionAlchemyData cap, BaseAlchemyRecipe recipe,
+            IProfessionAlchemyData cap, BaseAlchemyRecipe recipe, int count,
             AlchemyToolBlock.Grades grade, AlchemyToolBlock.BonusEntry bonus,
             PillQuality quality, int rankDiff) {
 
         String returnText = "§a煉丹成功! 獲得 §d" + quality.getDisplayName() + "§a" + recipe.getDisplayName();
 
-        int outputCount = 1;
+        int outputCount = count;
 
         // 詞條四：30%機率雙倍產量
         if (bonus == AlchemyToolBlock.BonusEntry.ENTRY_4) {
@@ -263,7 +266,7 @@ public class AlchemyLogicHandler {
 
 
 
-        int baseExp = 10;
+        int baseExp = 10 * count;
         if (rankDiff == 0) {
             float expMultiplier = 1.0f + grade.getExpBonus();
 

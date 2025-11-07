@@ -54,19 +54,30 @@ public abstract class BaseAlchemyRecipe {
                 mainMaterial2.matches(slot3);
     }
 
-    public void shrinkMaterial(ItemStackHandler itemHandler) {
-        itemHandler.extractItem(2, demonCore.count, false);
-        itemHandler.extractItem(3, mainMaterial1.count, false);
-        itemHandler.extractItem(4, mainMaterial2.count, false);
-        itemHandler.extractItem(5, 1, false);
+    public int evaluateCount(ItemStack slot1, ItemStack slot2, ItemStack slot3,  ItemStack slot4) {
+        int tempMin =  Math.min(slot1.getCount() / demonCore.count, slot2.getCount() / mainMaterial1.count);
+        tempMin = Math.min(tempMin, slot3.getCount() / mainMaterial2.count);
+
+        if (slot4.isEmpty()) {
+            return tempMin;
+        } else {
+            return Math.min(tempMin, slot4.getCount());
+        }
     }
 
-    public void returnMaterial(int slot ,ItemStackHandler itemHandler) {
+    public void shrinkMaterial(ItemStackHandler itemHandler, int count) {
+        itemHandler.extractItem(2, demonCore.count * count, false);
+        itemHandler.extractItem(3, mainMaterial1.count * count, false);
+        itemHandler.extractItem(4, mainMaterial2.count * count, false);
+        itemHandler.extractItem(5, 1 * count, false);
+    }
+
+    public void returnMaterial(int slot , int count, ItemStackHandler itemHandler) {
         ItemStack stack = itemHandler.getStackInSlot(slot);
         if (slot == 3) {
-            itemHandler.setStackInSlot(slot, new ItemStack(stack.getItem(), stack.getCount() + mainMaterial1.count));
+            itemHandler.setStackInSlot(slot, new ItemStack(stack.getItem(), stack.getCount() + mainMaterial1.count * count));
         } else {
-            itemHandler.setStackInSlot(slot, new ItemStack(stack.getItem(), stack.getCount() + mainMaterial2.count));
+            itemHandler.setStackInSlot(slot, new ItemStack(stack.getItem(), stack.getCount() + mainMaterial2.count * count));
         }
     }
 

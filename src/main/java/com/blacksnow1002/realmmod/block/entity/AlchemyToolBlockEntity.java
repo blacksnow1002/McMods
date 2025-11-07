@@ -85,10 +85,10 @@ public class AlchemyToolBlockEntity extends BlockEntity {
      * 消耗耐久度
      * @return true 如果工具還能使用，false 如果工具已損壞
      */
-    public boolean consumeDurability() {
+    public boolean consumeDurability(int count) {
         if (grade.hasUnbreakable()) return true;
 
-        currentDurability--;
+        currentDurability -= count;
         setChanged();
 
         if (currentDurability <= 0) {
