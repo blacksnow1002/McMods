@@ -30,10 +30,12 @@ public class ModItems {
     public static final RegistryObject<Item> TECHNIQUE = ITEMS.register("technique",
             () -> new TechniqueItem(TechniqueRegistry.TechniqueIds.FIRE_SUPREME, new Item.Properties()));
 
-    public static final RegistryObject<Item> HEALING_PILL_9 = ITEMS.register("healing_pill_9",
-            () -> new HealingPillItem(new Item.Properties().food(ModFoodProperties.ELIXIR)));
     public static final RegistryObject<Item> ALCHEMY_RECIPE_HEALING_9 = ITEMS.register("alchemy_recipe_healing_9",
             () -> new AlchemyRecipeItem(new Item.Properties(), HealingPillRecipe::new));
+    public static final RegistryObject<Item> HEALING_PILL_9 = ITEMS.register("healing_pill_9",
+            () -> new HealingPillItem(new Item.Properties().food(ModFoodProperties.ELIXIR)));
+    public static final RegistryObject<Item> ALCHEMY_WASTE_ITEM = ITEMS.register("alchemy_waste_item",
+            () -> new Item(new Item.Properties().food(ModFoodProperties.ELIXIR)));
 
     // 採集工具
     public static final RegistryObject<Item> HARVEST_TOOL_9_MORTAL = ITEMS.register("harvest_tool_9_mortal",

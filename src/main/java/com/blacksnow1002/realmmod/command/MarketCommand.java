@@ -51,8 +51,8 @@ public class MarketCommand {
                                 Commodity c = commodities.get(i);
 
                                 // 顯示商品信息
-                                Component itemName = Component.literal("§f" + c.item.getHoverName().getString());
-                                Component count = Component.literal(" §7x" + c.item.getCount());
+                                Component itemName = Component.literal("§f" + c.itemStack.getHoverName().getString());
+                                Component count = Component.literal(" §7x" + c.itemStack.getCount());
                                 Component price = Component.literal(" §e" + c.price + "靈石");
                                 Component seller = Component.literal(" §7(賣家: " + c.sellerName + ")");
 
@@ -169,8 +169,8 @@ public class MarketCommand {
                             for (Commodity c : myCommodities) {
                                 String timeStr = DATE_FORMAT.format(new Date(c.getTimestamp()));
 
-                                Component message = Component.literal("§f" + c.item.getHoverName().getString())
-                                        .append(Component.literal(" §7x" + c.item.getCount()))
+                                Component message = Component.literal("§f" + c.itemStack.getHoverName().getString())
+                                        .append(Component.literal(" §7x" + c.itemStack.getCount()))
                                         .append(Component.literal(" §e" + c.price + "靈石"))
                                         .append(Component.literal(" §8(" + timeStr + ")"));
 

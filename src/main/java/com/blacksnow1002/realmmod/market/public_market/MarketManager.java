@@ -76,19 +76,19 @@ public class MarketManager {
                 "萬寶樓",
                 commodity.price,
                 NonNullList.create(),
-                "你售出了物品：" + commodity.item.getHoverName().getString() + "獲得靈幣" + commodity.price
+                "你售出了物品：" + commodity.itemStack.getHoverName().getString() + "獲得靈幣" + commodity.price
         );
 
         // 發送郵件給買家（給物品）
         NonNullList<ItemStack> items = NonNullList.create();
-        items.add(commodity.item);
+        items.add(commodity.itemStack);
         SendMail.sendMail(
                 buyer.serverLevel(),
                 buyer.getUUID(),
                 "萬寶樓",
                 0,
                 items,
-                "你購買了物品：" + commodity.item.getHoverName().getString()
+                "你購買了物品：" + commodity.itemStack.getHoverName().getString()
         );
 
         buyer.sendSystemMessage(Component.literal("✅ 購買成功，物品將由萬寶樓寄送"));
@@ -112,14 +112,14 @@ public class MarketManager {
 
         // 退還物品給玩家
         NonNullList<ItemStack> items = NonNullList.create();
-        items.add(commodity.item);
+        items.add(commodity.itemStack);
         SendMail.sendMail(
                 player.serverLevel(),
                 player.getUUID(),
                 "萬寶樓",
                 0,
                 items,
-                "你下架了物品:" + commodity.item.getHoverName().getString()
+                "你下架了物品:" + commodity.itemStack.getHoverName().getString()
         );
 
         storage.removeCommodity(commodityId);

@@ -63,11 +63,11 @@ public record StartAlchemyPacket(BlockPos pos, List<ItemStack> items) implements
             if (player != null && player.containerMenu instanceof AlchemyFurnaceMenu menu) {
                 BlockEntity blockEntity = menu.getBlockEntity();
                 ItemStackHandler itemHandler = menu.getItemHandler();
-                Boolean result =  AlchemyLogicHandler.startAlchemy(player, blockEntity,
+                AlchemyLogicHandler.startAlchemy(player, blockEntity,
                         items.get(0), items.get(2), items.get(3), items.get(4), items.get(5),
                         itemHandler
                 );
-                if (!result) {player.closeContainer();}
+                player.closeContainer();
             }
         });
         context.setPacketHandled(true);

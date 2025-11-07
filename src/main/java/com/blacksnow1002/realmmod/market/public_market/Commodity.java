@@ -10,7 +10,7 @@ public class Commodity {
     public UUID commodityId;
     public UUID sellerId;
     public String sellerName;
-    public ItemStack item;
+    public ItemStack itemStack;
     public int price;
     public long timestamp;
 
@@ -20,7 +20,7 @@ public class Commodity {
         this.commodityId = commodityId == null ? UUID.randomUUID() : commodityId;
         this.sellerId = sellerId;
         this.sellerName = sellerName;
-        this.item = item.copy();
+        this.itemStack = item.copy();
         this.price = price;
         this.timestamp = System.currentTimeMillis();
     }
@@ -37,8 +37,8 @@ public class Commodity {
         return sellerName;
     }
 
-    public ItemStack getItem() {
-        return item;
+    public ItemStack getItemStack() {
+        return itemStack;
     }
 
     public int getPrice() {
@@ -58,7 +58,7 @@ public class Commodity {
         tag.putUUID("sellerId", sellerId);
         tag.putString("sellerName", sellerName);
         tag.putInt("price", price);
-        tag.put("Item", item.save(registries));
+        tag.put("Item", itemStack.save(registries));
         tag.putLong("timestamp", timestamp);
         return tag;
     }

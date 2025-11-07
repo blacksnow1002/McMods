@@ -27,8 +27,7 @@ public class CommodityStorage extends SavedData {
     // 計算過期日期
     private final Map<Integer, Set<UUID>> expiryBuckets = new ConcurrentHashMap<>();
 
-    public CommodityStorage() {
-    }
+    public CommodityStorage() {}
 
     // 上架商品
     public void addCommodity(Commodity commodity) {
@@ -138,8 +137,8 @@ public class CommodityStorage extends SavedData {
                 commodity.getSellerId(),
                 "萬寶樓",
                 0,
-                NonNullList.of(ItemStack.EMPTY, commodity.getItem()),
-                "您的商品已過期並退還" + commodity.getItem().getHoverName().getString());
+                NonNullList.of(ItemStack.EMPTY, commodity.getItemStack()),
+                "您的商品已過期並退還" + commodity.getItemStack().getHoverName().getString());
     }
 
 
@@ -150,8 +149,7 @@ public class CommodityStorage extends SavedData {
                             CommodityStorage::new,
                             CommodityStorage::load,
                             null
-                    ),
-                    DATA_NAME
+                    ), DATA_NAME
             );
         }
         return null;

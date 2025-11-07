@@ -59,6 +59,7 @@ public class ModCreativeModeTabs {
 
                         output.accept(ModItems.FOUNDATION_BUILD_ELIXIR.get());
                         output.accept(ModItems.HEALING_PILL_9.get());
+                        output.accept(ModItems.ALCHEMY_WASTE_ITEM.get());
                     }).build());
 
     public static final RegistryObject<CreativeModeTab> HARVEST_TOOlS_TAB = CREATIVE_MODE_TABS.register("harvest_tool_tab",
