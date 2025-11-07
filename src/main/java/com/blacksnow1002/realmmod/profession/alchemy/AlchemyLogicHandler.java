@@ -105,6 +105,11 @@ public class AlchemyLogicHandler {
             return false;
         }
 
+        if (!itemHandler.getStackInSlot(6).isEmpty()) {
+            player.sendSystemMessage(Component.literal("請先取出已煉成丹藥"));
+            return false;
+        }
+
         furnace.consumeDurability();
 
         recipe.shrinkMaterial(itemHandler);
