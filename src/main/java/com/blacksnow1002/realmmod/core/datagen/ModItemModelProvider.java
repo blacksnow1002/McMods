@@ -27,15 +27,7 @@ public class ModItemModelProvider extends ItemModelProvider {
 
         basicItem(ModItems.TECHNIQUE.get());
 
-        basicItem(ModItems.MAGIC_DRUG.get());
-
-        basicItem(ModItems.ALEXANDRITE.get());
-        basicItem(ModItems.RAW_ALEXANDRITE.get());
-
-        basicItem(ModItems.CHISEL.get());
-        basicItem(ModItems.KOHLRABI.get());
         basicItem(ModItems.SPIRIT_FRUIT.get());
-        basicItem(ModItems.AURORA_ASHES.get());
 
         basicItem(ModItems.TOOL_REFORGE_STONE.get());
 
