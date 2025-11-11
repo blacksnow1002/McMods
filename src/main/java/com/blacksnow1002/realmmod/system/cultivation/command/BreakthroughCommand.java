@@ -1,6 +1,6 @@
 package com.blacksnow1002.realmmod.system.cultivation.command;
 
-import com.blacksnow1002.realmmod.core.capability.ModCapabilities;
+import com.blacksnow1002.realmmod.common.capability.ModCapabilities;
 import com.mojang.brigadier.Command;
 import com.mojang.brigadier.CommandDispatcher;
 import net.minecraft.commands.CommandSourceStack;

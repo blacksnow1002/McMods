@@ -1,11 +1,11 @@
 package com.blacksnow1002.realmmod.system.profession.harvest;
 
 import com.blacksnow1002.realmmod.RealmMod;
-import com.blacksnow1002.realmmod.core.registry.block.ModBlocks;
+import com.blacksnow1002.realmmod.common.registry.block.ModBlocks;
 import com.blacksnow1002.realmmod.system.profession.harvest.block.HarvestableBlock;
 import com.blacksnow1002.realmmod.system.profession.base.block.BaseProfessionCollectionBlock;
 import com.blacksnow1002.realmmod.system.broadcast.BroadcastManager;
-import com.blacksnow1002.realmmod.core.capability.ModCapabilities;
+import com.blacksnow1002.realmmod.common.capability.ModCapabilities;
 import com.blacksnow1002.realmmod.system.profession.harvest.item.HarvestToolItem;
 import com.blacksnow1002.realmmod.system.profession.base.capability.IProfessionHeartDemonData;
 import com.blacksnow1002.realmmod.system.profession.harvest.capability.IProfessionHarvestData;

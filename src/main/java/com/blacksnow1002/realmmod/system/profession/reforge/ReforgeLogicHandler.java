@@ -2,8 +2,8 @@ package com.blacksnow1002.realmmod.system.profession.reforge;
 
 import com.blacksnow1002.realmmod.system.profession.reforge.block.ReforgeToolBlock;
 import com.blacksnow1002.realmmod.system.profession.reforge.block.ReforgeToolBlockEntity;
-import com.blacksnow1002.realmmod.core.capability.ModCapabilities;
-import com.blacksnow1002.realmmod.core.registry.ModItems;
+import com.blacksnow1002.realmmod.common.capability.ModCapabilities;
+import com.blacksnow1002.realmmod.common.registry.ModItems;
 import com.blacksnow1002.realmmod.system.profession.reforge.item.ReforgeAuxiliaryItem;
 import com.blacksnow1002.realmmod.system.profession.reforge.item.ReforgeMainAffixItem;
 import com.blacksnow1002.realmmod.system.profession.reforge.item.ReforgeMainElementItem;

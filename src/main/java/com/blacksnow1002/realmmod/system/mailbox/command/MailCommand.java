@@ -1,10 +1,10 @@
 package com.blacksnow1002.realmmod.system.mailbox.command;
 
-import com.blacksnow1002.realmmod.system.mailbox.client.cache.ClientMailCache;
+import com.blacksnow1002.realmmod.client.mailbox.cache.ClientMailCache;
 import com.blacksnow1002.realmmod.system.mailbox.Mail;
 import com.blacksnow1002.realmmod.system.mailbox.MailboxMenuProvider;
 import com.blacksnow1002.realmmod.system.mailbox.MailboxStorage;
-import com.blacksnow1002.realmmod.core.network.ModMessages;
+import com.blacksnow1002.realmmod.common.network.ModMessages;
 import com.blacksnow1002.realmmod.system.mailbox.network.S2C.MailSyncPacket;
 import com.mojang.authlib.GameProfile;
 import com.mojang.brigadier.Command;

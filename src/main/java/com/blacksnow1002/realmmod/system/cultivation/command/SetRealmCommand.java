@@ -1,8 +1,8 @@
 package com.blacksnow1002.realmmod.system.cultivation.command;
 
 import com.blacksnow1002.realmmod.system.cultivation.CultivationRealm;
-import com.blacksnow1002.realmmod.core.capability.ModCapabilities;
-import com.blacksnow1002.realmmod.core.network.ModMessages;
+import com.blacksnow1002.realmmod.common.capability.ModCapabilities;
+import com.blacksnow1002.realmmod.common.network.ModMessages;
 import com.blacksnow1002.realmmod.system.cultivation.network.S2C.RealmSyncPacket;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.IntegerArgumentType;

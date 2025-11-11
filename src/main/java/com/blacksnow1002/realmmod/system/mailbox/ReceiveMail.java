@@ -1,6 +1,6 @@
 package com.blacksnow1002.realmmod.system.mailbox;
 
-import com.blacksnow1002.realmmod.core.capability.ModCapabilities;
+import com.blacksnow1002.realmmod.common.capability.ModCapabilities;
 import net.minecraft.core.NonNullList;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;

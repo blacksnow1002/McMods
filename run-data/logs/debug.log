@@ -313,7 +313,7 @@ java.lang.IllegalAccessException: class io.netty.util.internal.PlatformDependent
 [0811月2025 11:46:36.756] [modloading-worker-0/DEBUG] [io.netty.util.internal.PlatformDependent/]: -Dio.netty.uninitializedArrayAllocationThreshold: -1
 [0811月2025 11:46:36.759] [modloading-worker-0/DEBUG] [io.netty.util.internal.CleanerJava9/]: java.nio.ByteBuffer.cleaner(): available
 [0811月2025 11:46:36.759] [modloading-worker-0/DEBUG] [io.netty.util.internal.PlatformDependent/]: -Dio.netty.noPreferDirect: false
-[0811月2025 11:46:36.768] [modloading-worker-0/DEBUG] [net.minecraftforge.fml.javafmlmod.AutomaticEventSubscriber/LOADING]: Auto-subscribing com.blacksnow1002.realmmod.core.client.ClientSetup to MOD
+[0811月2025 11:46:36.768] [modloading-worker-0/DEBUG] [net.minecraftforge.fml.javafmlmod.AutomaticEventSubscriber/LOADING]: Auto-subscribing com.blacksnow1002.realmmod.common.client.ClientSetup to MOD
 [0811月2025 11:46:36.775] [modloading-worker-0/DEBUG] [net.minecraftforge.fml.javafmlmod.AutomaticEventSubscriber/LOADING]: Auto-subscribing com.blacksnow1002.realmmod.system.spell.client.input.CloneInputHandler to FORGE
 [0811月2025 11:46:36.779] [modloading-worker-0/DEBUG] [net.minecraftforge.fml.javafmlmod.AutomaticEventSubscriber/LOADING]: Auto-subscribing com.blacksnow1002.realmmod.system.spell.client.input.CreateSpellInputHandler to FORGE
 [0811月2025 11:46:36.781] [modloading-worker-0/DEBUG] [net.minecraftforge.fml.javafmlmod.AutomaticEventSubscriber/LOADING]: Auto-subscribing com.blacksnow1002.realmmod.system.cultivation.client.input.CultivationStatusInputHandler to FORGE
@@ -327,7 +327,7 @@ java.lang.IllegalAccessException: class io.netty.util.internal.PlatformDependent
 [0811月2025 11:46:36.796] [modloading-worker-0/DEBUG] [net.minecraftforge.fml.javafmlmod.AutomaticEventSubscriber/LOADING]: Auto-subscribing com.blacksnow1002.realmmod.system.spell.client.input.ShortTeleportSpellInputHandler to FORGE
 [0811月2025 11:46:36.799] [modloading-worker-0/DEBUG] [net.minecraftforge.fml.javafmlmod.AutomaticEventSubscriber/LOADING]: Auto-subscribing com.blacksnow1002.realmmod.system.spell.client.input.SpiritOutSpellInputHandler to FORGE
 [0811月2025 11:46:36.801] [modloading-worker-0/DEBUG] [net.minecraftforge.fml.javafmlmod.AutomaticEventSubscriber/LOADING]: Auto-subscribing com.blacksnow1002.realmmod.system.spell.client.input.TransformSpellInputHandler to FORGE
-[0811月2025 11:46:36.802] [modloading-worker-0/DEBUG] [net.minecraftforge.fml.javafmlmod.AutomaticEventSubscriber/LOADING]: Auto-subscribing com.blacksnow1002.realmmod.core.client.ModKeyBindings to MOD
+[0811月2025 11:46:36.802] [modloading-worker-0/DEBUG] [net.minecraftforge.fml.javafmlmod.AutomaticEventSubscriber/LOADING]: Auto-subscribing com.blacksnow1002.realmmod.common.client.ModKeyBindings to MOD
 [0811月2025 11:46:36.818] [modloading-worker-0/DEBUG] [net.minecraftforge.network.NetworkInitialization/FORGE_NETWORK]: Registering Network forge:login v0
 [0811月2025 11:46:36.818] [modloading-worker-0/DEBUG] [net.minecraftforge.network.NetworkInitialization/FORGE_NETWORK]: Registering Network forge:handshake v0
 [0811月2025 11:46:36.818] [modloading-worker-0/DEBUG] [net.minecraftforge.network.NetworkInitialization/FORGE_NETWORK]: Registering Network forge:handshake v0
@@ -340,7 +340,7 @@ java.lang.IllegalAccessException: class io.netty.util.internal.PlatformDependent
 [0811月2025 11:46:36.840] [modloading-worker-0/DEBUG] [net.minecraftforge.fml.config.ConfigTracker/CONFIG]: Config file forge-server.toml for forge tracking
 [0811月2025 11:46:36.840] [modloading-worker-0/DEBUG] [net.minecraftforge.fml.config.ConfigTracker/CONFIG]: Config file forge-common.toml for forge tracking
 [0811月2025 11:46:36.840] [modloading-worker-0/DEBUG] [net.minecraftforge.fml.javafmlmod.AutomaticEventSubscriber/LOADING]: Auto-subscribing com.blacksnow1002.realmmod.dimension.dong_tian.DongTianPlayerEvents to FORGE
-[0811月2025 11:46:36.843] [modloading-worker-0/DEBUG] [net.minecraftforge.fml.javafmlmod.AutomaticEventSubscriber/LOADING]: Auto-subscribing com.blacksnow1002.realmmod.core.registry.ModEvents to FORGE
+[0811月2025 11:46:36.843] [modloading-worker-0/DEBUG] [net.minecraftforge.fml.javafmlmod.AutomaticEventSubscriber/LOADING]: Auto-subscribing com.blacksnow1002.realmmod.common.registry.ModEvents to FORGE
 [0811月2025 11:46:36.854] [modloading-worker-0/DEBUG] [net.minecraftforge.fml.javafmlmod.AutomaticEventSubscriber/LOADING]: Auto-subscribing com.blacksnow1002.realmmod.event.WorldCapabilityEvent to FORGE
 [0811月2025 11:46:36.856] [modloading-worker-0/DEBUG] [net.minecraftforge.fml.javafmlmod.AutomaticEventSubscriber/LOADING]: Auto-subscribing com.blacksnow1002.realmmod.system.spell.handlers.DoubleJumpHandler to FORGE
 [0811月2025 11:46:36.857] [modloading-worker-0/DEBUG] [net.minecraftforge.fml.javafmlmod.AutomaticEventSubscriber/LOADING]: Auto-subscribing com.blacksnow1002.realmmod.system.cultivation.meditation.MeditationHandler to FORGE
@@ -351,7 +351,7 @@ java.lang.IllegalAccessException: class io.netty.util.internal.PlatformDependent
 [0811月2025 11:46:36.862] [modloading-worker-0/DEBUG] [net.minecraftforge.fml.javafmlmod.AutomaticEventSubscriber/LOADING]: Auto-subscribing com.blacksnow1002.realmmod.world.WorldTickHandler to FORGE
 [0811月2025 11:46:36.864] [modloading-worker-0/DEBUG] [net.minecraftforge.fml.javafmlmod.AutomaticEventSubscriber/LOADING]: Auto-subscribing com.blacksnow1002.realmmod.util.DelayedTaskHandler to FORGE
 [0811月2025 11:46:36.865] [modloading-worker-0/DEBUG] [net.minecraftforge.fml.javafmlmod.AutomaticEventSubscriber/LOADING]: Auto-subscribing net.minecraftforge.client.model.data.ModelDataManager to FORGE
-[0811月2025 11:46:36.865] [modloading-worker-0/DEBUG] [net.minecraftforge.fml.javafmlmod.AutomaticEventSubscriber/LOADING]: Auto-subscribing com.blacksnow1002.realmmod.core.registry.ModEntities$EntityAttributeRegistry to MOD
+[0811月2025 11:46:36.865] [modloading-worker-0/DEBUG] [net.minecraftforge.fml.javafmlmod.AutomaticEventSubscriber/LOADING]: Auto-subscribing com.blacksnow1002.realmmod.common.registry.ModEntities$EntityAttributeRegistry to MOD
 [0811月2025 11:46:36.867] [modloading-worker-0/DEBUG] [net.minecraftforge.fml.javafmlmod.AutomaticEventSubscriber/LOADING]: Auto-subscribing com.blacksnow1002.realmmod.profession.alchemy.AlchemyTimerManager to FORGE
 [0811月2025 11:46:36.867] [modloading-worker-0/DEBUG] [net.minecraftforge.fml.javafmlmod.AutomaticEventSubscriber/LOADING]: Auto-subscribing net.minecraftforge.client.ForgeHooksClient$ClientEvents to MOD
 [0811月2025 11:46:36.870] [modloading-worker-0/DEBUG] [net.minecraftforge.fml.javafmlmod.AutomaticEventSubscriber/LOADING]: Auto-subscribing com.blacksnow1002.realmmod.profession.harvest.HarvestEventHandler to FORGE

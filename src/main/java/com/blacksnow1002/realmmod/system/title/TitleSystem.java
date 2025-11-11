@@ -1,8 +1,8 @@
 package com.blacksnow1002.realmmod.system.title;
 
 import com.blacksnow1002.realmmod.system.broadcast.BroadcastManager;
-import com.blacksnow1002.realmmod.core.capability.ModCapabilities;
-import com.blacksnow1002.realmmod.core.network.ModMessages;
+import com.blacksnow1002.realmmod.common.capability.ModCapabilities;
+import com.blacksnow1002.realmmod.common.network.ModMessages;
 import com.blacksnow1002.realmmod.system.title.network.S2C.TitleSyncPacket;
 import com.blacksnow1002.realmmod.system.title.capability.ITitleDataManager;
 import net.minecraft.network.chat.Component;

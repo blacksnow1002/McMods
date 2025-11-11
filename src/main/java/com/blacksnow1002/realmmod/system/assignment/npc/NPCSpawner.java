@@ -1,6 +1,6 @@
 package com.blacksnow1002.realmmod.system.assignment.npc;
 
-import com.blacksnow1002.realmmod.core.registry.ModEntities;
+import com.blacksnow1002.realmmod.common.registry.ModEntities;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import org.slf4j.Logger;

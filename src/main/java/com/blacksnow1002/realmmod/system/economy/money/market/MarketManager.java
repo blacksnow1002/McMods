@@ -1,6 +1,6 @@
 package com.blacksnow1002.realmmod.system.economy.money.market;
 
-import com.blacksnow1002.realmmod.core.capability.ModCapabilities;
+import com.blacksnow1002.realmmod.common.capability.ModCapabilities;
 import com.blacksnow1002.realmmod.system.mailbox.SendMail;
 import net.minecraft.core.NonNullList;
 import net.minecraft.network.chat.Component;

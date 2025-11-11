@@ -2,7 +2,7 @@ package com.blacksnow1002.realmmod.system.profession.alchemy.network.C2S;
 
 import com.blacksnow1002.realmmod.RealmMod;
 import com.blacksnow1002.realmmod.system.profession.alchemy.AlchemyLogicHandler;
-import com.blacksnow1002.realmmod.system.profession.alchemy.screen.AlchemyFurnaceMenu;
+import com.blacksnow1002.realmmod.client.profession.alchemy.screen.AlchemyFurnaceMenu;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;

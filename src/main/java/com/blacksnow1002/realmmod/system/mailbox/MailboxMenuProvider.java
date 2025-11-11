@@ -1,6 +1,6 @@
 package com.blacksnow1002.realmmod.system.mailbox;
 
-import com.blacksnow1002.realmmod.system.mailbox.screen.MailboxScreen;
+import com.blacksnow1002.realmmod.client.mailbox.screen.MailboxScreen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.entity.player.Inventory;

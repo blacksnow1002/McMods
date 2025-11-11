@@ -1,9 +1,9 @@
 package com.blacksnow1002.realmmod.system.profession.alchemy.item;
 
-import com.blacksnow1002.realmmod.core.capability.ModCapabilities;
+import com.blacksnow1002.realmmod.common.capability.ModCapabilities;
 import com.blacksnow1002.realmmod.system.cultivation.breakthrough.capability.IRealmBreakthroughData;
 import com.blacksnow1002.realmmod.system.cultivation.breakthrough.capability.RealmBreakthroughData;
-import com.blacksnow1002.realmmod.core.registry.ModItems;
+import com.blacksnow1002.realmmod.common.registry.ModItems;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;

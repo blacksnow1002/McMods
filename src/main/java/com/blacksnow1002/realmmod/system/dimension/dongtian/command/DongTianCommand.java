@@ -1,7 +1,7 @@
 package com.blacksnow1002.realmmod.system.dimension.dongtian.command;
 
 import com.blacksnow1002.realmmod.system.cultivation.CultivationRealm;
-import com.blacksnow1002.realmmod.core.capability.ModCapabilities;
+import com.blacksnow1002.realmmod.common.capability.ModCapabilities;
 import com.blacksnow1002.realmmod.system.dimension.dongtian.DongTianManager;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.context.CommandContext;

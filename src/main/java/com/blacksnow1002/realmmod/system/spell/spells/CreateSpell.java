@@ -1,7 +1,7 @@
 package com.blacksnow1002.realmmod.system.spell.spells;
 
 import com.blacksnow1002.realmmod.system.cultivation.CultivationRealm;
-import com.blacksnow1002.realmmod.core.registry.ModItems;
+import com.blacksnow1002.realmmod.common.registry.ModItems;
 import com.blacksnow1002.realmmod.system.spell.BaseSpell;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;

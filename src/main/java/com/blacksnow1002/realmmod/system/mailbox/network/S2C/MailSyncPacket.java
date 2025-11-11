@@ -1,6 +1,6 @@
 package com.blacksnow1002.realmmod.system.mailbox.network.S2C;
 
-import com.blacksnow1002.realmmod.system.mailbox.client.cache.ClientMailCache;
+import com.blacksnow1002.realmmod.client.mailbox.cache.ClientMailCache;
 import com.blacksnow1002.realmmod.system.mailbox.Mail;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraftforge.event.network.CustomPayloadEvent;

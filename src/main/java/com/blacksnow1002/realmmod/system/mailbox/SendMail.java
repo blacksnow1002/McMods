@@ -1,6 +1,6 @@
 package com.blacksnow1002.realmmod.system.mailbox;
 
-import com.blacksnow1002.realmmod.system.mailbox.client.cache.ClientMailCache;
+import com.blacksnow1002.realmmod.client.mailbox.cache.ClientMailCache;
 import net.minecraft.core.NonNullList;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;

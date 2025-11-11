@@ -1,7 +1,7 @@
 package com.blacksnow1002.realmmod.system.cultivation.meditation;
 
 import com.blacksnow1002.realmmod.RealmMod;
-import com.blacksnow1002.realmmod.core.capability.ModCapabilities;
+import com.blacksnow1002.realmmod.common.capability.ModCapabilities;
 import com.blacksnow1002.realmmod.system.cultivation.item.SpiritStoneItem;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.Entity;

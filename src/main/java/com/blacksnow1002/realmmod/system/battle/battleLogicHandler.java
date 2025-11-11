@@ -1,6 +1,6 @@
 package com.blacksnow1002.realmmod.system.battle;
 
-import com.blacksnow1002.realmmod.core.capability.ModCapabilities;
+import com.blacksnow1002.realmmod.common.capability.ModCapabilities;
 import com.blacksnow1002.realmmod.system.battle.attribute.capability.IPlayerTotalAttributeData;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;

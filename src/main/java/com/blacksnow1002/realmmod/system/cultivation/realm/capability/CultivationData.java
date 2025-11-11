@@ -1,7 +1,7 @@
 package com.blacksnow1002.realmmod.system.cultivation.realm.capability;
 
-import com.blacksnow1002.realmmod.core.capability.ModCapabilities;
-import com.blacksnow1002.realmmod.core.network.ModMessages;
+import com.blacksnow1002.realmmod.common.capability.ModCapabilities;
+import com.blacksnow1002.realmmod.common.network.ModMessages;
 import com.blacksnow1002.realmmod.system.cultivation.network.S2C.RealmSyncPacket;
 import com.blacksnow1002.realmmod.system.cultivation.CultivationRealm;
 import net.minecraft.nbt.CompoundTag;

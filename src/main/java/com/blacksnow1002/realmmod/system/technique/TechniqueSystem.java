@@ -1,9 +1,9 @@
 package com.blacksnow1002.realmmod.system.technique;
 
 import com.blacksnow1002.realmmod.system.assignment.AssignmentSystem;
-import com.blacksnow1002.realmmod.core.capability.ModCapabilities;
+import com.blacksnow1002.realmmod.common.capability.ModCapabilities;
 import com.blacksnow1002.realmmod.system.cultivation.CultivationRealm;
-import com.blacksnow1002.realmmod.player.spiritroot.ISpiritRootData;
+import com.blacksnow1002.realmmod.system.player.spiritroot.ISpiritRootData;
 import com.blacksnow1002.realmmod.system.technique.capability.ITechniqueDataManager;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;

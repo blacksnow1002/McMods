@@ -1,6 +1,6 @@
 package com.blacksnow1002.realmmod.system.profession.alchemy.block;
 
-import com.blacksnow1002.realmmod.system.profession.alchemy.screen.AlchemyFurnaceMenu;
+import com.blacksnow1002.realmmod.client.profession.alchemy.screen.AlchemyFurnaceMenu;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;

@@ -2,9 +2,9 @@ package com.blacksnow1002.realmmod.system.profession.alchemy;
 
 import com.blacksnow1002.realmmod.system.profession.alchemy.block.AlchemyToolBlock;
 import com.blacksnow1002.realmmod.system.profession.alchemy.block.AlchemyToolBlockEntity;
-import com.blacksnow1002.realmmod.core.capability.ModCapabilities;
-import com.blacksnow1002.realmmod.core.registry.ModDataComponents;
-import com.blacksnow1002.realmmod.core.registry.ModItems;
+import com.blacksnow1002.realmmod.common.capability.ModCapabilities;
+import com.blacksnow1002.realmmod.common.registry.ModDataComponents;
+import com.blacksnow1002.realmmod.common.registry.ModItems;
 import com.blacksnow1002.realmmod.system.profession.alchemy.item.AlchemyRecipeItem;
 import com.blacksnow1002.realmmod.system.profession.alchemy.item.AlchemyAuxiliaryItem;
 import com.blacksnow1002.realmmod.system.profession.alchemy.capability.IProfessionAlchemyData;

@@ -1,6 +1,6 @@
 package com.blacksnow1002.realmmod.system.battle.attribute.capability.source.technique;
 
-import com.blacksnow1002.realmmod.core.capability.ModCapabilities;
+import com.blacksnow1002.realmmod.common.capability.ModCapabilities;
 
 import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;

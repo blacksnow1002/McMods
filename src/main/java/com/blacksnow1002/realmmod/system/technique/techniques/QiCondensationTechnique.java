@@ -1,7 +1,7 @@
 package com.blacksnow1002.realmmod.system.technique.techniques;
 
 import com.blacksnow1002.realmmod.system.assignment.AssignmentRegistry;
-import com.blacksnow1002.realmmod.core.capability.ModCapabilities;
+import com.blacksnow1002.realmmod.common.capability.ModCapabilities;
 import com.blacksnow1002.realmmod.system.cultivation.CultivationRealm;
 import com.blacksnow1002.realmmod.system.technique.BaseTechnique;
 import com.blacksnow1002.realmmod.system.technique.TechniqueRegistry;

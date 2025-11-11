@@ -1,6 +1,6 @@
 package com.blacksnow1002.realmmod.system.profession.alchemy.recipe.types;
 
-import com.blacksnow1002.realmmod.core.registry.ModItems;
+import com.blacksnow1002.realmmod.common.registry.ModItems;
 import com.blacksnow1002.realmmod.system.profession.alchemy.recipe.BaseAlchemyRecipe;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;

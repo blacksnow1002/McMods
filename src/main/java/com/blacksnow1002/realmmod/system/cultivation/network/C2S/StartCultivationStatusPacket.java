@@ -1,7 +1,7 @@
 package com.blacksnow1002.realmmod.system.cultivation.network.C2S;
 
 import com.blacksnow1002.realmmod.system.cultivation.CultivationRealm;
-import com.blacksnow1002.realmmod.core.capability.ModCapabilities;
+import com.blacksnow1002.realmmod.common.capability.ModCapabilities;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;

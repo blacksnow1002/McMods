@@ -1,6 +1,6 @@
 package com.blacksnow1002.realmmod.system.profession.reforge.recipe.types;
 
-import com.blacksnow1002.realmmod.core.registry.ModItems;
+import com.blacksnow1002.realmmod.common.registry.ModItems;
 import com.blacksnow1002.realmmod.system.profession.reforge.item.ReforgeMainElementItem;
 import com.blacksnow1002.realmmod.system.profession.reforge.recipe.BaseReforgeRecipe;
 import com.blacksnow1002.realmmod.system.profession.reforge.item.ReforgeMainAffixItem;

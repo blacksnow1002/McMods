@@ -1,6 +1,6 @@
 package com.blacksnow1002.realmmod.system.broadcast;
 
-import com.blacksnow1002.realmmod.core.network.ModMessages;
+import com.blacksnow1002.realmmod.common.network.ModMessages;
 import com.blacksnow1002.realmmod.system.broadcast.network.S2C.BroadcastSyncPacket;
 
 public class BroadcastManager {

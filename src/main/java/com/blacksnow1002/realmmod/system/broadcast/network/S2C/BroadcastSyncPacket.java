@@ -1,6 +1,6 @@
 package com.blacksnow1002.realmmod.system.broadcast.network.S2C;
 
-import com.blacksnow1002.realmmod.system.broadcast.client.ClientBroadcastHandler;
+import com.blacksnow1002.realmmod.client.broadcast.ClientBroadcastHandler;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraftforge.event.network.CustomPayloadEvent;
 

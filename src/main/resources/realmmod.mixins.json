@@ -1,13 +1,13 @@
 {
   "required": true,
   "minVersion": "0.8",
-  "package": "com.blacksnow1002.realmmod.mixin",
+  "package": "",
   "compatibilityLevel": "JAVA_17",
   "refmap": "realmmod.refmap.json",
   "client": [
-    "GuiMixin",
-    "BlockStateBaseMixin",
-    "FoodDataMixin"
+    "com.blacksnow1002.realmmod.client.core.mixin.GuiMixin",
+    "com.blacksnow1002.realmmod.client.core.mixin.BlockStateBaseMixin",
+    "com.blacksnow1002.realmmod.client.core.mixin.FoodDataMixin"
   ],
   "injectors": {
     "defaultRequire": 1

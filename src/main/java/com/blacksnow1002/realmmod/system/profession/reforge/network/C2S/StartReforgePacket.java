@@ -2,7 +2,7 @@ package com.blacksnow1002.realmmod.system.profession.reforge.network.C2S;
 
 import com.blacksnow1002.realmmod.RealmMod;
 import com.blacksnow1002.realmmod.system.profession.reforge.ReforgeLogicHandler;
-import com.blacksnow1002.realmmod.system.profession.reforge.screen.ReforgeFurnaceMenu;
+import com.blacksnow1002.realmmod.client.profession.reforge.screen.ReforgeFurnaceMenu;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;

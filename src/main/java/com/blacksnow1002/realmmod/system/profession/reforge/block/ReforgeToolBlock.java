@@ -1,6 +1,6 @@
 package com.blacksnow1002.realmmod.system.profession.reforge.block;
 
-import com.blacksnow1002.realmmod.system.profession.reforge.screen.ReforgeFurnaceMenu;
+import com.blacksnow1002.realmmod.client.profession.reforge.screen.ReforgeFurnaceMenu;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;

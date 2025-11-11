@@ -1,6 +1,6 @@
 package com.blacksnow1002.realmmod.system.profession.alchemy.item;
 
-import com.blacksnow1002.realmmod.core.registry.ModDataComponents;
+import com.blacksnow1002.realmmod.common.registry.ModDataComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;

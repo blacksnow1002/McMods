@@ -1,6 +1,6 @@
 package com.blacksnow1002.realmmod.system.profession.reforge.block;
 
-import com.blacksnow1002.realmmod.core.registry.block.ModBlockEntities;
+import com.blacksnow1002.realmmod.common.registry.block.ModBlockEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;

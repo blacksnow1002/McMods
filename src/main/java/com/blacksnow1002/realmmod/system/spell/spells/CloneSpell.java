@@ -1,6 +1,6 @@
 package com.blacksnow1002.realmmod.system.spell.spells;
 
-import com.blacksnow1002.realmmod.core.registry.ModEntities;
+import com.blacksnow1002.realmmod.common.registry.ModEntities;
 import com.blacksnow1002.realmmod.system.cultivation.CultivationRealm;
 import com.blacksnow1002.realmmod.system.spell.entity.PlayerCloneEntity;
 import com.blacksnow1002.realmmod.util.DelayedTaskHandler;

@@ -1,6 +1,6 @@
 package com.blacksnow1002.realmmod.system.title.network.S2C;
 
-import com.blacksnow1002.realmmod.system.title.client.cache.ClientTitleCache;
+import com.blacksnow1002.realmmod.client.title.cache.ClientTitleCache;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraftforge.event.network.CustomPayloadEvent;
 

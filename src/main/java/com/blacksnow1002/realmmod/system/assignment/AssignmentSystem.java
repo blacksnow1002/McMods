@@ -1,6 +1,6 @@
 package com.blacksnow1002.realmmod.system.assignment;
 
-import com.blacksnow1002.realmmod.core.capability.ModCapabilities;
+import com.blacksnow1002.realmmod.common.capability.ModCapabilities;
 import com.blacksnow1002.realmmod.system.assignment.capability.IAssignmentDataManager;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.network.chat.Component;
