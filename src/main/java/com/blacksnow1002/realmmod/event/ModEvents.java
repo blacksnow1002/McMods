@@ -27,6 +27,7 @@ import com.blacksnow1002.realmmod.profession.common.ProfessionHeartDemonProvider
 import com.blacksnow1002.realmmod.profession.ProfessionProvider;
 import com.blacksnow1002.realmmod.profession.harvest.capability.ProfessionHarvestProvider;
 import com.blacksnow1002.realmmod.profession.mining.capability.ProfessionMiningProvider;
+import com.blacksnow1002.realmmod.profession.reforge.capability.ProfessionReforgeProvider;
 import com.blacksnow1002.realmmod.technique.TechniqueProvider;
 import com.blacksnow1002.realmmod.title.TitleProvider;
 import com.blacksnow1002.realmmod.title.TitleSystem;
@@ -179,6 +180,12 @@ public class ModEvents {
                 event.addCapability(
                         ResourceLocation.fromNamespaceAndPath(RealmMod.MOD_ID, ProfessionAlchemyProvider.IDENTIFIER),
                         new ProfessionAlchemyProvider()
+                );
+            }
+            if(!player.getCapability(ModCapabilities.PROFESSION_REFORGE_CAP).isPresent()){
+                event.addCapability(
+                        ResourceLocation.fromNamespaceAndPath(RealmMod.MOD_ID, ProfessionReforgeProvider.IDENTIFIER),
+                        new ProfessionReforgeProvider()
                 );
             }
 
@@ -350,6 +357,12 @@ public class ModEvents {
             });
             originalPlayer.getCapability(ModCapabilities.PROFESSION_ALCHEMY_CAP).ifPresent(oldData -> {
                 newPlayer.getCapability(ModCapabilities.PROFESSION_ALCHEMY_CAP).ifPresent(newData -> {
+                    CompoundTag tag = oldData.saveNBTData();
+                    newData.loadNBTData(tag);
+                });
+            });
+            originalPlayer.getCapability(ModCapabilities.PROFESSION_REFORGE_CAP).ifPresent(oldData -> {
+                newPlayer.getCapability(ModCapabilities.PROFESSION_REFORGE_CAP).ifPresent(newData -> {
                     CompoundTag tag = oldData.saveNBTData();
                     newData.loadNBTData(tag);
                 });

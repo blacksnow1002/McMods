@@ -125,16 +125,27 @@ public class AlchemyLogicHandler {
 
         PillQuality quality = calculateQuality(cap, recipe, rankDiff, demonCap.isHeartDemon(), auxiliaryMaterialStack);
 
+        // 詞條五：8%機率提升一階品質
+        boolean upgrade = false;
+        if (bonus == AlchemyToolBlock.BonusEntry.ENTRY_5) {
+            if (rand.nextFloat() < 0.08) {
+                upgrade = true;
+                quality = quality.upgrade();
+            }
+        }
+
         ItemStack outputPill;
         String returnText;
         if (quality.isWaste()) {
             returnText = handleWaste(cap, recipe, count, grade, bonus, demonCap, itemHandler);
 
-            outputPill = new ItemStack(ModItems.ALCHEMY_WASTE_ITEM.get(), 1);
+            outputPill = new ItemStack(ModItems.ALCHEMY_WASTE_ITEM.get(), count);
         } else {
             AbstractMap.SimpleEntry<Integer, String> result = handleSuccess(cap, recipe, count, grade, bonus, quality, rankDiff);
             int outputCount = result.getKey();
             returnText = result.getValue();
+
+            if (upgrade) returnText += "\n觸發詞條五：丹藥品質提升";
 
             outputPill = new ItemStack(recipe.getOutputItem(), outputCount);
             outputPill.set(ModDataComponents.PILL_QUALITY.get(), quality.ordinal());
@@ -255,16 +266,6 @@ public class AlchemyLogicHandler {
                 returnText += "\n觸發詞條四：§d§l雙倍產出!";
             }
         }
-
-        // 詞條五：8%機率提升一階品質
-        if (bonus == AlchemyToolBlock.BonusEntry.ENTRY_5) {
-            if (rand.nextFloat() < 0.08) {
-                quality = quality.upgrade();
-                returnText += "\n觸發詞條五：丹藥品質提升";
-            }
-        }
-
-
 
         int baseExp = 10 * count;
         if (rankDiff == 0) {

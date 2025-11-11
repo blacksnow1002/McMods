@@ -40,6 +40,8 @@ public class ModItemModelProvider extends ItemModelProvider {
 
         basicItem(ModItems.TOOL_REFORGE_STONE.get());
 
+        basicItem(ModItems.ALCHEMY_WASTE_ITEM.get());
+
         basicItemWithVanillaParent(ModItems.HARVEST_TOOL_9_MORTAL.get(), "iron_hoe");
         basicItemWithVanillaParent(ModItems.HARVEST_TOOL_9_MYSTIC.get(), "iron_pickaxe");
         basicItemWithVanillaParent(ModItems.HARVEST_TOOL_9_EARTH.get(), "diamond_hoe");

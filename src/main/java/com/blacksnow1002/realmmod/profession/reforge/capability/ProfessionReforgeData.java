@@ -1,6 +1,5 @@
-package com.blacksnow1002.realmmod.profession.alchemy.capability;
+package com.blacksnow1002.realmmod.profession.reforge.capability;
 
-import com.mojang.datafixers.types.templates.List;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.Tag;
@@ -10,13 +9,13 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-public class ProfessionAlchemyData implements IProfessionAlchemyData {
+public class ProfessionReforgeData implements IProfessionReforgeData {
     private int rank = 0; // 0=未入門, 1~9品
     private int exp = 0;
     private final int[] requiredExp = {0, 984100, 328000, 109300, 36400, 12100, 4000, 1300, 400, 100};
 
-    public record AlchemyQualityRate(float floating, float cloud, float spirit, float dao) {};
-    private Map<String, AlchemyQualityRate> qualityRate = new HashMap<>();
+    public record ReforgeQualityRate(float mortal, float mystic, float earth, float heaven) {};
+    private Map<String, ReforgeQualityRate> qualityRate = new HashMap<>();
 
     private Set<String> knownRecipes = new HashSet<>();
 
@@ -59,23 +58,23 @@ public class ProfessionAlchemyData implements IProfessionAlchemyData {
     }
 
     @Override
-    public AlchemyQualityRate getQualityRateBonus(String pillId) {
-        return qualityRate.getOrDefault(pillId, new AlchemyQualityRate(0, 0, 0, 0));
+    public ReforgeQualityRate getQualityRateBonus(String artifactId) {
+        return qualityRate.getOrDefault(artifactId, new ReforgeQualityRate(0, 0, 0, 0));
     }
 
     @Override
-    public void setQualityRateBonus(String pillId, AlchemyQualityRate rate) {
-        qualityRate.put(pillId, rate);
+    public void setQualityRateBonus(String artifactId, ReforgeQualityRate rate) {
+        qualityRate.put(artifactId, rate);
     }
 
     @Override
-    public void addQualityRateBonus(String pillId, AlchemyQualityRate rate) {
-        AlchemyQualityRate successRate = getQualityRateBonus(pillId);
-        setQualityRateBonus(pillId, new AlchemyQualityRate(
-                successRate.floating + rate.floating,
-                successRate.cloud + rate.cloud,
-                successRate.spirit + rate.spirit,
-                successRate.dao + rate.dao));
+    public void addQualityRateBonus(String artifactId, ReforgeQualityRate rate) {
+        ReforgeQualityRate successRate = getQualityRateBonus(artifactId);
+        setQualityRateBonus(artifactId, new ReforgeQualityRate(
+                successRate.mortal + rate.mortal,
+                successRate.mystic + rate.mystic,
+                successRate.earth + rate.earth,
+                successRate.heaven + rate.heaven));
     }
 
     @Override
@@ -84,32 +83,32 @@ public class ProfessionAlchemyData implements IProfessionAlchemyData {
     }
 
     @Override
-    public boolean hasKnownRecipe(String pillId) {
-        return knownRecipes.contains(pillId);
+    public boolean hasKnownRecipe(String artifactId) {
+        return knownRecipes.contains(artifactId);
     }
 
     @Override
-    public void setKnownRecipe(String pillId) {
-        knownRecipes.add(pillId);
+    public void setKnownRecipe(String artifactId) {
+        knownRecipes.add(artifactId);
     }
 
 
     @Override
     public CompoundTag saveNBTData() {
         CompoundTag tag = new CompoundTag();
-        tag.putInt("AlchemyRank", rank);
-        tag.putInt("AlchemyExp", exp);
+        tag.putInt("ReforgeRank", rank);
+        tag.putInt("ReforgeExp", exp);
 
         // 存 qualityRate
         ListTag rateList = new ListTag();
-        for (Map.Entry<String, AlchemyQualityRate> entry : qualityRate.entrySet()) {
+        for (Map.Entry<String, ReforgeQualityRate> entry : qualityRate.entrySet()) {
             CompoundTag rateTag = new CompoundTag();
             rateTag.putString("pillId", entry.getKey());
-            AlchemyQualityRate rate = entry.getValue();
-            rateTag.putFloat("mortal", rate.floating());
-            rateTag.putFloat("mystic", rate.cloud());
-            rateTag.putFloat("earth", rate.spirit());
-            rateTag.putFloat("heaven", rate.dao());
+            ReforgeQualityRate rate = entry.getValue();
+            rateTag.putFloat("mortal", rate.mortal());
+            rateTag.putFloat("mystic", rate.mystic());
+            rateTag.putFloat("earth", rate.earth());
+            rateTag.putFloat("heaven", rate.heaven());
             rateList.add(rateTag);
         }
         tag.put("QualityRateList", rateList);
@@ -129,8 +128,8 @@ public class ProfessionAlchemyData implements IProfessionAlchemyData {
 
     @Override
     public void loadNBTData(CompoundTag tag) {
-        this.rank = tag.getInt("AlchemyRank");
-        this.exp = tag.getInt("AlchemyExp");
+        this.rank = tag.getInt("ReforgeRank");
+        this.exp = tag.getInt("ReforgeExp");
 
         // 讀 qualityRate
         qualityRate.clear();
@@ -138,7 +137,7 @@ public class ProfessionAlchemyData implements IProfessionAlchemyData {
         for (int i = 0; i < rateList.size(); i++) {
             CompoundTag rateTag = rateList.getCompound(i);
             String pillId = rateTag.getString("pillId");
-            AlchemyQualityRate rate = new AlchemyQualityRate(
+            ReforgeQualityRate rate = new ReforgeQualityRate(
                     rateTag.getFloat("mortal"),
                     rateTag.getFloat("mystic"),
                     rateTag.getFloat("earth"),

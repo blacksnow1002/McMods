@@ -18,6 +18,7 @@ import com.blacksnow1002.realmmod.profession.alchemy.capability.IProfessionAlche
 import com.blacksnow1002.realmmod.profession.common.IProfessionHeartDemonData;
 import com.blacksnow1002.realmmod.profession.harvest.capability.IProfessionHarvestData;
 import com.blacksnow1002.realmmod.profession.mining.capability.IProfessionMiningData;
+import com.blacksnow1002.realmmod.profession.reforge.capability.IProfessionReforgeData;
 import com.blacksnow1002.realmmod.technique.ITechniqueDataManager;
 import com.blacksnow1002.realmmod.title.ITitleDataManager;
 import net.minecraftforge.common.capabilities.Capability;
@@ -69,6 +70,8 @@ public class ModCapabilities {
     public static final Capability<IProfessionMiningData> PROFESSION_MINING_CAP =
             CapabilityManager.get(new CapabilityToken<>(){});
     public static final Capability<IProfessionAlchemyData> PROFESSION_ALCHEMY_CAP =
+            CapabilityManager.get(new CapabilityToken<>(){});
+    public static final Capability<IProfessionReforgeData> PROFESSION_REFORGE_CAP =
             CapabilityManager.get(new CapabilityToken<>(){});
 
 

@@ -4,6 +4,7 @@ import com.blacksnow1002.realmmod.RealmMod; // 你的主類
 import com.blacksnow1002.realmmod.mailbox.MailboxScreen;
 import com.blacksnow1002.realmmod.profession.alchemy.screen.AlchemyFurnaceMenu;
 import com.blacksnow1002.realmmod.profession.alchemy.screen.AlchemyFurnaceScreen;
+import com.blacksnow1002.realmmod.profession.reforge.screen.ReforgeFurnaceMenu;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraftforge.registries.DeferredRegister;
@@ -25,4 +26,9 @@ public class ModMenuTypes {
             MENUS.register("alchemy_furnace_menu", () ->
                     IForgeMenuType.create((containerId, playerInventory, data ) ->
                             new AlchemyFurnaceMenu(containerId, playerInventory, data)));
+
+    public static final RegistryObject<MenuType<ReforgeFurnaceMenu>> REFORGE_FURNACE_MENU =
+            MENUS.register("reforge_furnace_menu", () ->
+                    IForgeMenuType.create((containerId, playerInventory, data ) ->
+                            new ReforgeFurnaceMenu(containerId, playerInventory, data)));
 }
