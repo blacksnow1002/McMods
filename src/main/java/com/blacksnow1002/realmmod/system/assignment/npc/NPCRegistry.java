@@ -1,6 +1,5 @@
 package com.blacksnow1002.realmmod.system.assignment.npc;
 
-import com.blacksnow1002.realmmod.assignment.npc.npcs.*;
 import com.blacksnow1002.realmmod.system.assignment.npc.npcs.TestNPC;
 
 import java.util.*;

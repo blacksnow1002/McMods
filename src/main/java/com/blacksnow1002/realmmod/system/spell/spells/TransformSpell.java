@@ -18,8 +18,8 @@ import java.util.Map;
 public class TransformSpell extends BaseSpell {
 
     private static final Map<Item, Item> TRANSFORMABLE = Map.of(
-            ModItems.ALEXANDRITE.get(), ModItems.SPIRIT_STONE_LOW.get(),
-            ModItems.RAW_ALEXANDRITE.get(), ModItems.SPIRIT_STONE_MIDDLE.get()
+            ModItems.SPIRIT_FRUIT.get(), ModItems.SPIRIT_STONE_LOW.get(),
+            ModItems.TOOL_REFORGE_STONE.get(), ModItems.SPIRIT_STONE_MIDDLE.get()
     );
 
     @Override

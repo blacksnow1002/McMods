@@ -1,7 +1,6 @@
 package com.blacksnow1002.realmmod.system.technique;
 
 import com.blacksnow1002.realmmod.system.technique.techniques.FireSupremeTechnique;
-import com.blacksnow1002.realmmod.technique.techniques.*;
 
 /**
  * 功法註冊表 - 集中管理所有功法的註冊

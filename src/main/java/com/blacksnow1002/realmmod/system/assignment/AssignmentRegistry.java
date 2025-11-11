@@ -1,6 +1,5 @@
 package com.blacksnow1002.realmmod.system.assignment;
 
-import com.blacksnow1002.realmmod.assignment.assignments.*;
 import com.blacksnow1002.realmmod.system.assignment.assignments.*;
 
 /**

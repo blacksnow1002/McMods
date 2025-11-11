@@ -1,7 +1,6 @@
 
 package com.blacksnow1002.realmmod.system.spell;
 
-import com.blacksnow1002.realmmod.spell.spells.*;
 import com.blacksnow1002.realmmod.system.spell.spells.*;
 
 import java.util.HashMap;
