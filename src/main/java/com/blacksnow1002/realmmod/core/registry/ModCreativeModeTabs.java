@@ -23,13 +23,7 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.SPIRIT_STONE_LOW.get());
                         output.accept(ModItems.SPIRIT_STONE_MIDDLE.get());
                         output.accept(ModItems.SPIRIT_STONE_HIGH.get());
-                        output.accept(ModItems.MAGIC_DRUG.get());
-                        output.accept(ModItems.ALEXANDRITE.get());
-                        output.accept(ModItems.RAW_ALEXANDRITE.get());
-                        output.accept(ModItems.CHISEL.get());
-                        output.accept(ModItems.KOHLRABI.get());
                         output.accept(ModItems.SPIRIT_FRUIT.get());
-                        output.accept(ModItems.AURORA_ASHES.get());
 
                         output.accept(ModItems.TECHNIQUE.get());
 
